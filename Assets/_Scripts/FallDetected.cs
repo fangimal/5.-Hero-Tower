@@ -13,15 +13,25 @@ public class FallDetected : MonoBehaviour
     private CharacterController _characterController;
     private ThirdPersonController _thirdPersonController;
 
+    private float _startTimer = 2f;
+    private float _timer;
+    
+
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         _thirdPersonController = GetComponent<ThirdPersonController>();
+        _timer = _startTimer;
     }
 
     private void FixedUpdate()
     {
-        if (!_thirdPersonController.Grounded)
+        if (_thirdPersonController.Grounded)
+        {
+            _timer = _startTimer;
+        }
+        
+        if (!_thirdPersonController.Grounded && _timer < 0)
         {
             if (Physics.Raycast(transform.position, Vector3.down, distance, layerMask))
             {
@@ -33,6 +43,16 @@ public class FallDetected : MonoBehaviour
                 OnEnabled?.Invoke();
                 Debug.Log("More then: " + distance);
             }
+        }
+
+        StartFallTimer();
+    }
+
+    private void StartFallTimer()
+    {
+        if (!_thirdPersonController.Grounded)
+        {
+            _timer -= Time.deltaTime;
         }
     }
 
