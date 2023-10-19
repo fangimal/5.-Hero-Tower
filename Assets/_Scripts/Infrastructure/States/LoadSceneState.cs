@@ -39,12 +39,12 @@ namespace _Scripts.Infrastructure.States
         {
             InitUI();
             
-            InitStartWorld();
+            InitPlayer();
 
             _stateMachine.Enter<GameLoopState>();
         }
 
-        private void InitStartWorld()
+        private void InitPlayer()
         {
             Debug.Log("World don't Init!");
         }
