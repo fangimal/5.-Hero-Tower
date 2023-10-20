@@ -8,5 +8,6 @@ namespace _Scripts.StaticData
     {
         void LoadDatas();
         WindowConfig ForWindow(WindowId windowId);
+        LevelStaticData ForLevel(int sceneBuildIndex);
     }
 }

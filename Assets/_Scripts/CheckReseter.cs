@@ -1,4 +1,3 @@
-using System;
 using StarterAssets;
 using UnityEngine;
 
@@ -6,21 +5,22 @@ public class CheckReseter : MonoBehaviour
 {
     [SerializeField] private CheckPoint[] checkPoints;
     [SerializeField] private Transform startPoint;
-    [SerializeField] private ThirdPersonController player;
 
     private const string PLAYERDATA = "DATA";
 
-    [SerializeField] private FallDetected _fallDetected;
+    private ThirdPersonController player;
+    private FallDetected _fallDetected;
 
-    private void Awake()
+    public void Initialize(ThirdPersonController player)
     {
-        _fallDetected = player.GetComponent<FallDetected>();
+        this.player = player;
+        _fallDetected = player.gameObject.GetComponent<FallDetected>();
         _fallDetected.OnEnabled += LoadData;
     }
 
     private void Start()
     {
-        LoadData();
+        //LoadData();
         SetIndex();
     }
 

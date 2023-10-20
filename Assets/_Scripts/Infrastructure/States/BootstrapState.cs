@@ -1,4 +1,5 @@
 ﻿using _Scripts.Infrastructure.AssetManagment;
+using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services;
 using _Scripts.StaticData;
@@ -34,10 +35,14 @@ namespace _Scripts.Infrastructure.States
         {
             RegisterStaticData();
             
-            _services.RegisterSingle<IAssets>(new AssetsProvider());
+            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
+            _services.RegisterSingle<IAssetsProvider>(new AssetsProviderProvider());
             
             _services.RegisterSingle<IUIFactory>(new UIFactory(
-                _stateMachine,_services.Single<IAssets>(), _services.Single<IStaticDataService>()));
+                _stateMachine,_services.Single<IAssetsProvider>(), _services.Single<IStaticDataService>()));
+            
+            _services.RegisterSingle<IGameFactory>(new GameFactory(
+                _services.Single<IAssetsProvider>(), _services.Single<IStaticDataService>()));
         }
 
         private void RegisterStaticData()

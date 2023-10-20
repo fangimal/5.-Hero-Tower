@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.States;
+using _Scripts.StaticData;
 
 namespace _Scripts.Infrastructure.Services
 {
@@ -16,7 +18,11 @@ namespace _Scripts.Infrastructure.Services
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
-                [typeof(LoadSceneState)] = new LoadSceneState(this, sceneLoader, curtain, services.Single<IUIFactory>()),
+                [typeof(LoadSceneState)] = new LoadSceneState(
+                    this, sceneLoader, curtain, 
+                    services.Single<IUIFactory>(), 
+                    services.Single<IStaticDataService>(),
+                    services.Single<IGameFactory>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }

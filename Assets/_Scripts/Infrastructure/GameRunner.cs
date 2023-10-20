@@ -4,7 +4,7 @@ namespace _Scripts.Infrastructure
 {
     public class GameRunner : MonoBehaviour
     {
-        public GameBootstrapper BootstrapperPrafab;
+        [SerializeField] private GameBootstrapper BootstrapperPrafab;
 
         private void Awake()
         {
