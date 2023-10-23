@@ -4,6 +4,7 @@
     {
         public const string UIRootPath = "UI/UIRoot";
         public const string StartUIPath = "UI/StartScreen";
-        public const string PlayerPath = "Player/PlayerArmature";
+        public const string PlayerPath = "Player/PlayerArmatureMulti";
+        //public const string PlayerPath = "Player/PlayerArmature";
     }
 }

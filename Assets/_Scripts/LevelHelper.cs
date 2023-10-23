@@ -3,6 +3,7 @@ using _Scripts.Infrastructure.Services;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Scripts
 {
@@ -11,7 +12,7 @@ namespace _Scripts
         [SerializeField] private CinemachineVirtualCamera _camera;
         [SerializeField] private CheckReseter _reseter;
 
-        private void Awake()
+        private void Start()
         {
             var gameFactory = AllServices.Container.Single<IGameFactory>();
 
@@ -20,7 +21,9 @@ namespace _Scripts
 
         public void Initialize(ThirdPersonController player)
         {
+            // Debug.Log("Initialize");
             _camera.Follow = player.CinemachineCameraTarget.transform;
+
             _reseter.Initialize(player);
         }
     }

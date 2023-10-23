@@ -5,37 +5,48 @@ public class CheckReseter : MonoBehaviour
 {
     [SerializeField] private CheckPoint[] checkPoints;
     [SerializeField] private Transform startPoint;
+    [SerializeField] private Transform targetPoint;
+    [SerializeField] private int index;
 
     private const string PLAYERDATA = "DATA";
 
     private ThirdPersonController player;
     private FallDetected _fallDetected;
-
+    
     public void Initialize(ThirdPersonController player)
-    {
+    { 
         this.player = player;
+        Debug.Log("player: " + player);
         _fallDetected = player.gameObject.GetComponent<FallDetected>();
         _fallDetected.OnEnabled += LoadData;
     }
 
     private void Start()
     {
-        //LoadData();
+        LoadData();
         SetIndex();
     }
 
     private void LoadData()
     {
+        Debug.Log("LoadData");
+        RebasePlayer(SetTargetPosition());
+    }
+
+    private Transform SetTargetPosition()
+    {
+        Transform pos;
+        
         if (PlayerPrefs.HasKey(PLAYERDATA))
         {
-            RebasePlayer(checkPoints[PlayerPrefs.GetInt(PLAYERDATA)].GetSpawnPoint);
+            pos = checkPoints[PlayerPrefs.GetInt(PLAYERDATA)].GetSpawnPoint;
         }
         else
         {
-            RebasePlayer(startPoint);
+            pos = startPoint;
         }
-        
-        _fallDetected.OnCharacterController();
+
+        return targetPoint = pos;
     }
 
     private void SetIndex()
@@ -47,14 +58,19 @@ public class CheckReseter : MonoBehaviour
         }
     }
 
-    public void RebasePlayer(Transform targetTransform)
+    private void RebasePlayer(Transform targetTransform)
     {
-        player.gameObject.transform.position = targetTransform.position;
-        
+        if (player)
+        {
+            player.gameObject.transform.position = targetTransform.position;
+            _fallDetected.OnCharacterController();
+        }
+        Debug.Log("RebasePlayer");
     }
 
     private void SavePosition(int index)
     {
         PlayerPrefs.SetInt(PLAYERDATA, index);
+        this.index = index;
     }
 }

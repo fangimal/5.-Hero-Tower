@@ -1,4 +1,5 @@
-﻿ using UnityEngine;
+﻿ using _Scripts.Player;
+ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -14,6 +15,8 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        public Transform VisualContainer;
+        
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 5.0f;
@@ -110,6 +113,8 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        [SerializeField] private Visualize _visualize;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -136,7 +141,7 @@ namespace StarterAssets
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
-            _hasAnimator = TryGetComponent(out _animator);
+            _hasAnimator = _visualize.TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM 
@@ -154,7 +159,7 @@ namespace StarterAssets
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
+            _hasAnimator = _visualize.TryGetComponent(out _animator);
 
             JumpAndGravity();
             GroundedCheck();

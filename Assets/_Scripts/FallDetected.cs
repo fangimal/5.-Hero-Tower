@@ -35,13 +35,13 @@ public class FallDetected : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, Vector3.down, distance, layerMask))
             {
-                Debug.Log("Distanse less then: " + distance);
+                //Debug.Log("Distanse less then: " + distance);
             }
             else
             {
                 _characterController.enabled = false;
                 OnEnabled?.Invoke();
-                Debug.Log("More then: " + distance);
+                //Debug.Log("More then: " + distance);
             }
         }
 

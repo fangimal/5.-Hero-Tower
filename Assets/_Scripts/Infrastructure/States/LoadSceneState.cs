@@ -17,6 +17,8 @@ namespace _Scripts.Infrastructure.States
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
         
+        private GameObject player;
+        
         private int currentSceneIndex;
         public LoadSceneState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, 
             IUIFactory uiFactory, IStaticDataService staticData, IGameFactory gameFactory)
@@ -45,9 +47,9 @@ namespace _Scripts.Infrastructure.States
 
         private void OnLoaded()
         {
-            InitUI();
-            
             InitPlayer();
+            
+            InitUI();
 
             _stateMachine.Enter<GameLoopState>();
         }
@@ -56,13 +58,13 @@ namespace _Scripts.Infrastructure.States
         {
             var levelData = GetLevelStaticData();
 
-            GameObject player = _gameFactory.CreatePlayer(levelData);
+            player = _gameFactory.CreatePlayer(levelData);
         }
 
         private LevelStaticData GetLevelStaticData() => 
             _staticData.ForLevel(SceneManager.GetActiveScene().buildIndex);
 
         private void InitUI() => 
-            _uiFactory.CreateUIRoot(currentSceneIndex);
+            _uiFactory.CreateUI(currentSceneIndex, player);
     }
 }

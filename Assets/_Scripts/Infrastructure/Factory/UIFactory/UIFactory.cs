@@ -3,7 +3,6 @@ using _Scripts.Infrastructure.Services;
 using _Scripts.StaticData;
 using _Scripts.StaticData.Windows;
 using _Scripts.UI;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Scripts.Infrastructure.Factory.UIFactory
@@ -16,7 +15,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
 
         private Transform _uiRoot;
         private StartUI startUI;
-        
+
         public UIFactory(IGameStateMachine stateMachine, IAssetsProvider assetsProvider, IStaticDataService staticData)
         {
             _stateMachine = stateMachine;
@@ -24,30 +23,33 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
             _staticData = staticData;
         }
 
-        public void CreateUIRoot(int sceneIndex)
+        public void CreateUI(int sceneIndex, GameObject player)
         {
-            _uiRoot = _assetsProvider.Instantiate(AssetPath.UIRootPath).transform;
-
+            
             if (sceneIndex == 1)
             {
-                CreateStartUI();
+                _uiRoot = _assetsProvider.Instantiate(AssetPath.UIRootPath).transform;
+                CreateStartUI(player);
             }
             else
             {
-                CreateGameUI();
+                CreateGameUI(player);
             }
         }
         
-        public void CreateStartUI()
+
+        public void CreateStartUI(GameObject player)
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Start);
             StartUI startUI = Object.Instantiate(config.Prefab, _uiRoot) as StartUI;
-            startUI.Construct(_stateMachine);
+            startUI.Construct(_stateMachine, player);
         }
 
-        public void CreateGameUI()
+        public void CreateGameUI(GameObject player)
         {
-            Debug.Log("GameUI don't created!");
+            WindowConfig config = _staticData.ForWindow(WindowId.Level);
+            LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
+            levelUI.Construct(_stateMachine, player);
         }
     }
 }

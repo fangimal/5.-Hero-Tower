@@ -12,9 +12,7 @@ namespace _Scripts.Infrastructure.Factory
         private readonly IStaticDataService _staticData;
         private GameObject PlayerGameObject { get; set; }
         private LevelHelper levelHelper;
-
         public LevelHelper GetLvlHelper => levelHelper;
-
         public event Action<ThirdPersonController> OnPlayerCreated;
         public GameFactory(IAssetsProvider assetsProvider, IStaticDataService staticData)
         {
@@ -32,6 +30,7 @@ namespace _Scripts.Infrastructure.Factory
             PlayerGameObject = InstantiateRegistered(AssetPath.PlayerPath, levelData.InitialHeroPosition);
             SetPlayerData(PlayerGameObject, levelData);
             OnPlayerCreated?.Invoke(PlayerGameObject.GetComponent<ThirdPersonController>());
+            Debug.Log("CreatePlayer");
             return PlayerGameObject;
         }
         private GameObject InstantiateRegistered(string prefabPath, Vector3  at)
