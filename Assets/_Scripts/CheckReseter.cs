@@ -12,6 +12,7 @@ public class CheckReseter : MonoBehaviour
 
     private ThirdPersonController player;
     private FallDetected _fallDetected;
+    private CharacterController characterController;
     
     public void Initialize(ThirdPersonController player)
     { 
@@ -19,6 +20,7 @@ public class CheckReseter : MonoBehaviour
         Debug.Log("player: " + player);
         _fallDetected = player.gameObject.GetComponent<FallDetected>();
         _fallDetected.OnEnabled += LoadData;
+        characterController = player.gameObject.GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -62,8 +64,11 @@ public class CheckReseter : MonoBehaviour
     {
         if (player)
         {
+            characterController.enabled = false;
+            characterController.SimpleMove(Vector3.zero);
+            Debug.Log("velocity: " + characterController.velocity);
             player.gameObject.transform.position = targetTransform.position;
-            _fallDetected.OnCharacterController();
+            characterController.enabled = true;
         }
         Debug.Log("RebasePlayer");
     }

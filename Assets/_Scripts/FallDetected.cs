@@ -10,7 +10,6 @@ public class FallDetected : MonoBehaviour
     public LayerMask layerMask;
 
     public event Action OnEnabled;
-    private CharacterController _characterController;
     private ThirdPersonController _thirdPersonController;
 
     private float _startTimer = 2f;
@@ -19,7 +18,6 @@ public class FallDetected : MonoBehaviour
 
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
         _thirdPersonController = GetComponent<ThirdPersonController>();
         _timer = _startTimer;
     }
@@ -39,7 +37,7 @@ public class FallDetected : MonoBehaviour
             }
             else
             {
-                _characterController.enabled = false;
+                //_characterController.enabled = false;
                 OnEnabled?.Invoke();
                 //Debug.Log("More then: " + distance);
             }
@@ -55,9 +53,5 @@ public class FallDetected : MonoBehaviour
             _timer -= Time.deltaTime;
         }
     }
-
-    public void OnCharacterController()
-    {
-        _characterController.enabled = true;
-    }
+    
 }

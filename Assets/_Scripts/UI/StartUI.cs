@@ -1,4 +1,5 @@
 using _Scripts.Infrastructure.States;
+using _Scripts.StaticData;
 using _Scripts.UI;
 using UnityEngine;
 
@@ -9,12 +10,16 @@ public class StartUI : WindowBase
 
     private void Awake()
     {
-        BackStartUI();
-        
         _startPanelUI.OnNewGameClicked += LodLevel;
         _startPanelUI.OnSkinClicked += LoadSkinPanel;
-
         _skinPanelUI.OnBackStart += BackStartUI;
+        BackStartUI();
+    }
+
+    protected override void Initialize(bool isMobile)
+    {
+        base.Initialize(isMobile);
+        _skinPanelUI.Construct(gameStateMachine, player);
     }
 
     private void OnDestroy()
@@ -34,8 +39,7 @@ public class StartUI : WindowBase
     {
         _startPanelUI.gameObject.SetActive(false);
         _skinPanelUI.gameObject.SetActive(true);
-        
-        _skinPanelUI.Init(player);
+        _skinPanelUI.Open();
     }
 
     private void LodLevel()

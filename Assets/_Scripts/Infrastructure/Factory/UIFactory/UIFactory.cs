@@ -41,7 +41,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         public void CreateStartUI(GameObject player)
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Start);
-            StartUI startUI = Object.Instantiate(config.Prefab, _uiRoot) as StartUI;
+            startUI = Object.Instantiate(config.Prefab, _uiRoot) as StartUI;
             startUI.Construct(_stateMachine, player);
         }
 

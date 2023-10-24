@@ -2,7 +2,7 @@
 
 namespace _Scripts.Infrastructure.AssetManagment
 {
-    public class AssetsProviderProvider : IAssetsProvider
+    public class AssetsProvider : IAssetsProvider
     {
         public GameObject Instantiate(string path)
         {
@@ -14,6 +14,11 @@ namespace _Scripts.Infrastructure.AssetManagment
         {
             var prefab = Resources.Load<GameObject>(path);
             return Object.Instantiate(prefab, at, Quaternion.identity);
+        }
+
+        public void Cleanup()
+        {
+            
         }
     }
 }

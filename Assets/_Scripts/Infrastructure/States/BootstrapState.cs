@@ -2,6 +2,7 @@
 using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services;
+using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.StaticData;
 
 namespace _Scripts.Infrastructure.States
@@ -36,13 +37,16 @@ namespace _Scripts.Infrastructure.States
             RegisterStaticData();
             
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
-            _services.RegisterSingle<IAssetsProvider>(new AssetsProviderProvider());
+            _services.RegisterSingle<IAssetsProvider>(new AssetsProvider());
+            _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _stateMachine,_services.Single<IAssetsProvider>(), _services.Single<IStaticDataService>()));
             
             _services.RegisterSingle<IGameFactory>(new GameFactory(
-                _services.Single<IAssetsProvider>(), _services.Single<IStaticDataService>()));
+                _services.Single<IAssetsProvider>(), 
+                _services.Single<IStaticDataService>(), 
+                _services.Single<IPersistentProgressService>()));
         }
 
         private void RegisterStaticData()

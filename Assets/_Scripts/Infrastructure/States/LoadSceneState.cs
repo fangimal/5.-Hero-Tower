@@ -36,6 +36,8 @@ namespace _Scripts.Infrastructure.States
             currentSceneIndex = sceneIndex;
             
             _curtain.Show();
+            
+            _gameFactory.Cleanup();
 
             _sceneLoader.Load(sceneIndex, OnLoaded);
         }

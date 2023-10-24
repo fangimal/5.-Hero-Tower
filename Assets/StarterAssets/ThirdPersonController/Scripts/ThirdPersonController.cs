@@ -1,4 +1,5 @@
 ﻿ using _Scripts.Player;
+ using _Scripts.StaticData;
  using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
@@ -16,6 +17,7 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour
     {
         public Transform VisualContainer;
+        public PlayerStaticData PlayerStaticData;
         
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -143,6 +145,7 @@ namespace StarterAssets
             
             _hasAnimator = _visualize.TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
+            _visualize.Init(FootstepAudioClips, FootstepAudioVolume,_controller, LandingAudioClip);
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
@@ -375,24 +378,24 @@ namespace StarterAssets
                 GroundedRadius);
         }
 
-        private void OnFootstep(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
-                }
-            }
-        }
-
-        private void OnLand(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            }
-        }
+        // private void OnFootstep(AnimationEvent animationEvent)
+        // {
+        //     if (animationEvent.animatorClipInfo.weight > 0.5f)
+        //     {
+        //         if (FootstepAudioClips.Length > 0)
+        //         {
+        //             var index = Random.Range(0, FootstepAudioClips.Length);
+        //             AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+        //         }
+        //     }
+        // }
+        //
+        // private void OnLand(AnimationEvent animationEvent)
+        // {
+        //     if (animationEvent.animatorClipInfo.weight > 0.5f)
+        //     {
+        //         AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+        //     }
+        // }
     }
 }

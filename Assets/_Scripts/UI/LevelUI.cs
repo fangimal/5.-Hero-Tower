@@ -35,8 +35,6 @@ namespace _Scripts.UI
                 _mobileDisableAutoSwitchControls.playerInput = player.GetComponent<PlayerInput>();
                 _mobileDisableAutoSwitchControls.Init();
             }
-            
-            Debug.Log("Initialize Input");
         }
 
         private void LoadPauseUI()

@@ -7,5 +7,6 @@ namespace _Scripts.Infrastructure.AssetManagment
     {
         GameObject Instantiate(string path);
         GameObject Instantiate(string path, Vector3 at);
+        void Cleanup();
     }
 }
