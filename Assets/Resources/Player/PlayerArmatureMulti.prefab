@@ -266,6 +266,8 @@ MonoBehaviour:
     type: 3}
   rebaseParticlePrefabStart: {fileID: 4810046085146895344, guid: eef6dcedc1e32cb4582bb93903a6a99f,
     type: 3}
+  levelHelper: {fileID: 0}
+  lastSavePosition: {fileID: 0}
 --- !u!1 &2968872458201695844
 GameObject:
   m_ObjectHideFlags: 0

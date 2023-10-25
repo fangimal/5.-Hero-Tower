@@ -6,28 +6,27 @@ using _Scripts.Infrastructure.Services.SaveLoad;
 using _Scripts.StaticData;
 using StarterAssets;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    [SerializeField] private GameObject rebaseParticlePrefabStart;
+    [SerializeField] private LevelHelper levelHelper;
+    [SerializeField] private Transform lastSavePosition;
+    
     public float distance = 10f;
     public LayerMask layerMask;
-    [SerializeField] private GameObject rebaseParticlePrefab;
-    [SerializeField] private GameObject rebaseParticlePrefabStart;
 
     private ThirdPersonController _thirdPersonController;
     private ISaveLoadService _saveLoadService;
     private IPersistentProgressService _persistentProgress;
-
-    private float _startTimer = 2f;
-    private float _timer;
-    [SerializeField] private LevelHelper levelHelper;
-    [SerializeField] private Transform lastSavePosition;
     private CharacterController characterController;
     private LevelStaticData data;
 
+    private float _startTimer = 2f;
+    private float _timer;
 
-    public void Init(ThirdPersonController thirdPersonController, LevelHelper levelHelper, IPersistentProgressService persistentProgressService, LevelStaticData data)
+    public void Init(ThirdPersonController thirdPersonController, LevelHelper levelHelper, 
+        IPersistentProgressService persistentProgressService, LevelStaticData data)
     {
         this.levelHelper = levelHelper;
         _thirdPersonController = thirdPersonController;
@@ -59,8 +58,6 @@ public class PlayerSpawner : MonoBehaviour
 
     public void SetTargetPosition(int index)
     {
-        Debug.Log("index: " + index + " array: " + _persistentProgress.DataGroup.playerData.checkpointIndex);
-        
         if (index >= 0 && data.levelBuildIndex != 1)
         {
             lastSavePosition = levelHelper.GetCheckPoints[index].GetSpawnPoint;
@@ -88,17 +85,14 @@ public class PlayerSpawner : MonoBehaviour
 
     private void RebasePlayer(Transform targetTransform)
     {
-        //Instantiate(rebaseParticlePrefab);
         characterController.enabled = false;
         StartCoroutine(StartWait(targetTransform));
-        Debug.Log("RebasePlayer");
     }
 
     private IEnumerator StartWait(Transform targetTransform)
     {
-        yield return new WaitForSeconds(.5f);
-        characterController.SimpleMove(Vector3.zero);
         gameObject.transform.position = targetTransform.position;
+        yield return new WaitForFixedUpdate();
         Instantiate(rebaseParticlePrefabStart);
         characterController.enabled = true;
     }

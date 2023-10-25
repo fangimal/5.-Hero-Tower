@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Scripts.Infrastructure.States;
 using _Scripts.UI;
 using UnityEngine;
@@ -9,8 +10,9 @@ public class StartUI : WindowBase
 
     private void Awake()
     {
-        _startPanelUI.OnNewGameClicked += LodLevel;
+        _startPanelUI.OnNewGameClicked += LodNewLevel;
         _startPanelUI.OnSkinClicked += LoadSkinPanel;
+        _startPanelUI.OnContinueClicked += ContinueLevel;
         _skinPanelUI.OnBackStart += BackStartUI;
         BackStartUI();
     }
@@ -23,7 +25,7 @@ public class StartUI : WindowBase
 
     private void OnDestroy()
     {
-        _startPanelUI.OnNewGameClicked -= LodLevel;
+        _startPanelUI.OnNewGameClicked -= LodNewLevel;
         _startPanelUI.OnSkinClicked -= LoadSkinPanel;
         _skinPanelUI.OnBackStart -= BackStartUI;
     }
@@ -41,7 +43,14 @@ public class StartUI : WindowBase
         _skinPanelUI.Open();
     }
 
-    private void LodLevel()
+    private void LodNewLevel()
+    {
+        PlayerData.checkpointIndex = new List<int>(){-1};
+        _saveLoadService.SaveProgress();
+        gameStateMachine.Enter<LoadSceneState, int>(2);
+    }
+
+    private void ContinueLevel()
     {
         gameStateMachine.Enter<LoadSceneState, int>(2);
     }
