@@ -1,30 +1,47 @@
 ﻿using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Services;
+using _Scripts.Infrastructure.Services.PersistentProgress;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _Scripts
 {
     public class LevelHelper : MonoBehaviour
     {
         [SerializeField] private CinemachineVirtualCamera _camera;
-        [SerializeField] private CheckReseter _reseter;
+
+        [SerializeField] private CheckPoint[] checkPoints;
+        [SerializeField] private Transform startPoint;
+        [SerializeField] private Transform targetPoint;
+        [SerializeField] private int index;
+        public Transform GetStartPosition => startPoint;
+        public CheckPoint[] GetCheckPoints => checkPoints;
+        private IPersistentProgressService _persistentProgress;
 
         private void Start()
         {
             var gameFactory = AllServices.Container.Single<IGameFactory>();
-
-            gameFactory.OnPlayerCreated += Initialize;
+            gameFactory.SetLevelHelper(this);
         }
 
-        public void Initialize(ThirdPersonController player)
+        public void Initialize(ThirdPersonController player, IPersistentProgressService persistentProgress)
         {
-            // Debug.Log("Initialize");
             _camera.Follow = player.CinemachineCameraTarget.transform;
+            _persistentProgress = persistentProgress;
+            InitCheckPoints();
+        }
 
-            _reseter.Initialize(player);
+        private void InitCheckPoints()
+        {
+            if (checkPoints.Length != 0)
+            {
+                for (int i = 0; i < checkPoints.Length; i++)
+                {
+                    bool isContains = _persistentProgress.DataGroup.playerData.checkpointIndex.Contains(i);
+                    checkPoints[i].Init(!isContains, i);
+                }
+            }
         }
     }
 }

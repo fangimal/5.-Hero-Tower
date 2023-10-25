@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.Data;
 using _Scripts.Infrastructure.AssetManagment;
 using _Scripts.Infrastructure.Services.PersistentProgress;
+using _Scripts.Infrastructure.Services.SaveLoad;
 using _Scripts.StaticData;
 using StarterAssets;
 using UnityEngine;
@@ -18,7 +20,6 @@ namespace _Scripts.Infrastructure.Factory
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         private GameObject PlayerGameObject { get; set; }
         private LevelHelper levelHelper;
-        public LevelHelper GetLvlHelper => levelHelper;
         public event Action<ThirdPersonController> OnPlayerCreated;
 
         public GameFactory(IAssetsProvider assets, IStaticDataService staticData, IPersistentProgressService persistentProgressService)
@@ -36,12 +37,16 @@ namespace _Scripts.Infrastructure.Factory
             //_assets.Cleanup();
         }
 
-        public GameObject CreatePlayer(LevelStaticData levelData)
+        public void SetLevelHelper(LevelHelper levelHelper)
+        {
+            this.levelHelper = levelHelper;
+        }
+        public ThirdPersonController CreatePlayer(LevelStaticData levelData)
         {
             PlayerGameObject = InstantiateRegistered(AssetPath.PlayerPath, levelData.InitialHeroPosition);
-            SetPlayerData(PlayerGameObject, levelData);
-            OnPlayerCreated?.Invoke(PlayerGameObject.GetComponent<ThirdPersonController>());
-            return PlayerGameObject;
+            ThirdPersonController player = PlayerGameObject.GetComponent<ThirdPersonController>();
+            SetPlayerData(player, levelData);
+            return player;
         }
         private GameObject InstantiateRegistered(string prefabPath, Vector3  at)
         {
@@ -52,27 +57,39 @@ namespace _Scripts.Infrastructure.Factory
 
         private void RegisterProgressWatchers(GameObject gameObject)
         {
-            //TODO Register ISavedProgressReader item
-            Register();
+            foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
+            {
+                Register(progressReader);
+            }
         }
 
-        private void Register()
+        private void Register(ISavedProgressReader progressReader)
         {
-            //TODO Register
+            if (progressReader is ISavedProgress progeressWriter) 
+                ProgressWriters.Add(progeressWriter);
+            
+            ProgressReaders.Add(progressReader);
         }
 
-        private void SetPlayerData(GameObject player, LevelStaticData data)
+        private void SetPlayerData(ThirdPersonController player, LevelStaticData data)
         {
-            player.GetComponent<ThirdPersonController>().MoveSpeed = data.playerMoveSpeed;
+            player.MoveSpeed = data.playerMoveSpeed;
+
+            PlayerData playerData = _persistentProgressService.DataGroup.playerData;
+            
+            player.playerSpawner.Init(player, levelHelper, _persistentProgressService, data);
+            player.Init(playerData.playerSkin);
 
             if (data.levelBuildIndex == 1)
             {
-                player.GetComponent<StarterAssetsInputs>().cursorLocked = false;
+                player.GetComponent<StarterAssetsInputs>().SetCursour(false);
             }
             else
             {
-                player.GetComponent<StarterAssetsInputs>().cursorLocked = true;
+                player.GetComponent<StarterAssetsInputs>().SetCursour(true);
             }
+            
+            levelHelper.Initialize(player, _persistentProgressService);
         }
     }
 }

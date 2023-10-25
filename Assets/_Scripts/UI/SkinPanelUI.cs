@@ -49,6 +49,9 @@ namespace _Scripts.UI
 
         private void ClickedSkinItem(int i)
         {
+            player.SetVisualize(i);
+            PlayerData.playerSkin = i;
+            _saveLoadService.SaveProgress();
             Debug.Log("ClickedSkinItem: " + i);
         }
     }

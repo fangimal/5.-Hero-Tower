@@ -2,6 +2,7 @@
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services;
 using _Scripts.StaticData;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +18,7 @@ namespace _Scripts.Infrastructure.States
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
         
-        private GameObject player;
+        private ThirdPersonController player;
         
         private int currentSceneIndex;
         public LoadSceneState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, 

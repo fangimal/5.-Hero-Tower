@@ -4,7 +4,6 @@ using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.StaticData;
 using StarterAssets;
-using UnityEngine;
 
 namespace _Scripts.Infrastructure.Factory
 {
@@ -13,8 +12,7 @@ namespace _Scripts.Infrastructure.Factory
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         void Cleanup();
-        GameObject CreatePlayer(LevelStaticData levelData);
-
-        public event Action<ThirdPersonController> OnPlayerCreated;
+        ThirdPersonController CreatePlayer(LevelStaticData levelData);
+        void SetLevelHelper(LevelHelper levelHelper);
     }
 }

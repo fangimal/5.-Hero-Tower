@@ -1,22 +1,29 @@
-using System;
 using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
     [SerializeField] private Transform spawnPoint;
-
+    [SerializeField] private Transform pointVisual;
+    [SerializeField] private Collider collider;
     public Transform GetSpawnPoint => spawnPoint;
+    public int GetIndex => index;
 
-    public int index;
+    private int index;
 
-    public event Action<int> OnSet;
+    public void Init(bool isActive, int index)
+    {
+        this.index = index;
 
+        pointVisual.gameObject.SetActive(isActive);
+        collider.enabled = isActive;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Find Player");
-            OnSet?.Invoke(index);
+            other.GetComponent<PlayerSpawner>().SetTargetPosition(GetIndex);
+            pointVisual.gameObject.SetActive(false);
+            collider.enabled = false;
         }
     }
 }

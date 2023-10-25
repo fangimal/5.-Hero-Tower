@@ -1,8 +1,10 @@
 ﻿using _Scripts.Infrastructure.AssetManagment;
 using _Scripts.Infrastructure.Services;
+using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.StaticData;
 using _Scripts.StaticData.Windows;
 using _Scripts.UI;
+using StarterAssets;
 using UnityEngine;
 
 namespace _Scripts.Infrastructure.Factory.UIFactory
@@ -12,18 +14,20 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         private readonly IGameStateMachine _stateMachine;
         private readonly IAssetsProvider _assetsProvider;
         private readonly IStaticDataService _staticData;
+        private readonly IPersistentProgressService _progressService;
 
         private Transform _uiRoot;
         private StartUI startUI;
 
-        public UIFactory(IGameStateMachine stateMachine, IAssetsProvider assetsProvider, IStaticDataService staticData)
+        public UIFactory(IGameStateMachine stateMachine, IAssetsProvider assetsProvider, IStaticDataService staticData, IPersistentProgressService progressService)
         {
             _stateMachine = stateMachine;
             _assetsProvider = assetsProvider;
             _staticData = staticData;
+            _progressService = progressService;
         }
 
-        public void CreateUI(int sceneIndex, GameObject player)
+        public void CreateUI(int sceneIndex, ThirdPersonController player)
         {
             
             if (sceneIndex == 1)
@@ -38,18 +42,18 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         }
         
 
-        public void CreateStartUI(GameObject player)
+        public void CreateStartUI(ThirdPersonController player)
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Start);
             startUI = Object.Instantiate(config.Prefab, _uiRoot) as StartUI;
-            startUI.Construct(_stateMachine, player);
+            startUI.Construct(_stateMachine, player, _progressService);
         }
 
-        public void CreateGameUI(GameObject player)
+        public void CreateGameUI(ThirdPersonController player)
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Level);
             LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
-            levelUI.Construct(_stateMachine, player);
+            levelUI.Construct(_stateMachine, player, _progressService);
         }
     }
 }

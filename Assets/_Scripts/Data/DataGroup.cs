@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace _Scripts.Data
 {
@@ -17,5 +18,6 @@ namespace _Scripts.Data
     public class PlayerData
     {
         public int playerSkin;
+        public List<int> checkpointIndex = new List<int>(){-1};
     }
 }

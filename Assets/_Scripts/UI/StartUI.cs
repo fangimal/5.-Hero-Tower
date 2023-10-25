@@ -1,5 +1,4 @@
 using _Scripts.Infrastructure.States;
-using _Scripts.StaticData;
 using _Scripts.UI;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ public class StartUI : WindowBase
     protected override void Initialize(bool isMobile)
     {
         base.Initialize(isMobile);
-        _skinPanelUI.Construct(gameStateMachine, player);
+        _skinPanelUI.Construct(gameStateMachine, player, ProgressService);
     }
 
     private void OnDestroy()

@@ -9,17 +9,20 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
     {
         private const string ProgressKey = "Progress";
 
-        private readonly IPersistentProgressService _persistentProgressService;
+        private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
 
-        public SaveLoadService(IPersistentProgressService persistentProgressService, IGameFactory gameFactory)
+        public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory)
         {
-            _persistentProgressService = persistentProgressService;
+            _progressService = progressService;
             _gameFactory = gameFactory;
         }
         public void SaveProgress()
         {
+            foreach (ISavedProgress progressWriter in _gameFactory.ProgressWriters)
+                progressWriter.UpdateProgress(_progressService.DataGroup);
             
+            PlayerPrefs.SetString(ProgressKey, _progressService.DataGroup.ToJson());
         }
 
         public DataGroup LoadProgress() =>

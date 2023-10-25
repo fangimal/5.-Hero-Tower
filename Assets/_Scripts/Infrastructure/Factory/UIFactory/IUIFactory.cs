@@ -1,12 +1,13 @@
 using _Scripts.Infrastructure.Services;
+using StarterAssets;
 using UnityEngine;
 
 namespace _Scripts.Infrastructure.Factory.UIFactory
 {
     public interface IUIFactory: IService
     {
-        void CreateUI(int index, GameObject player);
-        void CreateStartUI(GameObject player);
-        void CreateGameUI(GameObject player);
+        void CreateUI(int index, ThirdPersonController player);
+        void CreateStartUI(ThirdPersonController player);
+        void CreateGameUI(ThirdPersonController player);
     }
 }

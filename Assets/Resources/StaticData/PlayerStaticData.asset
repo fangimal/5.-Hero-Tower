@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSkin:
   - Sprite: {fileID: 21300000, guid: 751aa1b6637101946b2fdbb7aa27d6ad, type: 3}
+    VisualizerPrefag: {fileID: 2419905608626407508, guid: cbe7fac387a5df94c9f6bb60cbe20d90,
+      type: 3}
   - Sprite: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
+    VisualizerPrefag: {fileID: 8143972150814102005, guid: 7ec748363d3a7a8489b1df6fad091ee3,
+      type: 3}

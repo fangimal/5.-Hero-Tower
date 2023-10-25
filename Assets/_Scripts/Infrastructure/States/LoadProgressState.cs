@@ -1,4 +1,8 @@
-﻿using _Scripts.Infrastructure.Services;
+﻿using System.Collections.Generic;
+using _Scripts.Data;
+using _Scripts.Infrastructure.Services;
+using _Scripts.Infrastructure.Services.PersistentProgress;
+using _Scripts.Infrastructure.Services.SaveLoad;
 
 namespace _Scripts.Infrastructure.States
 {
@@ -7,10 +11,14 @@ namespace _Scripts.Infrastructure.States
         public int sceneIndex = 1;
 
         private readonly GameStateMachine _gameStateMachine;
+        private readonly IPersistentProgressService _progressService;
+        private readonly ISaveLoadService _saveLoadService;
 
-        public LoadProgressState(GameStateMachine gameStateMachine)
+        public LoadProgressState(GameStateMachine gameStateMachine, IPersistentProgressService progressService, ISaveLoadService saveLoadService)
         {
             _gameStateMachine = gameStateMachine;
+            _progressService = progressService;
+            _saveLoadService = saveLoadService;
         }
 
         public void Enter()
@@ -24,8 +32,19 @@ namespace _Scripts.Infrastructure.States
         {
         }
 
-        private void LoadProgressOrInitNew()
+        private void LoadProgressOrInitNew() =>
+            _progressService.DataGroup = 
+                _saveLoadService.LoadProgress() 
+                ?? NewProgress();
+        
+        private DataGroup NewProgress()
         {
+            var progress = new DataGroup();
+
+            progress.playerData.playerSkin = 0;
+            progress.playerData.checkpointIndex = new List<int>(){-1};
+             
+            return progress;
         }
     }
 }

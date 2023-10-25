@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
+using _Scripts.Infrastructure.Services.PersistentProgress;
+using _Scripts.Infrastructure.Services.SaveLoad;
 using _Scripts.Infrastructure.States;
 using _Scripts.StaticData;
 
@@ -17,7 +19,9 @@ namespace _Scripts.Infrastructure.Services
             _state = new()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
-                [typeof(LoadProgressState)] = new LoadProgressState(this),
+                [typeof(LoadProgressState)] = new LoadProgressState(this,
+                    services.Single<IPersistentProgressService>(), 
+                    services.Single<ISaveLoadService>()),
                 [typeof(LoadSceneState)] = new LoadSceneState(
                     this, sceneLoader, curtain, 
                     services.Single<IUIFactory>(), 
