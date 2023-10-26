@@ -102,6 +102,7 @@ public class PlayerSpawner : MonoBehaviour
         _thirdPersonController.Grounded = true;
         characterController.enabled = true;
         rebaseParticlePrefabStart.gameObject.SetActive(true);
+        Physics.SyncTransforms();
         StartCoroutine(CanRebase());
     }
 
