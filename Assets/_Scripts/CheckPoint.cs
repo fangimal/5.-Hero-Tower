@@ -21,6 +21,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("OnTriggerEnter");
             other.GetComponent<PlayerSpawner>().SetTargetPosition(GetIndex);
             pointVisual.gameObject.SetActive(false);
             collider.enabled = false;

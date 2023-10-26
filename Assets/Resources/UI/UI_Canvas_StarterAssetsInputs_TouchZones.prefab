@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901182334643ba1438a25accc6bd0c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!114 &343444482387240333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,9 +402,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36da98bc5eab4b598483e1f2406c9b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   _canvasController: {fileID: 2854614339647494548}
   _mobileDisableAutoSwitchControls: {fileID: 6701286033206102030}
+  mobileInput:
+  - {fileID: 1845145781368689681}
+  - {fileID: 8361770633040054537}
+  - {fileID: 3268611270763315776}
   pauseButton: {fileID: 2065367465483187864}
 --- !u!1001 &2846493628060374845
 PrefabInstance:
@@ -526,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 4475312012745311023, guid: c82978c3789dad44da354dc354c782b2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4767772227563435448, guid: c82978c3789dad44da354dc354c782b2,
         type: 3}
@@ -844,7 +848,7 @@ PrefabInstance:
     - target: {fileID: 4475312012745311023, guid: c82978c3789dad44da354dc354c782b2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4767772227563435448, guid: c82978c3789dad44da354dc354c782b2,
         type: 3}
@@ -918,7 +922,7 @@ PrefabInstance:
     - target: {fileID: 4091757288130996202, guid: 9e55d9b4642484f41be20c69a9b48063,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6604053163029732620, guid: 9e55d9b4642484f41be20c69a9b48063,
         type: 3}

@@ -24,6 +24,7 @@ public class PlayerSpawner : MonoBehaviour
 
     private float _startTimer = 2f;
     private float _timer;
+    private bool canRebase = true;
 
     public void Init(ThirdPersonController thirdPersonController, LevelHelper levelHelper, 
         IPersistentProgressService persistentProgressService, LevelStaticData data)
@@ -85,16 +86,29 @@ public class PlayerSpawner : MonoBehaviour
 
     private void RebasePlayer(Transform targetTransform)
     {
-        characterController.enabled = false;
-        StartCoroutine(StartWait(targetTransform));
+        if (canRebase)
+        {
+            canRebase = false;
+            characterController.enabled = false;
+            StartCoroutine(StartWait(targetTransform));
+        }
     }
 
     private IEnumerator StartWait(Transform targetTransform)
     {
         gameObject.transform.position = targetTransform.position;
+        characterController.SimpleMove(Vector3.zero);
         yield return new WaitForFixedUpdate();
-        Instantiate(rebaseParticlePrefabStart);
+        _thirdPersonController.Grounded = true;
         characterController.enabled = true;
+        rebaseParticlePrefabStart.gameObject.SetActive(true);
+        StartCoroutine(CanRebase());
+    }
+
+    private IEnumerator CanRebase()
+    {
+        yield return new WaitForSeconds(2f);
+        canRebase = true;
     }
     
 }

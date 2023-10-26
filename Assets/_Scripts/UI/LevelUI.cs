@@ -10,6 +10,7 @@ namespace _Scripts.UI
     {
         [SerializeField] private UICanvasControllerInput _canvasController;
         [SerializeField] private MobileDisableAutoSwitchControls _mobileDisableAutoSwitchControls;
+        [SerializeField] private Transform[] mobileInput;
 
         [SerializeField] private Button pauseButton;
         private void Awake()
@@ -35,6 +36,8 @@ namespace _Scripts.UI
                 _mobileDisableAutoSwitchControls.playerInput = player.GetComponent<PlayerInput>();
                 _mobileDisableAutoSwitchControls.Init();
             }
+
+            ShowMobileInput(isMobile);
         }
 
         private void LoadPauseUI()
@@ -47,6 +50,14 @@ namespace _Scripts.UI
         private void OnDestroy()
         {
             pauseButton.onClick.RemoveAllListeners();
+        }
+
+        private void ShowMobileInput(bool show)
+        {
+            for (int i = 0; i < mobileInput.Length; i++)
+            {
+                mobileInput[i].gameObject.SetActive(show);
+            }
         }
         
     }

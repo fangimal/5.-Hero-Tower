@@ -53,7 +53,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Level);
             LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
-            levelUI.Construct(_stateMachine, player, _progressService);
+            levelUI.Construct(_stateMachine, player, _progressService, true);
         }
     }
 }
