@@ -1,5 +1,4 @@
 ﻿using System;
-using _Scripts.Infrastructure.States;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +14,7 @@ namespace _Scripts.UI
         public event Action OnNewGameClicked;
         public event Action OnSkinClicked;
         public event Action OnContinueClicked;
+        public event Action OnOurGamesClicked;
 
         private void Awake()
         {
@@ -32,12 +32,17 @@ namespace _Scripts.UI
             {
                 OnContinueClicked?.Invoke();
             });
+            
+            ourGamesButton.onClick.AddListener(() =>
+            {
+                OnOurGamesClicked?.Invoke();
+            });
         }
 
-        // private void OnDestroy()
-        // {
-        //     newGameButton.onClick.RemoveAllListeners();
-        // }
+        public void SetContinueButton(bool isActive)
+        {
+            continueButtone.interactable = isActive;
+        }
         
     }
 }

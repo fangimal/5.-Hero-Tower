@@ -914,6 +914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startPanelUI: {fileID: 2662413988221025674}
   _skinPanelUI: {fileID: 7819703095170343476}
+  link: https://yandex.ru/games/developer?name=FanG
 --- !u!1 &4744001258468920771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,9 +2325,7 @@ PrefabInstance:
     - target: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_text
-      value: 'Our Games
-
-'
+      value: "\u0415\u0449\u0451 \u0438\u0433\u0440\u044B\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -2341,7 +2340,7 @@ PrefabInstance:
     - target: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2477,7 +2476,7 @@ PrefabInstance:
     - target: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_text
-      value: Skins
+      value: "\u0441\u043A\u0438\u043D\u044B"
       objectReference: {fileID: 0}
     - target: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -2689,7 +2688,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -2699,7 +2698,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -2749,12 +2748,12 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -533.8147
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -2774,7 +2773,7 @@ PrefabInstance:
     - target: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_text
-      value: Settings
+      value: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
       objectReference: {fileID: 0}
     - target: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -2786,10 +2785,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings Game Button
       objectReference: {fileID: 0}
+    - target: {fileID: 5718257036768444725, guid: 59e8d08e33bf736479df7d44125a0907,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

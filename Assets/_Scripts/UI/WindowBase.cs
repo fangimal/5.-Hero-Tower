@@ -19,7 +19,8 @@ namespace _Scripts.UI
         {
             
         }
-        public void Construct(IGameStateMachine stateMachine, ThirdPersonController player, IPersistentProgressService progressService, bool isMobile = false)
+        public void Construct(IGameStateMachine stateMachine, ThirdPersonController player, 
+            IPersistentProgressService progressService, bool isMobile = false)
         {
             gameStateMachine = stateMachine;
             ProgressService = progressService;

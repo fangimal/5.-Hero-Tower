@@ -5,7 +5,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine;
 
-namespace _Scripts
+namespace _Scripts.Level
 {
     public class LevelHelper : MonoBehaviour
     {

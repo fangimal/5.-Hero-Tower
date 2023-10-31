@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
+using _Scripts.Level;
 using _Scripts.StaticData;
 using StarterAssets;
 

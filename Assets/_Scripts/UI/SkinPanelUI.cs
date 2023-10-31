@@ -19,10 +19,7 @@ namespace _Scripts.UI
 
         private void Awake()
         {
-            _backStartButton.onClick.AddListener(() =>
-                {
-                    OnBackStart?.Invoke();
-                });
+            _backStartButton.onClick.AddListener(() => { OnBackStart?.Invoke(); });
         }
 
         public void Open()
@@ -41,18 +38,28 @@ namespace _Scripts.UI
                     SkinItem item = Instantiate(_skinItemPrefab, _content);
                     bool locked = false; //TODO set bool
                     item.Init(playerStaticData.Skin[i].Sprite, i, locked);
+                    item.SetSelected(PlayerData.playerSkin == i);
                     item.OnClicked += ClickedSkinItem;
                     _skinItems.Add(item);
                 }
             }
         }
 
-        private void ClickedSkinItem(int i)
+        private void ClickedSkinItem(int index)
         {
-            player.SetVisualize(i);
-            PlayerData.playerSkin = i;
+            player.SetVisualize(index);
+            PlayerData.playerSkin = index;
+            ChangeSelectedItem(index);
             _saveLoadService.SaveProgress();
-            Debug.Log("ClickedSkinItem: " + i);
+            Debug.Log("ClickedSkinItem: " + index);
+        }
+
+        private void ChangeSelectedItem(int itemIndex)
+        {
+            foreach (SkinItem item in _skinItems)
+            {
+                item.SetSelected(item.GetIndex == itemIndex);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using _Scripts.Data;
 using _Scripts.Infrastructure.AssetManagment;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.Services.SaveLoad;
+using _Scripts.Level;
 using _Scripts.StaticData;
 using StarterAssets;
 using UnityEngine;

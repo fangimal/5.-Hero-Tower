@@ -12,7 +12,7 @@ namespace _Scripts.UI
         [SerializeField] private Image _lockedImage;
         
         private int index;
-
+        public int GetIndex => index;
         public event Action<int> OnClicked; 
         private void Awake()
         {
@@ -24,6 +24,11 @@ namespace _Scripts.UI
             _iconImage.sprite = icon;
             index = currentIndex;
             _lockedImage.gameObject.SetActive(isLocked);
+        }
+
+        public void SetSelected(bool isSelected)
+        {
+            _selectedImage.gameObject.SetActive(isSelected);
         }
     }
 }
