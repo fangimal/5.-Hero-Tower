@@ -99,6 +99,7 @@ namespace _Scripts.Level
         private IEnumerator StartWait(Transform targetTransform)
         {
             gameObject.transform.position = targetTransform.position;
+            gameObject.transform.localScale = new Vector3(1,1,1);
             characterController.SimpleMove(Vector3.zero);
             yield return new WaitForFixedUpdate();
             _thirdPersonController.Grounded = true;
