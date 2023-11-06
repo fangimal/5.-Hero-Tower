@@ -19,3 +19,6 @@ MonoBehaviour:
   - Sprite: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
     VisualizerPrefag: {fileID: 8143972150814102005, guid: 7ec748363d3a7a8489b1df6fad091ee3,
       type: 3}
+  - Sprite: {fileID: 21300000, guid: ff7bfa7addf40784d86f62b8e4a034a6, type: 3}
+    VisualizerPrefag: {fileID: 7467451891540425985, guid: d513e814b98ca7e4d95301742236d23c,
+      type: 3}
