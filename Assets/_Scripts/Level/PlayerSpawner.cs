@@ -16,6 +16,7 @@ namespace _Scripts.Level
     
         public float distance = 10f;
         public LayerMask layerMask;
+        public int GetCheckpointsCount => levelHelper.GetCheckPoints.Length;
 
         private ThirdPersonController _thirdPersonController;
         private ISaveLoadService _saveLoadService;
@@ -61,6 +62,11 @@ namespace _Scripts.Level
 
         public void SetTargetPosition(int index)
         {
+            if (index > levelHelper.GetCheckPoints.Length)
+            {
+                index = levelHelper.GetCheckPoints.Length;
+            }
+            
             if (index >= 0 && data.levelBuildIndex != 1)
             {
                 lastSavePosition = levelHelper.GetCheckPoints[index].GetSpawnPoint;
@@ -76,6 +82,12 @@ namespace _Scripts.Level
             }
         
             _saveLoadService.SaveProgress();
+        }
+
+        public void SetNextCheckPointAndRebase(int index)
+        {
+            SetTargetPosition(index);
+            RebasePlayer(lastSavePosition);
         }
 
         private void StartFallTimer()
@@ -100,11 +112,11 @@ namespace _Scripts.Level
         {
             gameObject.transform.position = targetTransform.position;
             gameObject.transform.localScale = new Vector3(1,1,1);
-            characterController.SimpleMove(Vector3.zero);
             yield return new WaitForFixedUpdate();
             _thirdPersonController.Grounded = true;
             characterController.enabled = true;
             rebaseParticlePrefabStart.gameObject.SetActive(true);
+            characterController.SimpleMove(Vector3.zero);
             Physics.SyncTransforms();
             StartCoroutine(CanRebase());
         }
