@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using _Scripts.StaticData;
 using StarterAssets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,33 +13,45 @@ namespace _Scripts.UI
     {
         [SerializeField] private Button _backStartButton;
         [SerializeField] private Button _buyButton;
+        [SerializeField] private TextMeshProUGUI _price;
         [SerializeField] private Transform _content;
         [SerializeField] private SkinItem _skinItemPrefab;
+        public event Action OnBackStart;
 
         private List<SkinItem> _skinItems = new List<SkinItem>();
-        public event Action OnBackStart;
+        private PlayerStaticData _playerStaticData;
+        private int selectedSkin;
 
         private void Awake()
         {
-            _backStartButton.onClick.AddListener(() => { OnBackStart?.Invoke(); });
+            _backStartButton.onClick.AddListener(() =>
+            {
+                player.SetVisualize(PlayerData.playerSkin);
+                OnBackStart?.Invoke();
+            });
+
+            _buyButton.onClick.AddListener(BuySkin);
         }
 
         public void Open()
         {
+            selectedSkin = PlayerData.playerSkin;
             CreateItems();
+            CheckCanBuy(selectedSkin);
         }
 
         private void CreateItems()
         {
             if (_skinItems.Count == 0)
             {
-                PlayerStaticData playerStaticData = player.GetComponent<ThirdPersonController>().PlayerStaticData;
+                _playerStaticData = player.GetComponent<ThirdPersonController>().PlayerStaticData;
 
-                for (int i = 0; i < playerStaticData.Skin.Length; i++)
+                for (int i = 0; i < _playerStaticData.Skin.Length; i++)
                 {
                     SkinItem item = Instantiate(_skinItemPrefab, _content);
-                    bool locked = false; //TODO set bool
-                    item.Init(playerStaticData.Skin[i].Sprite, i, locked);
+                    bool locked = !PlayerData.openSkin.Contains(i);
+                    PlayerSkin skin = _playerStaticData.Skin[i];
+                    item.Init(skin.Sprite, i, skin.Price, locked);
                     item.SetSelected(PlayerData.playerSkin == i);
                     item.OnClicked += ClickedSkinItem;
                     _skinItems.Add(item);
@@ -48,9 +62,8 @@ namespace _Scripts.UI
         private void ClickedSkinItem(int index)
         {
             player.SetVisualize(index);
-            PlayerData.playerSkin = index;
             ChangeSelectedItem(index);
-            _saveLoadService.SaveProgress();
+            CheckBuyingSkin(index);
             Debug.Log("ClickedSkinItem: " + index);
         }
 
@@ -59,6 +72,47 @@ namespace _Scripts.UI
             foreach (SkinItem item in _skinItems)
             {
                 item.SetSelected(item.GetIndex == itemIndex);
+            }
+
+            CheckCanBuy(itemIndex);
+            selectedSkin = itemIndex;
+        }
+
+        private void CheckBuyingSkin(int skinIndex)
+        {
+            if (PlayerData.openSkin.Contains(skinIndex))
+            {
+                SaveSkin(skinIndex);
+            }
+        }
+
+        private void SaveSkin(int skinIndex)
+        {
+            PlayerData.playerSkin = skinIndex;
+            _saveLoadService.SaveProgress();
+        }
+
+        private void BuySkin()
+        {
+            if (PlayerData.Coins >= _playerStaticData.Skin[selectedSkin].Price && PlayerData.Coins !=0)
+            {
+                PlayerData.AddCoins(-_playerStaticData.Skin[selectedSkin].Price);
+                _skinItems[selectedSkin].BuySkin();
+                PlayerData.openSkin.Add(selectedSkin);
+                SaveSkin(selectedSkin);
+            }
+
+            CheckCanBuy(selectedSkin);
+        }
+
+        private void CheckCanBuy(int skinIndex)
+        {
+            bool canBuy = !PlayerData.openSkin.Contains(skinIndex);
+            _buyButton.gameObject.SetActive(canBuy);
+            
+            if (canBuy)
+            {
+                _price.text = _playerStaticData.Skin[skinIndex].Price.ToString();
             }
         }
     }

@@ -14,17 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerSkin:
   - Sprite: {fileID: 21300000, guid: 751aa1b6637101946b2fdbb7aa27d6ad, type: 3}
+    Price: 0
     VisualizerPrefag: {fileID: 2419905608626407508, guid: cbe7fac387a5df94c9f6bb60cbe20d90,
       type: 3}
   - Sprite: {fileID: 21300000, guid: af0ae2dbf3d1efb4f82af377950704a2, type: 3}
+    Price: 1
     VisualizerPrefag: {fileID: 8143972150814102005, guid: 7ec748363d3a7a8489b1df6fad091ee3,
       type: 3}
   - Sprite: {fileID: 21300000, guid: ff7bfa7addf40784d86f62b8e4a034a6, type: 3}
+    Price: 2
     VisualizerPrefag: {fileID: 7467451891540425985, guid: d513e814b98ca7e4d95301742236d23c,
       type: 3}
   - Sprite: {fileID: 21300000, guid: f9fee2f8ebd9027458ab7ca81643621a, type: 3}
+    Price: 3
     VisualizerPrefag: {fileID: 75872128445745159, guid: 20173959fe2138c468fc185ac496f58d,
       type: 3}
   - Sprite: {fileID: 21300000, guid: f713072e8d009884a8d40671765caf93, type: 3}
+    Price: 4
     VisualizerPrefag: {fileID: 1202902257251592249, guid: ac034355be9c40c45928cad5023ffe2e,
       type: 3}

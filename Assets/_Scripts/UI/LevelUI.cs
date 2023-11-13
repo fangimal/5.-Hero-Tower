@@ -1,18 +1,24 @@
-﻿using _Scripts.Infrastructure.States;
+﻿using System;
+using _Scripts.Data;
+using _Scripts.Infrastructure.ADS;
+using _Scripts.Infrastructure.Services.PersistentProgress;
+using _Scripts.Infrastructure.States;
 using StarterAssets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace _Scripts.UI
 {
-    public class LevelUI : WindowBase
+    public class LevelUI : WindowBase, ISavedProgress
     {
         [SerializeField] private UICanvasControllerInput _canvasController;
         [SerializeField] private MobileDisableAutoSwitchControls _mobileDisableAutoSwitchControls;
         [SerializeField] private Transform[] _mobileInput;
         [SerializeField] private Button _pauseButton;
         [SerializeField] private PausePanelUI _pausePanelUI;
+        [SerializeField] private TextMeshProUGUI _coinsCount;
 
         private StarterAssetsInputs _starterAssetsInputs;
 
@@ -23,7 +29,7 @@ namespace _Scripts.UI
             _pausePanelUI.OnNextPoint += () =>
             {
                 OpenPausePanel(false);
-                player.playerSpawner.SetNextCheckPointAndRebase(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1);
+                _adsService.ShowReward(RewardId.Checkpoint);
             };
 
             _pausePanelUI.OnContinue += () => { OpenPausePanel(false); };
@@ -31,20 +37,17 @@ namespace _Scripts.UI
             _pausePanelUI.OnBack += LoadPauseUI;
         }
 
-        private void OpenPausePanel(bool isOpen)
-        {
-            _pausePanelUI.gameObject.SetActive(isOpen);
-            _starterAssetsInputs.SetCursour(!isOpen);
-            _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] < player.playerSpawner.GetCheckpointsCount - 1);
-        }
-
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 OpenPausePanel(true);
             }
+        }
+
+        private void OnDestroy()
+        {
+            _adsService.OnNextCheckPoint -= GetRewardGoNextPoint;
         }
 
         protected override void Initialize(bool isMobile)
@@ -62,7 +65,23 @@ namespace _Scripts.UI
             }
 
             ShowMobileInput(isMobile);
+            
+            _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
         }
+
+        private void GetRewardGoNextPoint()
+        {
+            player.playerSpawner.SetNextCheckPointAndRebase(
+                PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1);
+        }
+
+        private void OpenPausePanel(bool isOpen)
+        {
+            _pausePanelUI.gameObject.SetActive(isOpen);
+            _starterAssetsInputs.SetCursour(!isOpen);
+            _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] < player.playerSpawner.GetCheckpointsCount - 1);
+        }
+
 
         private void LoadPauseUI()
         {
@@ -77,6 +96,16 @@ namespace _Scripts.UI
             {
                 _mobileInput[i].gameObject.SetActive(show);
             }
+        }
+
+        public void LoadProgress(DataGroup dataGroup)
+        {
+            _coinsCount.text = dataGroup.playerData.Coins.ToString();
+        }
+
+        public void UpdateProgress(DataGroup dataGroup)
+        {
+            _coinsCount.text = dataGroup.playerData.Coins.ToString();
         }
     }
 }

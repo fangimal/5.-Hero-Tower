@@ -7,7 +7,6 @@ namespace _Scripts.Data
     public class DataGroup
     {
         public PlayerData playerData;
-        
         public DataGroup()
         {
             playerData = new PlayerData();
@@ -17,7 +16,16 @@ namespace _Scripts.Data
     [Serializable]
     public class PlayerData
     {
+        public int Coins = 5;
         public int playerSkin;
         public List<int> checkpointIndex = new List<int>(){-1};
+        public List<int> openSkin = new List<int>() { 0 };
+
+        public Action CoinsChanged;
+        public void AddCoins(int coins)
+        {
+            Coins += coins;
+            CoinsChanged?.Invoke();
+        }
     }
 }

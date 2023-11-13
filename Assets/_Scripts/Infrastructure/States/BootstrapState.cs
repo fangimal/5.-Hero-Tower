@@ -1,4 +1,5 @@
-﻿using _Scripts.Infrastructure.AssetManagment;
+﻿using _Scripts.Infrastructure.ADS;
+using _Scripts.Infrastructure.AssetManagment;
 using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services;
@@ -36,6 +37,7 @@ namespace _Scripts.Infrastructure.States
         private void RegisterServices()
         {
             RegisterStaticData();
+            RegisterAdsService();
             
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
             _services.RegisterSingle<IAssetsProvider>(new AssetsProvider());
@@ -44,7 +46,8 @@ namespace _Scripts.Infrastructure.States
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _stateMachine,_services.Single<IAssetsProvider>(), 
                 _services.Single<IStaticDataService>(), 
-                _services.Single<IPersistentProgressService>()));
+                _services.Single<IPersistentProgressService>(),
+                _services.Single<IAdsService>()));
             
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetsProvider>(), 
@@ -52,7 +55,14 @@ namespace _Scripts.Infrastructure.States
                 _services.Single<IPersistentProgressService>()));
             
             _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IPersistentProgressService>(), 
-                _services.Single<IGameFactory>()));
+                _services.Single<IGameFactory>(), _services.Single<IUIFactory>()));
+        }
+
+        private void RegisterAdsService()
+        {
+            var adsService = new AdsService();
+            adsService.Initialize();
+            _services.RegisterSingle<IAdsService>(adsService);
         }
 
         private void RegisterStaticData()

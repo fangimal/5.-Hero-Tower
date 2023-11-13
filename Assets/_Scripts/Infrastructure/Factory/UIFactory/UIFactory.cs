@@ -1,4 +1,6 @@
-﻿using _Scripts.Infrastructure.AssetManagment;
+﻿using System.Collections.Generic;
+using _Scripts.Infrastructure.ADS;
+using _Scripts.Infrastructure.AssetManagment;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.StaticData;
@@ -15,16 +17,22 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         private readonly IAssetsProvider _assetsProvider;
         private readonly IStaticDataService _staticData;
         private readonly IPersistentProgressService _progressService;
+        private readonly IAdsService _adsService;
+        public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
+        public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
         private Transform _uiRoot;
         private StartUI startUI;
 
-        public UIFactory(IGameStateMachine stateMachine, IAssetsProvider assetsProvider, IStaticDataService staticData, IPersistentProgressService progressService)
+        public UIFactory(IGameStateMachine stateMachine, 
+            IAssetsProvider assetsProvider, IStaticDataService staticData, 
+            IPersistentProgressService progressService, IAdsService adsService)
         {
             _stateMachine = stateMachine;
             _assetsProvider = assetsProvider;
             _staticData = staticData;
             _progressService = progressService;
+            _adsService = adsService;
         }
 
         public void CreateUI(int sceneIndex, ThirdPersonController player)
@@ -40,20 +48,34 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
                 CreateGameUI(player);
             }
         }
-        
 
         public void CreateStartUI(ThirdPersonController player)
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Start);
-            startUI = Object.Instantiate(config.Prefab, _uiRoot) as StartUI;
-            startUI.Construct(_stateMachine, player, _progressService);
+            StartUI startUI = Object.Instantiate(config.Prefab, _uiRoot) as StartUI;
+            startUI.Construct(_stateMachine, player, _progressService, _adsService);
+            Register(startUI);
         }
 
         public void CreateGameUI(ThirdPersonController player)
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Level);
             LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
-            levelUI.Construct(_stateMachine, player, _progressService, true);
+            levelUI.Construct(_stateMachine, player, _progressService, _adsService,true);
+            Register(levelUI);
+        }
+
+        private void Register(ISavedProgressReader progressReader)
+        {
+            if (progressReader is ISavedProgress progeressWriter) 
+                ProgressWriters.Add(progeressWriter);
+            
+            ProgressReaders.Add(progressReader);
+        }
+        public void Cleanup()
+        {
+            ProgressReaders.Clear();
+            ProgressWriters.Clear();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using _Scripts.Data;
 using _Scripts.Infrastructure.Factory;
+using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
@@ -11,15 +12,20 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
 
         private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
+        private readonly IUIFactory _uiFactory;
 
-        public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory)
+        public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory, IUIFactory uiFactory)
         {
             _progressService = progressService;
             _gameFactory = gameFactory;
+            _uiFactory = uiFactory;
         }
         public void SaveProgress()
         {
             foreach (ISavedProgress progressWriter in _gameFactory.ProgressWriters)
+                progressWriter.UpdateProgress(_progressService.DataGroup);
+            
+            foreach (ISavedProgress progressWriter in _uiFactory.ProgressWriters)
                 progressWriter.UpdateProgress(_progressService.DataGroup);
             
             PlayerPrefs.SetString(ProgressKey, _progressService.DataGroup.ToJson());

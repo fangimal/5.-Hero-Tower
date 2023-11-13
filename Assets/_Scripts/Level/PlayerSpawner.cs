@@ -1,4 +1,5 @@
 using System.Collections;
+using _Scripts.Data;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.Services.SaveLoad;
@@ -90,6 +91,11 @@ namespace _Scripts.Level
             RebasePlayer(lastSavePosition);
         }
 
+        public void GetCoins()
+        {
+            _persistentProgress.DataGroup.playerData.AddCoins(1);
+        }
+
         private void StartFallTimer()
         {
             if (!_thirdPersonController.Grounded)
@@ -126,6 +132,10 @@ namespace _Scripts.Level
             yield return new WaitForSeconds(2f);
             canRebase = true;
         }
-    
+
+        public void UpdateProgress(DataGroup dataGroup)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

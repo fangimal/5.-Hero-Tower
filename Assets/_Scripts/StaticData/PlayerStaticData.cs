@@ -17,6 +17,7 @@ namespace _Scripts.StaticData
     public class PlayerSkin
     {
         public Sprite Sprite;
+        public int Price;
         public Visualize VisualizerPrefag;
     }
 }

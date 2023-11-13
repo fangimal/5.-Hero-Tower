@@ -1,4 +1,5 @@
 ﻿using _Scripts.Data;
+using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.Services.SaveLoad;
@@ -13,6 +14,7 @@ namespace _Scripts.UI
         protected IGameStateMachine gameStateMachine;
         protected IPersistentProgressService ProgressService;
         protected ISaveLoadService _saveLoadService;
+        protected IAdsService _adsService;
         protected PlayerData PlayerData => ProgressService.DataGroup.playerData;
 
         protected virtual void Initialize(bool isMobile)
@@ -20,10 +22,11 @@ namespace _Scripts.UI
             
         }
         public void Construct(IGameStateMachine stateMachine, ThirdPersonController player, 
-            IPersistentProgressService progressService, bool isMobile = false)
+            IPersistentProgressService progressService, IAdsService adsService,bool isMobile = false)
         {
             gameStateMachine = stateMachine;
             ProgressService = progressService;
+            _adsService = adsService;
             this.player = player;
         
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();

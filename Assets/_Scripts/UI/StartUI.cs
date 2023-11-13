@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using _Scripts.Data;
+using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;
 using _Scripts.UI;
+using TMPro;
 using UnityEngine;
 
-public class StartUI : WindowBase
+public class StartUI : WindowBase, ISavedProgress
 {
     [SerializeField] private StartPanelUI _startPanelUI;
     [SerializeField] private SkinPanelUI _skinPanelUI;
     [SerializeField] private string link;
+    [SerializeField] private TextMeshProUGUI coins;
 
     private void Awake()
     {
@@ -24,7 +28,7 @@ public class StartUI : WindowBase
     protected override void Initialize(bool isMobile)
     {
         base.Initialize(isMobile);
-        _skinPanelUI.Construct(gameStateMachine, player, ProgressService);
+        _skinPanelUI.Construct(gameStateMachine, player, ProgressService, _adsService);
         _startPanelUI.SetContinueButton(PlayerData.checkpointIndex.Count > 1);
     }
 
@@ -33,6 +37,7 @@ public class StartUI : WindowBase
         _startPanelUI.OnNewGameClicked -= LodNewLevel;
         _startPanelUI.OnSkinClicked -= LoadSkinPanel;
         _skinPanelUI.OnBackStart -= BackStartUI;
+
     }
 
     private void BackStartUI()
@@ -109,5 +114,15 @@ public class StartUI : WindowBase
         }
 
         return result; 
+    }
+
+    public void LoadProgress(DataGroup dataGroup)
+    {
+        coins.text = dataGroup.playerData.Coins.ToString();
+    }
+
+    public void UpdateProgress(DataGroup dataGroup)
+    {
+        coins.text = dataGroup.playerData.Coins.ToString();
     }
 }

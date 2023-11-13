@@ -26,7 +26,8 @@ namespace _Scripts.Infrastructure.Services
                     this, sceneLoader, curtain, 
                     services.Single<IUIFactory>(), 
                     services.Single<IStaticDataService>(),
-                    services.Single<IGameFactory>()),
+                    services.Single<IGameFactory>(), 
+                    services.Single<IPersistentProgressService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }

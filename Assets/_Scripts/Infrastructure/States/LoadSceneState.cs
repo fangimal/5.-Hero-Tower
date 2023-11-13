@@ -1,6 +1,7 @@
 ﻿using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services;
+using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.StaticData;
 using StarterAssets;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace _Scripts.Infrastructure.States
         private readonly IGameStateMachine _stateMachine;
         private readonly IUIFactory _uiFactory;
         private readonly IStaticDataService _staticData;
+        private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
         
         private readonly SceneLoader _sceneLoader;
@@ -22,7 +24,7 @@ namespace _Scripts.Infrastructure.States
         
         private int currentSceneIndex;
         public LoadSceneState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, 
-            IUIFactory uiFactory, IStaticDataService staticData, IGameFactory gameFactory)
+            IUIFactory uiFactory, IStaticDataService staticData, IGameFactory gameFactory, IPersistentProgressService progressService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -30,6 +32,7 @@ namespace _Scripts.Infrastructure.States
             _uiFactory = uiFactory;
             _staticData = staticData;
             _gameFactory = gameFactory;
+            _progressService = progressService;
         }
 
         public void Enter(int sceneIndex)
@@ -39,6 +42,7 @@ namespace _Scripts.Infrastructure.States
             _curtain.Show();
             
             _gameFactory.Cleanup();
+            _uiFactory.Cleanup();
 
             _sceneLoader.Load(sceneIndex, OnLoaded);
         }
@@ -54,9 +58,16 @@ namespace _Scripts.Infrastructure.States
             
             InitUI();
 
+            InformProgressReaders();
+
             _stateMachine.Enter<GameLoopState>();
         }
 
+        private void InformProgressReaders()
+        {
+            foreach (ISavedProgressReader progressReader in _uiFactory.ProgressReaders)
+                progressReader.LoadProgress(_progressService.DataGroup);
+        }
         private void InitPlayer()
         {
             var levelData = GetLevelStaticData();

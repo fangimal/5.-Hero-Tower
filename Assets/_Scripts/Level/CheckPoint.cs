@@ -23,7 +23,9 @@ namespace _Scripts.Level
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<PlayerSpawner>().SetTargetPosition(GetIndex);
+                PlayerSpawner playerSpawner = other.GetComponent<PlayerSpawner>();
+                playerSpawner.GetCoins();
+                playerSpawner.SetTargetPosition(GetIndex);
                 pointVisual.gameObject.SetActive(false);
                 collider.enabled = false;
             }
