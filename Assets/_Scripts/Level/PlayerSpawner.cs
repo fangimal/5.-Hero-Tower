@@ -15,7 +15,7 @@ namespace _Scripts.Level
         [SerializeField] private GameObject rebaseParticlePrefabStart;
         [SerializeField] private LevelHelper levelHelper;
         [SerializeField] private Transform lastSavePosition;
-    
+
         public float distance = 10f;
         public LayerMask layerMask;
         public int GetCheckpointsCount => levelHelper.GetCheckPoints.Length;
@@ -29,6 +29,8 @@ namespace _Scripts.Level
         private float _startTimer = 2f;
         private float _timer;
         private bool canRebase = true;
+        
+        [SerializeField] private DataGroup _dataGroup;
 
         public event Action OnRebasePlayer;
 
@@ -39,6 +41,7 @@ namespace _Scripts.Level
             _thirdPersonController = thirdPersonController;
             _timer = _startTimer;
             this.data = data;
+            _dataGroup = persistentProgressService.DataGroup;
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
             SetTargetPosition(_persistentProgress.DataGroup.playerData.checkpointIndex[_persistentProgress.DataGroup.playerData.checkpointIndex.Count-1]);
@@ -64,7 +67,7 @@ namespace _Scripts.Level
 
             StartFallTimer();
         }
-
+        
         public void SetTargetPosition(int index)
         {
             if (index > levelHelper.GetCheckPoints.Length)
