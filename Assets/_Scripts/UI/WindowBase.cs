@@ -15,7 +15,7 @@ namespace _Scripts.UI
         protected IPersistentProgressService ProgressService;
         protected ISaveLoadService _saveLoadService;
         protected IAdsService _adsService;
-        protected PlayerData PlayerData => ProgressService.DataGroup.playerData;
+        protected PlayerData PlayerData => ProgressService.PlayerData;
 
         protected virtual void Initialize(bool isMobile)
         {

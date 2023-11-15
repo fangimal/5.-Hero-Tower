@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: PlayerStaticData
   m_EditorClassIdentifier: 
   _playerSkin:
-  - Sprite: {fileID: 21300000, guid: 870eb318386bc0a41a1d7211a8a36b8f, type: 3}
+  - Sprite: {fileID: 21300000, guid: 6bbe439b765e8794e97f4dd2d20d95cf, type: 3}
     Price: 0
     VisualizerPrefag: {fileID: 75872128445745159, guid: 20173959fe2138c468fc185ac496f58d,
       type: 3}
-  - Sprite: {fileID: 21300000, guid: ff56d94ddef3c0e4bb7562c1699dc860, type: 3}
+  - Sprite: {fileID: 21300000, guid: f01c9abeb5ada764788d577cc249596b, type: 3}
     Price: 1
     VisualizerPrefag: {fileID: 8143972150814102005, guid: 7ec748363d3a7a8489b1df6fad091ee3,
       type: 3}
-  - Sprite: {fileID: 21300000, guid: d3c4208362f424648b7ca95646dacd10, type: 3}
+  - Sprite: {fileID: 21300000, guid: a19ecf617c1f79e4285ce3c0d9a92a14, type: 3}
     Price: 2
     VisualizerPrefag: {fileID: 7467451891540425985, guid: d513e814b98ca7e4d95301742236d23c,
       type: 3}
-  - Sprite: {fileID: 21300000, guid: 279421f148f9e704b9253f34c25c8a51, type: 3}
+  - Sprite: {fileID: 21300000, guid: 7809b094083c33c4c816f7aa129b596c, type: 3}
     Price: 4
     VisualizerPrefag: {fileID: 1202902257251592249, guid: ac034355be9c40c45928cad5023ffe2e,
       type: 3}

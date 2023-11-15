@@ -4,10 +4,10 @@ namespace _Scripts.Infrastructure.Services.PersistentProgress
 {
     public interface ISavedProgressReader
     {
-        void LoadProgress(DataGroup dataGroup);
+        void LoadProgress(PlayerData playerData);
     }
     public interface ISavedProgress : ISavedProgressReader
     {
-        void UpdateProgress(DataGroup dataGroup);
+        void UpdateProgress(PlayerData playerData);
     }
 }

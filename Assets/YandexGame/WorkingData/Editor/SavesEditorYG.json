@@ -1,0 +1,25 @@
+{
+    "idSave": 73,
+    "isFirstSession": false,
+    "language": "ru",
+    "promptDone": false,
+    "money": 1,
+    "newPlayerName": "Hello!",
+    "openLevels": [
+        false,
+        true,
+        false
+    ],
+    "playerData": {
+        "Coins": 2,
+        "playerSkin": 0,
+        "checkpointIndex": [
+            -1,
+            0
+        ],
+        "openSkin": [
+            0,
+            3
+        ]
+    }
+}

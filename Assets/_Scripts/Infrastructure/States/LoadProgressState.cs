@@ -32,17 +32,21 @@ namespace _Scripts.Infrastructure.States
         {
         }
 
-        private void LoadProgressOrInitNew() =>
-            _progressService.DataGroup = 
-                _saveLoadService.LoadProgress() 
-                ?? NewProgress();
-        
-        private DataGroup NewProgress()
+        private void LoadProgressOrInitNew()
         {
-            var progress = new DataGroup();
+            _progressService.PlayerData = _saveLoadService.LoadProgress();
+            
+            /*_progressService.PlayerData =
+                    _saveLoadService.LoadProgress()
+                    ?? NewProgress();*/
+        }
+        
+        private PlayerData NewProgress()
+        {
+            var progress = new PlayerData();
 
-            progress.playerData.playerSkin = 0;
-            progress.playerData.checkpointIndex = new List<int>(){-1};
+            progress.playerSkin = 0;
+            progress.checkpointIndex = new List<int>(){-1};
              
             return progress;
         }

@@ -38,7 +38,7 @@ namespace _Scripts.Level
             {
                 for (int i = 0; i < checkPoints.Length; i++)
                 {
-                    bool isContains = _persistentProgress.DataGroup.playerData.checkpointIndex.Contains(i);
+                    bool isContains = _persistentProgress.PlayerData.checkpointIndex.Contains(i);
                     checkPoints[i].Init(!isContains, i);
                 }
             }

@@ -7,6 +7,7 @@ using _Scripts.Infrastructure.States;
 using _Scripts.UI;
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class StartUI : WindowBase, ISavedProgress
 {
@@ -67,7 +68,7 @@ public class StartUI : WindowBase, ISavedProgress
 
     private void OurGamesLink()
     {
-        string domen = "ru"; //TODO get domen
+        string domen = YandexGame.EnvironmentData.domain;
         
         Application.OpenURL(GetLink(domen)); 
     }
@@ -116,13 +117,13 @@ public class StartUI : WindowBase, ISavedProgress
         return result; 
     }
 
-    public void LoadProgress(DataGroup dataGroup)
+    public void LoadProgress(PlayerData playerData)
     {
-        coins.text = dataGroup.playerData.Coins.ToString();
+        coins.text = playerData.Coins.ToString();
     }
 
-    public void UpdateProgress(DataGroup dataGroup)
+    public void UpdateProgress(PlayerData playerData)
     {
-        coins.text = dataGroup.playerData.Coins.ToString();
+        coins.text = playerData.Coins.ToString();
     }
 }

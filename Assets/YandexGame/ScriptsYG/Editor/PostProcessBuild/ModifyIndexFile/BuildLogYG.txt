@@ -1,2 +1,2 @@
-Build path: D:/Unity/Release/PluginYG/PluginYG
-Build number: 138
+Build path: D:/Documents/Unity Projects/Projects/Builds/5. Hero Tower/Web/Yandex
+Build number: 140

@@ -41,7 +41,7 @@ namespace _Scripts.Level
             this.data = data;
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
-            SetTargetPosition(_persistentProgress.DataGroup.playerData.checkpointIndex[_persistentProgress.DataGroup.playerData.checkpointIndex.Count-1]);
+            SetTargetPosition(_persistentProgress.PlayerData.checkpointIndex[_persistentProgress.PlayerData.checkpointIndex.Count-1]);
             characterController = thirdPersonController.gameObject.GetComponent<CharacterController>();
             RebasePlayer(lastSavePosition);
         }
@@ -81,9 +81,9 @@ namespace _Scripts.Level
                 lastSavePosition = levelHelper.GetStartPosition;
             }
 
-            if (!_persistentProgress.DataGroup.playerData.checkpointIndex.Contains(index))
+            if (!_persistentProgress.PlayerData.checkpointIndex.Contains(index))
             {
-                _persistentProgress.DataGroup.playerData.checkpointIndex.Add(index);
+                _persistentProgress.PlayerData.checkpointIndex.Add(index);
             }
         
             _saveLoadService.SaveProgress();
@@ -97,7 +97,7 @@ namespace _Scripts.Level
 
         public void GetCoins()
         {
-            _persistentProgress.DataGroup.playerData.AddCoins(1);
+            _persistentProgress.PlayerData.AddCoins(1);
         }
 
         private void StartFallTimer()

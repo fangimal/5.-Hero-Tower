@@ -3,6 +3,7 @@ using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
+using YG;
 
 namespace _Scripts.Infrastructure.Services.SaveLoad
 {
@@ -23,16 +24,20 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
         public void SaveProgress()
         {
             foreach (ISavedProgress progressWriter in _gameFactory.ProgressWriters)
-                progressWriter.UpdateProgress(_progressService.DataGroup);
+                progressWriter.UpdateProgress(_progressService.PlayerData);
             
             foreach (ISavedProgress progressWriter in _uiFactory.ProgressWriters)
-                progressWriter.UpdateProgress(_progressService.DataGroup);
+                progressWriter.UpdateProgress(_progressService.PlayerData);
             
-            PlayerPrefs.SetString(ProgressKey, _progressService.DataGroup.ToJson());
+            YandexGame.SaveProgress();
+            //PlayerPrefs.SetString(ProgressKey, _progressService.PlayerData.ToJson());
         }
 
-        public DataGroup LoadProgress() =>
-            PlayerPrefs.GetString(ProgressKey)?
-                .ToDeserialzed<DataGroup>();
+        public PlayerData LoadProgress()
+        {
+            //return PlayerPrefs.GetString(ProgressKey)?
+             //   .ToDeserialzed<PlayerData>();
+             return YandexGame.savesData.playerData;
+        }
     }
 }

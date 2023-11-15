@@ -4,6 +4,6 @@ namespace _Scripts.Infrastructure.Services.PersistentProgress
 {
     public class PersistentProgressService : IPersistentProgressService
     {
-        public DataGroup DataGroup { get; set; }
+        public PlayerData PlayerData { get; set; }
     }
 }

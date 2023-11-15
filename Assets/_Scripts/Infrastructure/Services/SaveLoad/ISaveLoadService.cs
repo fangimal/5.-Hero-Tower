@@ -5,6 +5,6 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
     public interface ISaveLoadService : IService
     {
         void SaveProgress();
-        DataGroup LoadProgress();
+        PlayerData LoadProgress();
     }
 }

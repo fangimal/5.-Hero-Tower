@@ -66,7 +66,7 @@ namespace _Scripts.Infrastructure.States
         private void InformProgressReaders()
         {
             foreach (ISavedProgressReader progressReader in _uiFactory.ProgressReaders)
-                progressReader.LoadProgress(_progressService.DataGroup);
+                progressReader.LoadProgress(_progressService.PlayerData);
         }
         private void InitPlayer()
         {

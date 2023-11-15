@@ -107,14 +107,14 @@ namespace _Scripts.UI
             }
         }
 
-        public void LoadProgress(DataGroup dataGroup)
+        public void LoadProgress(PlayerData playerData)
         {
-            _coinsCount.text = dataGroup.playerData.Coins.ToString();
+            _coinsCount.text = playerData.Coins.ToString();
         }
 
-        public void UpdateProgress(DataGroup dataGroup)
+        public void UpdateProgress(PlayerData playerData)
         {
-            _coinsCount.text = dataGroup.playerData.Coins.ToString();
+            _coinsCount.text = playerData.Coins.ToString();
         }
     }
 }
