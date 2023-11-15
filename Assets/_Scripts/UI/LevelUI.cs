@@ -3,6 +3,7 @@ using _Scripts.Data;
 using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;
+using _Scripts.Level;
 using StarterAssets;
 using TMPro;
 using UnityEngine;
@@ -67,6 +68,14 @@ namespace _Scripts.UI
             ShowMobileInput(isMobile);
             
             _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
+
+            player.GetComponent<PlayerSpawner>().OnRebasePlayer += PlayerFall;
+        }
+
+        private void PlayerFall()
+        {
+            OpenPausePanel(true);
+            _adsService.ShowIterstisial();
         }
 
         private void GetRewardGoNextPoint()

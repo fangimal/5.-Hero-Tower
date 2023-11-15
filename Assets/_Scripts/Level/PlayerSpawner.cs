@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _Scripts.Data;
 using _Scripts.Infrastructure.Services;
@@ -29,6 +30,8 @@ namespace _Scripts.Level
         private float _timer;
         private bool canRebase = true;
 
+        public event Action OnRebasePlayer;
+
         public void Init(ThirdPersonController thirdPersonController, LevelHelper levelHelper, 
             IPersistentProgressService persistentProgressService, LevelStaticData data)
         {
@@ -55,6 +58,7 @@ namespace _Scripts.Level
                 if (!Physics.Raycast(transform.position, Vector3.down, distance, layerMask))
                 {
                     RebasePlayer(lastSavePosition);
+                    OnRebasePlayer?.Invoke();
                 }
             }
 
