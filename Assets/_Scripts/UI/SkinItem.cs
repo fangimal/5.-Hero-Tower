@@ -11,7 +11,6 @@ namespace _Scripts.UI
         [SerializeField] private Image _selectedImage;
         [SerializeField] private Image _iconImage;
         [SerializeField] private Image _lockedImage;
-        [SerializeField] private TextMeshProUGUI _priceCount;
         
         private int index;
         public int GetIndex => index;
@@ -21,11 +20,10 @@ namespace _Scripts.UI
             _button.onClick.AddListener(()=>OnClicked?.Invoke(index));
         }
 
-        public void Init(Sprite icon, int currentIndex, int price, bool isLocked)
+        public void Init(Sprite icon, int currentIndex, bool isLocked)
         {
             _iconImage.sprite = icon;
             index = currentIndex;
-            _priceCount.text = price.ToString();
             _lockedImage.gameObject.SetActive(isLocked);
         }
 

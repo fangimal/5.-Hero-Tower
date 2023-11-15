@@ -50,8 +50,7 @@ namespace _Scripts.UI
                 {
                     SkinItem item = Instantiate(_skinItemPrefab, _content);
                     bool locked = !PlayerData.openSkin.Contains(i);
-                    PlayerSkin skin = _playerStaticData.Skin[i];
-                    item.Init(skin.Sprite, i, skin.Price, locked);
+                    item.Init(_playerStaticData.Skin[i].Sprite, i, locked);
                     item.SetSelected(PlayerData.playerSkin == i);
                     item.OnClicked += ClickedSkinItem;
                     _skinItems.Add(item);
