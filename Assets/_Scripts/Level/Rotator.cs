@@ -10,7 +10,7 @@ namespace _Scripts.Level
 
         private void Update()
         {
-            transform.Rotate(xRotation,yRotation,zRotation);
+            transform.Rotate(new Vector3(xRotation,yRotation,zRotation) * Time.deltaTime);
         }
     }
 }

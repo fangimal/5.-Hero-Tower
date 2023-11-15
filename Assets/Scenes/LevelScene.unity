@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: -0.4
+  yRotation: -20
   zRotation: 0
 --- !u!114 &6109255
 MonoBehaviour:
@@ -1975,7 +1975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: -0.4
+  yRotation: -20
   zRotation: 0
 --- !u!114 &67914931
 MonoBehaviour:
@@ -17330,7 +17330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: 0.4
+  yRotation: 20
   zRotation: 0
 --- !u!114 &509920902
 MonoBehaviour:
@@ -28544,7 +28544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: -0.4
+  yRotation: -20
   zRotation: 0
 --- !u!114 &806032779
 MonoBehaviour:
@@ -34388,7 +34388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: -0.4
+  yRotation: -20
   zRotation: 0
 --- !u!114 &899485327
 MonoBehaviour:
@@ -34968,7 +34968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: -0.4
+  yRotation: -20
   zRotation: 0
 --- !u!114 &918956435
 MonoBehaviour:
@@ -54489,7 +54489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: -0.4
+  yRotation: -20
   zRotation: 0
 --- !u!114 &1470440097
 MonoBehaviour:
@@ -62797,7 +62797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: 0.4
+  yRotation: 20
   zRotation: 0
 --- !u!114 &1758273308
 MonoBehaviour:
@@ -63806,7 +63806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: 0.4
+  yRotation: 20
   zRotation: 0
 --- !u!114 &1815262351
 MonoBehaviour:
@@ -67217,7 +67217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotation: 0
-  yRotation: 0.4
+  yRotation: 20
   zRotation: 0
 --- !u!114 &1985023958
 MonoBehaviour:
