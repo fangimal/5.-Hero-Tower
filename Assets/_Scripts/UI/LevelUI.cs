@@ -22,6 +22,7 @@ namespace _Scripts.UI
         [SerializeField] private TextMeshProUGUI _coinsCount;
 
         private StarterAssetsInputs _starterAssetsInputs;
+        private PlayerSpawner _playerSpawner;
 
         private void Awake()
         {
@@ -33,7 +34,11 @@ namespace _Scripts.UI
                 _adsService.ShowReward(RewardId.Checkpoint);
             };
 
-            _pausePanelUI.OnContinue += () => { OpenPausePanel(false); };
+            _pausePanelUI.OnContinue += () =>
+            {
+                OpenPausePanel(false);
+                RebasePlayer();
+            };
 
             _pausePanelUI.OnBack += LoadPauseUI;
         }
@@ -69,7 +74,8 @@ namespace _Scripts.UI
             
             _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
 
-            player.GetComponent<PlayerSpawner>().OnRebasePlayer += PlayerFall;
+            _playerSpawner = player.GetComponent<PlayerSpawner>();
+            _playerSpawner.OnRebasePlayer += PlayerFall;
         }
 
         private void PlayerFall()
@@ -87,10 +93,17 @@ namespace _Scripts.UI
         private void OpenPausePanel(bool isOpen)
         {
             _pausePanelUI.gameObject.SetActive(isOpen);
-            _starterAssetsInputs.SetCursour(!isOpen);
+            _starterAssetsInputs.SetCursour(!isOpen, !isOpen);
             _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] < player.playerSpawner.GetCheckpointsCount - 1);
         }
 
+        private void RebasePlayer()
+        {
+            if (_playerSpawner.playerIsFall)
+            {
+                _playerSpawner.RebaseEnd();
+            }
+        }
 
         private void LoadPauseUI()
         {
