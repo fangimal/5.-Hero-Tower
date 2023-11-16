@@ -1,5 +1,6 @@
 ﻿using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.AssetManagment;
+using _Scripts.Infrastructure.Audio;
 using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services;
@@ -40,6 +41,7 @@ namespace _Scripts.Infrastructure.States
             RegisterAdsService();
             
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
+            _services.RegisterSingle<IAudioService>(new AudioService(_services.Single<IStaticDataService>()));
             _services.RegisterSingle<IAssetsProvider>(new AssetsProvider());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             
@@ -47,15 +49,16 @@ namespace _Scripts.Infrastructure.States
                 _stateMachine,_services.Single<IAssetsProvider>(), 
                 _services.Single<IStaticDataService>(), 
                 _services.Single<IPersistentProgressService>(),
-                _services.Single<IAdsService>()));
+                _services.Single<IAdsService>(), _services.Single<IAudioService>()));
             
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetsProvider>(), 
                 _services.Single<IStaticDataService>(), 
-                _services.Single<IPersistentProgressService>()));
+                _services.Single<IPersistentProgressService>(), _services.Single<IAudioService>()));
             
             _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IPersistentProgressService>(), 
                 _services.Single<IGameFactory>(), _services.Single<IUIFactory>()));
+            
         }
 
         private void RegisterAdsService()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.Infrastructure.Audio;
 using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services.PersistentProgress;
@@ -27,7 +28,8 @@ namespace _Scripts.Infrastructure.Services
                     services.Single<IUIFactory>(), 
                     services.Single<IStaticDataService>(),
                     services.Single<IGameFactory>(), 
-                    services.Single<IPersistentProgressService>()),
+                    services.Single<IPersistentProgressService>(), 
+                    services.Single<IAudioService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }

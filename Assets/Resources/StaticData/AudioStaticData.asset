@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d609b2b014fd4e2b8158b0ce84ad4a21, type: 3}
+  m_Name: AudioStaticData
+  m_EditorClassIdentifier: 
+  _startBackMusic: {fileID: 8300000, guid: 19bcbc51775fd5344b4ee3731697326a, type: 3}
+  _levelBackMusic:
+  - {fileID: 8300000, guid: bb716ab7f895b8643911b6b23e09dbaa, type: 3}
+  - {fileID: 8300000, guid: 0f91a95ea977d1c46a4486600b7b9da0, type: 3}
+  _coins: {fileID: 8300000, guid: e04f832a53c0fa6449dacf035d4832ae, type: 3}
+  _burst: {fileID: 8300000, guid: 96b6f6b4afe6f684c88452fd9faadac8, type: 3}
+  _teleport: {fileID: 8300000, guid: 99ea4a46c16cb394ea4863f5f92dd2e7, type: 3}
+  _btn: {fileID: 8300000, guid: dc0bba0efeee22a43898a008bbc673a7, type: 3}

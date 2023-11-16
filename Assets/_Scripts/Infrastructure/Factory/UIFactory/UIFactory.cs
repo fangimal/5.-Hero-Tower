@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.AssetManagment;
+using _Scripts.Infrastructure.Audio;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.StaticData;
@@ -18,6 +19,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         private readonly IStaticDataService _staticData;
         private readonly IPersistentProgressService _progressService;
         private readonly IAdsService _adsService;
+        private readonly IAudioService _audioService;
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
@@ -26,13 +28,14 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
 
         public UIFactory(IGameStateMachine stateMachine, 
             IAssetsProvider assetsProvider, IStaticDataService staticData, 
-            IPersistentProgressService progressService, IAdsService adsService)
+            IPersistentProgressService progressService, IAdsService adsService, IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _assetsProvider = assetsProvider;
             _staticData = staticData;
             _progressService = progressService;
             _adsService = adsService;
+            _audioService = audioService;
         }
 
         public void CreateUI(int sceneIndex, ThirdPersonController player)
@@ -53,7 +56,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Start);
             StartUI startUI = Object.Instantiate(config.Prefab, _uiRoot) as StartUI;
-            startUI.Construct(_stateMachine, player, _progressService, _adsService);
+            startUI.Construct(_stateMachine, player, _progressService, _adsService, _audioService);
             Register(startUI);
         }
 
@@ -61,7 +64,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Level);
             LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
-            levelUI.Construct(_stateMachine, player, _progressService, _adsService,true);
+            levelUI.Construct(_stateMachine, player, _progressService, _adsService, _audioService, true);
             Register(levelUI);
         }
 

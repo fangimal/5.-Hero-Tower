@@ -1,4 +1,5 @@
-﻿using _Scripts.Infrastructure.Factory;
+﻿using _Scripts.Infrastructure.Audio;
+using _Scripts.Infrastructure.Factory;
 using _Scripts.Infrastructure.Factory.UIFactory;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
@@ -16,6 +17,7 @@ namespace _Scripts.Infrastructure.States
         private readonly IStaticDataService _staticData;
         private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
+        private readonly IAudioService _audioService;
         
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
@@ -24,7 +26,7 @@ namespace _Scripts.Infrastructure.States
         
         private int currentSceneIndex;
         public LoadSceneState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, 
-            IUIFactory uiFactory, IStaticDataService staticData, IGameFactory gameFactory, IPersistentProgressService progressService)
+            IUIFactory uiFactory, IStaticDataService staticData, IGameFactory gameFactory, IPersistentProgressService progressService, IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -33,6 +35,7 @@ namespace _Scripts.Infrastructure.States
             _staticData = staticData;
             _gameFactory = gameFactory;
             _progressService = progressService;
+            _audioService = audioService;
         }
 
         public void Enter(int sceneIndex)
@@ -43,6 +46,7 @@ namespace _Scripts.Infrastructure.States
             
             _gameFactory.Cleanup();
             _uiFactory.Cleanup();
+            _audioService.Cleanup();
 
             _sceneLoader.Load(sceneIndex, OnLoaded);
         }
