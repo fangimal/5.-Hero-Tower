@@ -1,5 +1,5 @@
 {
-    "idSave": 117,
+    "idSave": 132,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -12,7 +12,7 @@
     ],
     "playerData": {
         "Coins": 2,
-        "playerSkin": 0,
+        "playerSkin": 3,
         "checkpointIndex": [
             -1,
             0

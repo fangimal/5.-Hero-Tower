@@ -21,8 +21,6 @@ namespace _Scripts.UI
         protected PlayerData PlayerData => ProgressService.PlayerData;
 
         protected IAudioService _audioService;
-        protected PlayerData PlayerData => ProgressService.DataGroup.playerData;
-
         protected virtual void Initialize(bool isMobile)
         {
 
