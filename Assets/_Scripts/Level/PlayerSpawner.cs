@@ -12,10 +12,11 @@ namespace _Scripts.Level
 {
     public class PlayerSpawner : MonoBehaviour
     {
+        [SerializeField] private StarterAssetsInputs starterAssetsInputs;
         [SerializeField] private GameObject rebaseParticlePrefabStart;
         [SerializeField] private LevelHelper levelHelper;
         [SerializeField] private Transform lastSavePosition;
-    
+
         public float distance = 10f;
         public LayerMask layerMask;
         public int GetCheckpointsCount => levelHelper.GetCheckPoints.Length;
@@ -29,19 +30,35 @@ namespace _Scripts.Level
         private float _startTimer = 2f;
         private float _timer;
         private bool canRebase = true;
+        public bool playerIsFall = false;
+        private int currentCheckpointIndex;
 
+        [SerializeField] private DataGroup _dataGroup;
         public event Action OnRebasePlayer;
 
-        public void Init(ThirdPersonController thirdPersonController, LevelHelper levelHelper, 
+        private void OnEnable()
+        {
+            OnRebasePlayer += RebaseStart;
+        }
+
+        private void OnDisable()
+        {
+            OnRebasePlayer -= RebaseStart;
+        }
+
+        public void Init(ThirdPersonController thirdPersonController, LevelHelper levelHelper,
             IPersistentProgressService persistentProgressService, LevelStaticData data)
         {
             this.levelHelper = levelHelper;
             _thirdPersonController = thirdPersonController;
             _timer = _startTimer;
             this.data = data;
+            _dataGroup = persistentProgressService.DataGroup;
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
-            SetTargetPosition(_persistentProgress.PlayerData.checkpointIndex[_persistentProgress.PlayerData.checkpointIndex.Count-1]);
+            SetTargetPosition(
+                _persistentProgress.DataGroup.playerData.checkpointIndex[
+                    _persistentProgress.DataGroup.playerData.checkpointIndex.Count - 1]);
             characterController = thirdPersonController.gameObject.GetComponent<CharacterController>();
             RebasePlayer(lastSavePosition);
         }
@@ -57,7 +74,6 @@ namespace _Scripts.Level
             {
                 if (!Physics.Raycast(transform.position, Vector3.down, distance, layerMask))
                 {
-                    RebasePlayer(lastSavePosition);
                     OnRebasePlayer?.Invoke();
                 }
             }
@@ -71,7 +87,7 @@ namespace _Scripts.Level
             {
                 index = levelHelper.GetCheckPoints.Length;
             }
-            
+
             if (index >= 0 && data.levelBuildIndex != 1)
             {
                 lastSavePosition = levelHelper.GetCheckPoints[index].GetSpawnPoint;
@@ -81,11 +97,13 @@ namespace _Scripts.Level
                 lastSavePosition = levelHelper.GetStartPosition;
             }
 
-            if (!_persistentProgress.PlayerData.checkpointIndex.Contains(index))
+            if (!_persistentProgress.DataGroup.playerData.checkpointIndex.Contains(index))
             {
-                _persistentProgress.PlayerData.checkpointIndex.Add(index);
+                _persistentProgress.DataGroup.playerData.checkpointIndex.Add(index);
             }
-        
+
+            currentCheckpointIndex = index;
+
             _saveLoadService.SaveProgress();
         }
 
@@ -97,7 +115,12 @@ namespace _Scripts.Level
 
         public void GetCoins()
         {
-            _persistentProgress.PlayerData.AddCoins(1);
+            _persistentProgress.DataGroup.playerData.AddCoins(1);
+        }
+
+        public void OnPlayerIsDamaged()
+        {
+            OnRebasePlayer?.Invoke();
         }
 
         private void StartFallTimer()
@@ -114,14 +137,31 @@ namespace _Scripts.Level
             {
                 canRebase = false;
                 characterController.enabled = false;
-                StartCoroutine(StartWait(targetTransform));
+                StartCoroutine(Rebase(targetTransform));
             }
         }
 
-        private IEnumerator StartWait(Transform targetTransform)
+        private void RebaseStart()
+        {
+            playerIsFall = true;
+            canRebase = false;
+            characterController.enabled = false;
+            _thirdPersonController.GetVisualize.gameObject.SetActive(false);
+        }
+
+        public void RebaseEnd()
+        {
+            StartCoroutine(Rebase(lastSavePosition));
+            _thirdPersonController.GetVisualize.gameObject.SetActive(true);
+            levelHelper.GetCheckPoints[currentCheckpointIndex].ShowFx();
+        }
+
+        private IEnumerator Rebase(Transform targetTransform)
         {
             gameObject.transform.position = targetTransform.position;
-            gameObject.transform.localScale = new Vector3(1,1,1);
+            gameObject.transform.rotation = targetTransform.rotation;
+            gameObject.transform.localScale = Vector3.one;
+            starterAssetsInputs.MoveInput(Vector2.zero);
             yield return new WaitForFixedUpdate();
             _thirdPersonController.Grounded = true;
             characterController.enabled = true;
@@ -129,11 +169,12 @@ namespace _Scripts.Level
             characterController.SimpleMove(Vector3.zero);
             Physics.SyncTransforms();
             StartCoroutine(CanRebase());
+            playerIsFall = false;
         }
 
         private IEnumerator CanRebase()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             canRebase = true;
         }
 

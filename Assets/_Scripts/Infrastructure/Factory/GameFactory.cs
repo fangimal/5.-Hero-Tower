@@ -78,6 +78,7 @@ namespace _Scripts.Infrastructure.Factory
 
             PlayerData playerData = _persistentProgressService.PlayerData;
             
+            levelHelper.Initialize(player, _persistentProgressService);
             player.playerSpawner.Init(player, levelHelper, _persistentProgressService, data);
             player.Init(playerData.playerSkin);
 
@@ -90,7 +91,6 @@ namespace _Scripts.Infrastructure.Factory
                 player.GetComponent<StarterAssetsInputs>().SetCursour(true);
             }
             
-            levelHelper.Initialize(player, _persistentProgressService);
         }
     }
 }

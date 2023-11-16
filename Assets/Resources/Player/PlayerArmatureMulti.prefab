@@ -146,6 +146,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   analogMovement: 0
+  canMove: 1
   cursorLocked: 1
   cursorInputForLook: 1
 --- !u!114 &5206828061327345472
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e793dc876f44004db82b8f6ce911981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starterAssetsInputs: {fileID: 5846106866603205285}
   rebaseParticlePrefabStart: {fileID: 5539678715710420623}
   levelHelper: {fileID: 0}
   lastSavePosition: {fileID: 0}
@@ -266,6 +268,13 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1
+  playerIsFall: 0
+  _dataGroup:
+    playerData:
+      Coins: 5
+      playerSkin: 0
+      checkpointIndex: ffffffff
+      openSkin: 00000000
 --- !u!1 &2968872458201695844
 GameObject:
   m_ObjectHideFlags: 0
