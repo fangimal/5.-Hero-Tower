@@ -16,7 +16,7 @@ namespace _Scripts.Data
     [Serializable]
     public class PlayerData
     {
-        public int Coins = 5;
+        public int Coins = 50;
         public int playerSkin;
         public List<int> checkpointIndex = new List<int>(){-1};
         public List<int> openSkin = new List<int>() { 0 };

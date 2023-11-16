@@ -17,7 +17,7 @@ namespace _Scripts.UI
         [SerializeField] private Transform _content;
         [SerializeField] private SkinItem _skinItemPrefab;
         public event Action OnBackStart;
-
+        
         private List<SkinItem> _skinItems = new List<SkinItem>();
         private PlayerStaticData _playerStaticData;
         private int selectedSkin;
@@ -26,6 +26,7 @@ namespace _Scripts.UI
         {
             _backStartButton.onClick.AddListener(() =>
             {
+                OnClickedPlay(AudioClipName.Btn);
                 player.SetVisualize(PlayerData.playerSkin);
                 OnBackStart?.Invoke();
             });
@@ -60,6 +61,7 @@ namespace _Scripts.UI
 
         private void ClickedSkinItem(int index)
         {
+            OnClickedPlay(AudioClipName.Btn);
             player.SetVisualize(index);
             ChangeSelectedItem(index);
             CheckBuyingSkin(index);
@@ -99,6 +101,8 @@ namespace _Scripts.UI
                 _skinItems[selectedSkin].BuySkin();
                 PlayerData.openSkin.Add(selectedSkin);
                 SaveSkin(selectedSkin);
+
+                OnClickedPlay(AudioClipName.Coins);
             }
 
             CheckCanBuy(selectedSkin);

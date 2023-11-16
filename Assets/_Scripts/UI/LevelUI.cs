@@ -4,6 +4,7 @@ using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;
 using _Scripts.Level;
+using _Scripts.StaticData;
 using StarterAssets;
 using TMPro;
 using UnityEngine;
@@ -30,12 +31,14 @@ namespace _Scripts.UI
 
             _pausePanelUI.OnNextPoint += () =>
             {
+                OnClickedPlay(AudioClipName.Btn);
                 OpenPausePanel(false);
                 _adsService.ShowReward(RewardId.Checkpoint);
             };
 
             _pausePanelUI.OnContinue += () =>
             {
+                OnClickedPlay(AudioClipName.Btn);
                 OpenPausePanel(false);
                 RebasePlayer();
             };
@@ -60,6 +63,7 @@ namespace _Scripts.UI
         {
             base.Initialize(isMobile);
 
+            _audioService.CreateLevelAudio();
             _starterAssetsInputs = player.GetComponent<StarterAssetsInputs>();
             OpenPausePanel(false);
 
@@ -107,7 +111,7 @@ namespace _Scripts.UI
 
         private void LoadPauseUI()
         {
-            //TODO CreatePause UI
+            OnClickedPlay(AudioClipName.Btn);
             gameStateMachine.Enter<LoadSceneState, int>(1);
         }
 

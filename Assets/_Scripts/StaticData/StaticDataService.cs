@@ -10,9 +10,11 @@ namespace _Scripts.StaticData
     {
         private const string StaticDataWindowsPath = "StaticData/WindowStaticData";
         private const string StaticDataLevelsPath = "StaticData/LevelData";
+        private const string StaticDataAudioPath = "StaticData/AudioStaticData";
         
         private Dictionary<WindowId, WindowConfig> _windowConfigs;
         private Dictionary<int, LevelStaticData> _levels;
+        private AudioStaticData _audioConfig;
 
         public void LoadDatas()
         {
@@ -23,6 +25,8 @@ namespace _Scripts.StaticData
 
             _levels = Resources.LoadAll<LevelStaticData>(StaticDataLevelsPath)
                 .ToDictionary(x => x.levelBuildIndex, x => x);
+
+            _audioConfig = Resources.Load<AudioStaticData>(StaticDataAudioPath);
         }
 
         public WindowConfig ForWindow(WindowId windowId) =>
@@ -34,5 +38,10 @@ namespace _Scripts.StaticData
             _levels.TryGetValue(sceneBuildIndex, out LevelStaticData staticData) 
                 ? staticData 
                 : null;
+
+        public AudioStaticData GetAudioConfig()
+        {
+            return _audioConfig;
+        }
     }
 }

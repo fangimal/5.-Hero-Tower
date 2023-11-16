@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using _Scripts.Data;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;
+using _Scripts.StaticData;
 using _Scripts.UI;
 using TMPro;
 using UnityEngine;
@@ -22,14 +23,16 @@ public class StartUI : WindowBase, ISavedProgress
         _startPanelUI.OnContinueClicked += ContinueLevel;
         _startPanelUI.OnOurGamesClicked += OurGamesLink;
         _skinPanelUI.OnBackStart += BackStartUI;
+
         BackStartUI();
     }
 
     protected override void Initialize(bool isMobile)
     {
         base.Initialize(isMobile);
-        _skinPanelUI.Construct(gameStateMachine, player, ProgressService, _adsService);
+        _skinPanelUI.Construct(gameStateMachine, player, ProgressService, _adsService, _audioService);
         _startPanelUI.SetContinueButton(PlayerData.checkpointIndex.Count > 1);
+        _audioService.CreateStartAudio();
     }
 
     private void OnDestroy()
@@ -37,7 +40,6 @@ public class StartUI : WindowBase, ISavedProgress
         _startPanelUI.OnNewGameClicked -= LodNewLevel;
         _startPanelUI.OnSkinClicked -= LoadSkinPanel;
         _skinPanelUI.OnBackStart -= BackStartUI;
-
     }
 
     private void BackStartUI()
@@ -48,6 +50,8 @@ public class StartUI : WindowBase, ISavedProgress
 
     private void LoadSkinPanel()
     {
+        OnClickedPlay(AudioClipName.Btn);
+
         _startPanelUI.gameObject.SetActive(false);
         _skinPanelUI.gameObject.SetActive(true);
         _skinPanelUI.Open();
@@ -55,29 +59,35 @@ public class StartUI : WindowBase, ISavedProgress
 
     private void LodNewLevel()
     {
-        PlayerData.checkpointIndex = new List<int>(){-1};
+        OnClickedPlay(AudioClipName.Btn);
+
+        PlayerData.checkpointIndex = new List<int>() { -1 };
         _saveLoadService.SaveProgress();
         gameStateMachine.Enter<LoadSceneState, int>(2);
     }
 
     private void ContinueLevel()
     {
+        OnClickedPlay(AudioClipName.Btn);
+
         gameStateMachine.Enter<LoadSceneState, int>(2);
     }
 
     private void OurGamesLink()
     {
+        OnClickedPlay(AudioClipName.Btn);
+
         string domen = "ru"; //TODO get domen
-        
-        Application.OpenURL(GetLink(domen)); 
+
+        Application.OpenURL(GetLink(domen));
     }
-    
+
     private string GetLink(string domen)
     {
         if (string.IsNullOrEmpty(link)) link = "https://yandex.ru/games/developer?name=FanG";
-        
+
         string result = link;
-        
+
         if (string.IsNullOrEmpty(domen))
         {
             domen = "ru";
@@ -93,7 +103,7 @@ public class StartUI : WindowBase, ISavedProgress
         {
             extractedSubstring = match.Groups[1].Value; // Извлеченная подстрока: " + extractedSubstring
         }
-        
+
         // Замена ".ru" на указанный домен
         string modifiedInput = link.Replace(extractedSubstring, domen);
 
@@ -104,8 +114,8 @@ public class StartUI : WindowBase, ISavedProgress
         {
             string firstPart = parts[0] + domen;
             string secondPart = parts[1];
-            
-            Debug.Log(firstPart+secondPart);
+
+            Debug.Log(firstPart + secondPart);
             result = firstPart + secondPart;
         }
         else
@@ -113,7 +123,7 @@ public class StartUI : WindowBase, ISavedProgress
             Debug.LogWarning("Строка не разделилась корректно.");
         }
 
-        return result; 
+        return result;
     }
 
     public void LoadProgress(DataGroup dataGroup)

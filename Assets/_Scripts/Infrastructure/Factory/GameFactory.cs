@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _Scripts.Data;
 using _Scripts.Infrastructure.AssetManagment;
+using _Scripts.Infrastructure.Audio;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.Services.SaveLoad;
 using _Scripts.Level;
@@ -16,6 +17,7 @@ namespace _Scripts.Infrastructure.Factory
         private readonly IAssetsProvider _assets;
         private readonly IStaticDataService _staticData;
         private readonly IPersistentProgressService _persistentProgressService;
+        private readonly IAudioService _audioService;
         
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
@@ -23,11 +25,12 @@ namespace _Scripts.Infrastructure.Factory
         private LevelHelper levelHelper;
         public event Action<ThirdPersonController> OnPlayerCreated;
 
-        public GameFactory(IAssetsProvider assets, IStaticDataService staticData, IPersistentProgressService persistentProgressService)
+        public GameFactory(IAssetsProvider assets, IStaticDataService staticData, IPersistentProgressService persistentProgressService, IAudioService audioService)
         {
             _assets = assets;
             _staticData = staticData;
             _persistentProgressService = persistentProgressService;
+            _audioService = audioService;
         }
 
         public void Cleanup()
@@ -79,7 +82,7 @@ namespace _Scripts.Infrastructure.Factory
             PlayerData playerData = _persistentProgressService.DataGroup.playerData;
             
             levelHelper.Initialize(player, _persistentProgressService);
-            player.playerSpawner.Init(player, levelHelper, _persistentProgressService, data);
+            player.playerSpawner.Init(player, levelHelper, _persistentProgressService, data, _audioService);
             player.Init(playerData.playerSkin);
 
             if (data.levelBuildIndex == 1)

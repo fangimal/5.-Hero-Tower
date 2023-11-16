@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using _Scripts.Data;
+using _Scripts.Infrastructure.Audio;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.Services.SaveLoad;
@@ -24,6 +25,7 @@ namespace _Scripts.Level
         private ThirdPersonController _thirdPersonController;
         private ISaveLoadService _saveLoadService;
         private IPersistentProgressService _persistentProgress;
+        private IAudioService _audioService;
         private CharacterController characterController;
         private LevelStaticData data;
 
@@ -47,12 +49,13 @@ namespace _Scripts.Level
         }
 
         public void Init(ThirdPersonController thirdPersonController, LevelHelper levelHelper,
-            IPersistentProgressService persistentProgressService, LevelStaticData data)
+            IPersistentProgressService persistentProgressService, LevelStaticData data, IAudioService audioService)
         {
             this.levelHelper = levelHelper;
             _thirdPersonController = thirdPersonController;
             _timer = _startTimer;
             this.data = data;
+            _audioService = audioService;
             _dataGroup = persistentProgressService.DataGroup;
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
@@ -74,7 +77,11 @@ namespace _Scripts.Level
             {
                 if (!Physics.Raycast(transform.position, Vector3.down, distance, layerMask))
                 {
-                    OnRebasePlayer?.Invoke();
+                    if (canRebase)
+                    {
+                        _audioService.PlayAudio(AudioClipName.Burst);
+                        OnRebasePlayer?.Invoke();
+                    }
                 }
             }
 
@@ -116,6 +123,7 @@ namespace _Scripts.Level
         public void GetCoins()
         {
             _persistentProgress.DataGroup.playerData.AddCoins(1);
+            _audioService.PlayAudio(AudioClipName.Coins);
         }
 
         public void OnPlayerIsDamaged()
@@ -154,6 +162,7 @@ namespace _Scripts.Level
             StartCoroutine(Rebase(lastSavePosition));
             _thirdPersonController.GetVisualize.gameObject.SetActive(true);
             levelHelper.GetCheckPoints[currentCheckpointIndex].ShowFx();
+            _audioService.PlayAudio(AudioClipName.Teleport);
         }
 
         private IEnumerator Rebase(Transform targetTransform)
@@ -176,11 +185,6 @@ namespace _Scripts.Level
         {
             yield return new WaitForSeconds(1f);
             canRebase = true;
-        }
-
-        public void UpdateProgress(DataGroup dataGroup)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
