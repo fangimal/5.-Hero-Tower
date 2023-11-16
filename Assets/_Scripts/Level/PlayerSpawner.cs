@@ -12,6 +12,7 @@ namespace _Scripts.Level
 {
     public class PlayerSpawner : MonoBehaviour
     {
+        [SerializeField] private StarterAssetsInputs starterAssetsInputs;
         [SerializeField] private GameObject rebaseParticlePrefabStart;
         [SerializeField] private LevelHelper levelHelper;
         [SerializeField] private Transform lastSavePosition;
@@ -30,6 +31,7 @@ namespace _Scripts.Level
         private float _timer;
         private bool canRebase = true;
         public bool playerIsFall = false;
+        private int currentCheckpointIndex;
 
         [SerializeField] private DataGroup _dataGroup;
         public event Action OnRebasePlayer;
@@ -100,6 +102,8 @@ namespace _Scripts.Level
                 _persistentProgress.DataGroup.playerData.checkpointIndex.Add(index);
             }
 
+            currentCheckpointIndex = index;
+
             _saveLoadService.SaveProgress();
         }
 
@@ -142,17 +146,22 @@ namespace _Scripts.Level
             playerIsFall = true;
             canRebase = false;
             characterController.enabled = false;
+            _thirdPersonController.GetVisualize.gameObject.SetActive(false);
         }
 
         public void RebaseEnd()
         {
             StartCoroutine(Rebase(lastSavePosition));
+            _thirdPersonController.GetVisualize.gameObject.SetActive(true);
+            levelHelper.GetCheckPoints[currentCheckpointIndex].ShowFx();
         }
 
         private IEnumerator Rebase(Transform targetTransform)
         {
             gameObject.transform.position = targetTransform.position;
+            gameObject.transform.rotation = targetTransform.rotation;
             gameObject.transform.localScale = Vector3.one;
+            starterAssetsInputs.MoveInput(Vector2.zero);
             yield return new WaitForFixedUpdate();
             _thirdPersonController.Grounded = true;
             characterController.enabled = true;
