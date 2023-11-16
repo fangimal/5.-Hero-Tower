@@ -17,7 +17,7 @@ MonoBehaviour:
     Price: 0
     VisualizerPrefag: {fileID: 75872128445745159, guid: 20173959fe2138c468fc185ac496f58d,
       type: 3}
-  - Sprite: {fileID: 21300000, guid: 7746ff48d5dd426468dfa0d53b80afb4, type: 3}
+  - Sprite: {fileID: 21300000, guid: a211ac956f9b622498480f9ef69dd1db, type: 3}
     Price: 1
     VisualizerPrefag: {fileID: 8143972150814102005, guid: 7ec748363d3a7a8489b1df6fad091ee3,
       type: 3}

@@ -32,8 +32,6 @@ namespace _Scripts.Level
         private bool canRebase = true;
         public bool playerIsFall = false;
         private int currentCheckpointIndex;
-
-        [SerializeField] private DataGroup _dataGroup;
         public event Action OnRebasePlayer;
 
         private void OnEnable()
@@ -53,12 +51,11 @@ namespace _Scripts.Level
             _thirdPersonController = thirdPersonController;
             _timer = _startTimer;
             this.data = data;
-            _dataGroup = persistentProgressService.DataGroup;
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
             SetTargetPosition(
-                _persistentProgress.DataGroup.playerData.checkpointIndex[
-                    _persistentProgress.DataGroup.playerData.checkpointIndex.Count - 1]);
+                _persistentProgress.PlayerData.checkpointIndex[
+                    _persistentProgress.PlayerData.checkpointIndex.Count - 1]);
             characterController = thirdPersonController.gameObject.GetComponent<CharacterController>();
             RebasePlayer(lastSavePosition);
         }
@@ -97,9 +94,9 @@ namespace _Scripts.Level
                 lastSavePosition = levelHelper.GetStartPosition;
             }
 
-            if (!_persistentProgress.DataGroup.playerData.checkpointIndex.Contains(index))
+            if (!_persistentProgress.PlayerData.checkpointIndex.Contains(index))
             {
-                _persistentProgress.DataGroup.playerData.checkpointIndex.Add(index);
+                _persistentProgress.PlayerData.checkpointIndex.Add(index);
             }
 
             currentCheckpointIndex = index;
@@ -115,7 +112,7 @@ namespace _Scripts.Level
 
         public void GetCoins()
         {
-            _persistentProgress.DataGroup.playerData.AddCoins(1);
+            _persistentProgress.PlayerData.AddCoins(1);
         }
 
         public void OnPlayerIsDamaged()
