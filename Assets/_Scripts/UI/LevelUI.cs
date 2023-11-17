@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.Data;
+﻿using _Scripts.Data;
 using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;

@@ -9,6 +9,7 @@ using _Scripts.StaticData.Windows;
 using _Scripts.UI;
 using StarterAssets;
 using UnityEngine;
+using YG;
 
 namespace _Scripts.Infrastructure.Factory.UIFactory
 {
@@ -64,7 +65,8 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Level);
             LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
-            levelUI.Construct(_stateMachine, player, _progressService, _adsService, _audioService, true);
+            bool isMobile = YandexGame.EnvironmentData.deviceType != "desktop";
+            levelUI.Construct(_stateMachine, player, _progressService, _adsService, _audioService, isMobile);
             Register(levelUI);
         }
 
