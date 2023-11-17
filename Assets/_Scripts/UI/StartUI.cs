@@ -13,16 +13,47 @@ public class StartUI : WindowBase, ISavedProgress
 {
     [SerializeField] private StartPanelUI _startPanelUI;
     [SerializeField] private SkinPanelUI _skinPanelUI;
+    [SerializeField] private SettingsPanelUI _settingsUI;
     [SerializeField] private string link;
     [SerializeField] private TextMeshProUGUI coins;
-
+    
     private void Awake()
     {
         _startPanelUI.OnNewGameClicked += LodNewLevel;
         _startPanelUI.OnSkinClicked += LoadSkinPanel;
         _startPanelUI.OnContinueClicked += ContinueLevel;
+        _startPanelUI.OnSettingsCkicked += OpenSettings;
         _startPanelUI.OnOurGamesClicked += OurGamesLink;
         _skinPanelUI.OnBackStart += BackStartUI;
+        
+        _settingsUI.OnBackClicked += ()=>
+        {
+            OnClickedPlay(AudioClipName.Btn);
+            BackStartUI();
+        };
+
+        _settingsUI.OnResetGameProgress += () =>
+        {
+            _saveLoadService.ResetProgress();
+            UpdateProgress(PlayerData);
+            _skinPanelUI.ClickedSkinItem(PlayerData.playerSkin);
+        };
+
+        _settingsUI.OnChangeLanguage += () =>
+        {
+            OnClickedPlay(AudioClipName.Btn);
+
+            PlayerData.langIndex++;
+            
+            if (PlayerData.langIndex >= _playerStaticData.GetLanguageSprites.Length)
+            {
+                PlayerData.langIndex = 0;
+            }
+            
+            _settingsUI.SetLanguageIcon(_playerStaticData.GetLanguageSprites[PlayerData.langIndex]);
+            
+            _saveLoadService.SaveProgress();
+        };
 
         BackStartUI();
     }
@@ -30,7 +61,7 @@ public class StartUI : WindowBase, ISavedProgress
     protected override void Initialize(bool isMobile)
     {
         base.Initialize(isMobile);
-        _skinPanelUI.Construct(gameStateMachine, player, ProgressService, _adsService, _audioService);
+        _skinPanelUI.Construct(_gameStateMachine, _player, _progressService, _adsService, _audioService);
         _startPanelUI.SetContinueButton(PlayerData.checkpointIndex.Count > 1);
         _audioService.CreateStartAudio();
     }
@@ -42,10 +73,18 @@ public class StartUI : WindowBase, ISavedProgress
         _skinPanelUI.OnBackStart -= BackStartUI;
     }
 
+    private void OpenSettings()
+    {
+        OnClickedPlay(AudioClipName.Btn);
+        _startPanelUI.gameObject.SetActive(false);
+        _settingsUI.gameObject.SetActive(true);
+    }
+
     private void BackStartUI()
     {
         _startPanelUI.gameObject.SetActive(true);
         _skinPanelUI.gameObject.SetActive(false);
+        _settingsUI.gameObject.SetActive(false);
     }
 
     private void LoadSkinPanel()
@@ -53,6 +92,7 @@ public class StartUI : WindowBase, ISavedProgress
         OnClickedPlay(AudioClipName.Btn);
 
         _startPanelUI.gameObject.SetActive(false);
+        _settingsUI.gameObject.SetActive(false);
         _skinPanelUI.gameObject.SetActive(true);
         _skinPanelUI.Open();
     }
@@ -63,14 +103,14 @@ public class StartUI : WindowBase, ISavedProgress
 
         PlayerData.checkpointIndex = new List<int>() { -1 };
         _saveLoadService.SaveProgress();
-        gameStateMachine.Enter<LoadSceneState, int>(2);
+        _gameStateMachine.Enter<LoadSceneState, int>(2);
     }
 
     private void ContinueLevel()
     {
         OnClickedPlay(AudioClipName.Btn);
 
-        gameStateMachine.Enter<LoadSceneState, int>(2);
+        _gameStateMachine.Enter<LoadSceneState, int>(2);
     }
 
     private void OurGamesLink()
@@ -126,13 +166,13 @@ public class StartUI : WindowBase, ISavedProgress
         return result;
     }
 
-    public void LoadProgress(DataGroup dataGroup)
+    public void LoadProgress(PlayerData playerData)
     {
-        coins.text = dataGroup.playerData.Coins.ToString();
+        coins.text = playerData.Coins.ToString();
     }
 
-    public void UpdateProgress(DataGroup dataGroup)
+    public void UpdateProgress(PlayerData playerData)
     {
-        coins.text = dataGroup.playerData.Coins.ToString();
+        coins.text = playerData.Coins.ToString();
     }
 }

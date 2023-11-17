@@ -15,6 +15,7 @@ namespace _Scripts.UI
         public event Action OnSkinClicked;
         public event Action OnContinueClicked;
         public event Action OnOurGamesClicked;
+        public event Action OnSettingsCkicked;
 
         private void Awake()
         {
@@ -37,12 +38,16 @@ namespace _Scripts.UI
             {
                 OnOurGamesClicked?.Invoke();
             });
+            
+            settingsButton.onClick.AddListener(() =>
+            {
+                OnSettingsCkicked?.Invoke();
+            });
         }
 
         public void SetContinueButton(bool isActive)
         {
             continueButtone.interactable = isActive;
         }
-        
     }
 }

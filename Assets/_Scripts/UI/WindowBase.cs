@@ -13,13 +13,14 @@ namespace _Scripts.UI
 {
     public class WindowBase : MonoBehaviour
     {
-        protected ThirdPersonController player;
-        protected IGameStateMachine gameStateMachine;
-        protected IPersistentProgressService ProgressService;
+        protected ThirdPersonController _player;
+        protected IGameStateMachine _gameStateMachine;
+        protected IPersistentProgressService _progressService;
         protected ISaveLoadService _saveLoadService;
         protected IAdsService _adsService;
         protected IAudioService _audioService;
-        protected PlayerData PlayerData => ProgressService.DataGroup.playerData;
+        protected PlayerData PlayerData => _progressService.playerData;
+        protected PlayerStaticData _playerStaticData;
 
         protected virtual void Initialize(bool isMobile)
         {
@@ -43,13 +44,14 @@ namespace _Scripts.UI
         public void Construct(IGameStateMachine stateMachine, ThirdPersonController player, 
             IPersistentProgressService progressService, IAdsService adsService, IAudioService audioService, bool isMobile = false)
         {
-            gameStateMachine = stateMachine;
-            ProgressService = progressService;
+            _gameStateMachine = stateMachine;
+            _progressService = progressService;
             _adsService = adsService;
-            this.player = player;
+            _player = player;
             _audioService = audioService;
-        
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
+            _playerStaticData = player.GetComponent<ThirdPersonController>().PlayerStaticData;
+            
             Initialize(isMobile);
         }
     }

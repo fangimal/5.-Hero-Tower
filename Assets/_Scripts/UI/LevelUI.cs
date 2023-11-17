@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.Data;
+﻿using _Scripts.Data;
 using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;
@@ -64,13 +63,13 @@ namespace _Scripts.UI
             base.Initialize(isMobile);
 
             _audioService.CreateLevelAudio();
-            _starterAssetsInputs = player.GetComponent<StarterAssetsInputs>();
+            _starterAssetsInputs = _player.GetComponent<StarterAssetsInputs>();
             OpenPausePanel(false);
 
             if (isMobile)
             {
                 _canvasController.starterAssetsInputs = _starterAssetsInputs;
-                _mobileDisableAutoSwitchControls.playerInput = player.GetComponent<PlayerInput>();
+                _mobileDisableAutoSwitchControls.playerInput = _player.GetComponent<PlayerInput>();
                 _mobileDisableAutoSwitchControls.Init();
             }
 
@@ -78,7 +77,7 @@ namespace _Scripts.UI
             
             _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
 
-            _playerSpawner = player.GetComponent<PlayerSpawner>();
+            _playerSpawner = _player.GetComponent<PlayerSpawner>();
             _playerSpawner.OnRebasePlayer += PlayerFall;
         }
 
@@ -90,7 +89,7 @@ namespace _Scripts.UI
 
         private void GetRewardGoNextPoint()
         {
-            player.playerSpawner.RewardGoNextCheckPoint(
+            _player.playerSpawner.RewardGoNextCheckPoint(
                 PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1);
         }
 
@@ -98,7 +97,7 @@ namespace _Scripts.UI
         {
             _pausePanelUI.gameObject.SetActive(isOpen);
             _starterAssetsInputs.SetCursour(!isOpen, !isOpen);
-            _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] < player.playerSpawner.GetCheckpointsCount - 1);
+            _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] < _player.playerSpawner.GetCheckpointsCount - 1);
         }
 
         private void RebasePlayer()
@@ -112,7 +111,7 @@ namespace _Scripts.UI
         private void LoadPauseUI()
         {
             OnClickedPlay(AudioClipName.Btn);
-            gameStateMachine.Enter<LoadSceneState, int>(1);
+            _gameStateMachine.Enter<LoadSceneState, int>(1);
         }
 
 
@@ -124,14 +123,14 @@ namespace _Scripts.UI
             }
         }
 
-        public void LoadProgress(DataGroup dataGroup)
+        public void LoadProgress(PlayerData playerData)
         {
-            _coinsCount.text = dataGroup.playerData.Coins.ToString();
+            _coinsCount.text = playerData.Coins.ToString();
         }
 
-        public void UpdateProgress(DataGroup dataGroup)
+        public void UpdateProgress(PlayerData playerData)
         {
-            _coinsCount.text = dataGroup.playerData.Coins.ToString();
+            _coinsCount.text = playerData.Coins.ToString();
         }
     }
 }

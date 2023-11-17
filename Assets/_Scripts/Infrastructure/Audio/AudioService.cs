@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using _Scripts.Data;
+using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.StaticData;
 using UnityEngine;
 
@@ -8,12 +10,16 @@ namespace _Scripts.Infrastructure.Audio
     {
         private GameObject audioContainer;
 
-        private AudioStaticData audionConfig;
+        private AudioStaticData _audionConfig;
+        
+        private IPersistentProgressService _progressService;
         
         private Dictionary<string, AudioSource> audios;
-        public AudioService(IStaticDataService staticData)
+        private PlayerData _playerData => _progressService.playerData;
+        public AudioService(IStaticDataService staticData, IPersistentProgressService progressService)
         {
-            audionConfig = staticData.GetAudioConfig();
+            _progressService = progressService;
+            _audionConfig = staticData.GetAudioConfig();
         }
 
         public void Cleanup()
@@ -24,33 +30,42 @@ namespace _Scripts.Infrastructure.Audio
 
         public void CreateStartAudio()
         {
-            GetAudio(audionConfig.GetStartBackAudio, true).Play();
+            if (_playerData.isMusicOn)
+            {
+                GetAudio(_audionConfig.GetStartBackAudio, true).Play();
+            }
         }
 
         public void CreateLevelAudio()
         {
-            GetAudio(audionConfig.GetLevelBackAudio, true).Play();
+            if (_playerData.isMusicOn)
+            {
+                GetAudio(_audionConfig.GetLevelBackAudio, true).Play();
+            }
         }
 
         public void PlayAudio(AudioClipName audioType)
         {
-            switch (audioType)
+            if (_playerData.isSoundOn)
             {
-                case AudioClipName.Btn:
-                    GetAudio(audionConfig.GetUIButton).Play();
-                    break;
-                case AudioClipName.Coins:
-                    GetAudio(audionConfig.GetCoins).Play();
-                    break;
-                case AudioClipName.Burst:
-                    GetAudio(audionConfig.GetBurst).Play();
-                    break;               
-                case AudioClipName.Teleport:
-                    GetAudio(audionConfig.GetTeleport).Play();
-                    break;
-                default:
-                    Debug.Log("Don't find Audio Clip");
-                    break;
+                switch (audioType)
+                {
+                    case AudioClipName.Btn:
+                        GetAudio(_audionConfig.GetUIButton).Play();
+                        break;
+                    case AudioClipName.Coins:
+                        GetAudio(_audionConfig.GetCoins).Play();
+                        break;
+                    case AudioClipName.Burst:
+                        GetAudio(_audionConfig.GetBurst).Play();
+                        break;               
+                    case AudioClipName.Teleport:
+                        GetAudio(_audionConfig.GetTeleport).Play();
+                        break;
+                    default:
+                        Debug.Log("Don't find Audio Clip");
+                        break;
+                }
             }
         }
 

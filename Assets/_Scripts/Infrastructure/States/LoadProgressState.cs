@@ -33,16 +33,16 @@ namespace _Scripts.Infrastructure.States
         }
 
         private void LoadProgressOrInitNew() =>
-            _progressService.DataGroup = 
+            _progressService.playerData = 
                 _saveLoadService.LoadProgress() 
                 ?? NewProgress();
         
-        private DataGroup NewProgress()
+        private PlayerData  NewProgress()
         {
-            var progress = new DataGroup();
+            var progress = new PlayerData();
 
-            progress.playerData.playerSkin = 0;
-            progress.playerData.checkpointIndex = new List<int>(){-1};
+            /*progress.playerSkin = 0;
+            progress.checkpointIndex = new List<int>(){-1};*/
              
             return progress;
         }

@@ -23,16 +23,23 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
         public void SaveProgress()
         {
             foreach (ISavedProgress progressWriter in _gameFactory.ProgressWriters)
-                progressWriter.UpdateProgress(_progressService.DataGroup);
+                progressWriter.UpdateProgress(_progressService.playerData);
             
             foreach (ISavedProgress progressWriter in _uiFactory.ProgressWriters)
-                progressWriter.UpdateProgress(_progressService.DataGroup);
+                progressWriter.UpdateProgress(_progressService.playerData);
             
-            PlayerPrefs.SetString(ProgressKey, _progressService.DataGroup.ToJson());
+            PlayerPrefs.SetString(ProgressKey, _progressService.playerData.ToJson());
         }
 
-        public DataGroup LoadProgress() =>
+        public PlayerData LoadProgress() =>
             PlayerPrefs.GetString(ProgressKey)?
-                .ToDeserialzed<DataGroup>();
+                .ToDeserialzed<PlayerData>();
+
+        public void ResetProgress()
+        {
+            _progressService.playerData = new(); 
+            
+            PlayerPrefs.SetString(ProgressKey, _progressService.playerData.ToJson());
+        }
     }
 }

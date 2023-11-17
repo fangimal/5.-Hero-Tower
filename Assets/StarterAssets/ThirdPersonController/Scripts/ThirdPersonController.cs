@@ -192,7 +192,7 @@ namespace StarterAssets
                 Destroy(_visualize.gameObject);
             }
 
-            _visualize = Instantiate(PlayerStaticData.Skin[index].VisualizerPrefag, VisualContainer);
+            _visualize = Instantiate(PlayerStaticData.GetSkins[index].VisualizerPrefag, VisualContainer);
             
             _visualize.Init(FootstepAudioClips, FootstepAudioVolume, _controller, LandingAudioClip);
 
