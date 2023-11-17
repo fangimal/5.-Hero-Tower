@@ -113,10 +113,11 @@ namespace _Scripts.Level
             _saveLoadService.SaveProgress();
         }
 
-        public void SetNextCheckPointAndRebase(int index)
+        public void RewardGoNextCheckPoint(int index)
         {
             SetTargetPosition(index);
-            RebasePlayer(lastSavePosition);
+            //RebasePlayer(lastSavePosition);
+            RebaseEnd();
         }
 
         public void GetCoins()
@@ -142,12 +143,12 @@ namespace _Scripts.Level
 
         private void RebasePlayer(Transform targetTransform)
         {
-            if (canRebase)
-            {
+            /*if (canRebase)
+            {*/
                 canRebase = false;
                 characterController.enabled = false;
                 StartCoroutine(Rebase(targetTransform));
-            }
+            /*}*/
         }
 
         private void RebaseStart()

@@ -90,7 +90,7 @@ namespace _Scripts.UI
 
         private void GetRewardGoNextPoint()
         {
-            player.playerSpawner.SetNextCheckPointAndRebase(
+            player.playerSpawner.RewardGoNextCheckPoint(
                 PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1);
         }
 
