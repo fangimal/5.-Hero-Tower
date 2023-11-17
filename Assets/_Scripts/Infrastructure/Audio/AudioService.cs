@@ -24,16 +24,12 @@ namespace _Scripts.Infrastructure.Audio
 
         public void CreateStartAudio()
         {
-            InitAudio();
-            SetupClip(audionConfig.GetStartBackAudio, true);
-            GetAudio(audionConfig.GetStartBackAudio).Play();
+            GetAudio(audionConfig.GetStartBackAudio, true).Play();
         }
 
         public void CreateLevelAudio()
         {
-            InitAudio();
-            SetupClip(audionConfig.GetLevelBackAudio, true);
-            GetAudio(audionConfig.GetLevelBackAudio).Play();
+            GetAudio(audionConfig.GetLevelBackAudio, true).Play();
         }
 
         public void PlayAudio(AudioClipName audioType)
@@ -77,13 +73,13 @@ namespace _Scripts.Infrastructure.Audio
             audios.Add(clip.name, audioSource);
         }
 
-        private AudioSource GetAudio(AudioClip audioClip)
+        private AudioSource GetAudio(AudioClip audioClip, bool loop = false)
         {
             InitAudio();
 
             if (!audios.ContainsKey(audioClip.name))
             {
-                SetupClip(audioClip);
+                SetupClip(audioClip, loop);
             }
 
             return audios[audioClip.name];

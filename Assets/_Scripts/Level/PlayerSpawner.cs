@@ -162,7 +162,17 @@ namespace _Scripts.Level
         {
             StartCoroutine(Rebase(lastSavePosition));
             _thirdPersonController.GetVisualize.gameObject.SetActive(true);
-            levelHelper.GetCheckPoints[currentCheckpointIndex].ShowFx();
+
+            RebaseFX();
+        }
+
+        private void RebaseFX()
+        {
+            if (currentCheckpointIndex != -1)
+            {
+                levelHelper.GetCheckPoints[currentCheckpointIndex].ShowFx();
+            }
+            
             _audioService.PlayAudio(AudioClipName.Teleport);
         }
 
