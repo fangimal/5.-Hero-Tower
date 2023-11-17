@@ -8,14 +8,16 @@ namespace _Scripts.Infrastructure.Audio
 {
     public class AudioService : IAudioService
     {
-        private GameObject audioContainer;
+        private GameObject _audioContainer;
 
         private AudioStaticData _audionConfig;
         
         private IPersistentProgressService _progressService;
         
-        private Dictionary<string, AudioSource> audios;
+        private Dictionary<string, AudioSource> _audios;
         private PlayerData _playerData => _progressService.playerData;
+
+        private AudioClip _backMusic;
         public AudioService(IStaticDataService staticData, IPersistentProgressService progressService)
         {
             _progressService = progressService;
@@ -24,15 +26,17 @@ namespace _Scripts.Infrastructure.Audio
 
         public void Cleanup()
         {
-            audioContainer = null;
-            audios = null;
+            _audioContainer = null;
+            _audios = null;
+            _backMusic = null;
         }
 
         public void CreateStartAudio()
         {
             if (_playerData.isMusicOn)
             {
-                GetAudio(_audionConfig.GetStartBackAudio, true).Play();
+                _backMusic = _audionConfig.GetStartBackAudio;
+                GetAudio(_backMusic, true).Play();
             }
         }
 
@@ -40,7 +44,8 @@ namespace _Scripts.Infrastructure.Audio
         {
             if (_playerData.isMusicOn)
             {
-                GetAudio(_audionConfig.GetLevelBackAudio, true).Play();
+                _backMusic = _audionConfig.GetLevelBackAudio;
+                GetAudio(_backMusic, true).Play();
             }
         }
 
@@ -69,35 +74,55 @@ namespace _Scripts.Infrastructure.Audio
             }
         }
 
+        public void OnOffBackMusic(bool isOn, bool isLevel = false)
+        {
+            if (_backMusic == null)
+            {
+                _backMusic = isLevel? _audionConfig.GetLevelBackAudio : _audionConfig.GetStartBackAudio;
+                GetAudio(_backMusic, true);
+            }
+            if (!isOn)
+            {
+                GetAudio(_backMusic).Stop();
+            }
+            else
+            {
+                if (!GetAudio(_backMusic).isPlaying)
+                {
+                    GetAudio(_backMusic,true).Play();
+                }
+            }
+        }
+
         private void InitAudio()
         {
-            if (audioContainer == null || audios == null)
+            if (_audioContainer == null || _audios == null)
             {
-                audioContainer = new GameObject("AudioContainer");
+                _audioContainer = new GameObject("AudioContainer");
 
-                audios = new();
+                _audios = new();
             }
         }
 
         private void SetupClip(AudioClip clip, bool loop = false)
         {
-            AudioSource audioSource = audioContainer.AddComponent<AudioSource>();
+            AudioSource audioSource = _audioContainer.AddComponent<AudioSource>();
             audioSource.loop = loop;
             audioSource.playOnAwake = false;
             audioSource.clip = clip;
-            audios.Add(clip.name, audioSource);
+            _audios.Add(clip.name, audioSource);
         }
 
         private AudioSource GetAudio(AudioClip audioClip, bool loop = false)
         {
             InitAudio();
 
-            if (!audios.ContainsKey(audioClip.name))
+            if (!_audios.ContainsKey(audioClip.name))
             {
                 SetupClip(audioClip, loop);
             }
 
-            return audios[audioClip.name];
+            return _audios[audioClip.name];
         }
     }
 }

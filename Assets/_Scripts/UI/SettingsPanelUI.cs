@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.StaticData;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +15,15 @@ namespace _Scripts.UI
         [SerializeField] private Image _musicIcon;
         [SerializeField] private Button _soundBtn;
         [SerializeField] private Image _soundIcon;
-
         public event Action OnBackClicked;
         public event Action OnChangeLanguage;
         public event Action OnResetGameProgress;
-        public event Action OnSoundOnOff;
-        public event Action OnMusicOnOff;
+        public event Action<bool> OnSoundOnOff;
+        public event Action<bool> OnMusicOnOff;
+
+        private PlayerStaticData _playerStaticData;
+        private bool isMusicOn;
+        private bool isSoundOn;
 
         private void Awake()
         {
@@ -28,16 +32,30 @@ namespace _Scripts.UI
             _langBtn.onClick.AddListener(() => OnChangeLanguage?.Invoke());
 
             _resetProgressBtn.onClick.AddListener(() => OnResetGameProgress?.Invoke());
-            
+
             _musicBtn.onClick.AddListener(() =>
             {
-                OnMusicOnOff?.Invoke();
+                isMusicOn = !isMusicOn;
+                SetMusicIcon();
+                OnMusicOnOff?.Invoke(isMusicOn);
             });
-            
+
             _soundBtn.onClick.AddListener(() =>
             {
-                OnSoundOnOff?.Invoke();
+                isSoundOn = !isSoundOn;
+                SetSoundIcon();
+                OnSoundOnOff?.Invoke(isSoundOn);
             });
+        }
+
+        public void Init(bool isMusicOn, bool isSoundOn, Sprite flagIcon, PlayerStaticData playerStaticData)
+        {
+            _playerStaticData = playerStaticData;
+            this.isMusicOn = isMusicOn;
+            this.isSoundOn = isSoundOn;
+            SetMusicIcon();
+            SetSoundIcon();
+            SetLanguageIcon(flagIcon);
         }
 
         public void SetLanguageIcon(Sprite sprite)
@@ -45,14 +63,14 @@ namespace _Scripts.UI
             _flagIcon.sprite = sprite;
         }
 
-        public void SetSoundIcon(Sprite sprite)
+        private void SetSoundIcon()
         {
-            _soundIcon.sprite = sprite;
-        }       
-        
-        public void SetMusicIcon(Sprite sprite)
+            _soundIcon.sprite = isSoundOn ? _playerStaticData.GetOnIcon : _playerStaticData.GetOffIcon;
+        }
+
+        private void SetMusicIcon()
         {
-            _musicIcon.sprite = sprite;
+            _musicIcon.sprite = isMusicOn ? _playerStaticData.GetOnIcon : _playerStaticData.GetOffIcon;
         }
     }
 }

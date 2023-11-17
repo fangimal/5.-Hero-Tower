@@ -32,5 +32,5 @@ MonoBehaviour:
   _languageSprites:
   - {fileID: 21300000, guid: da557be03d3c8f84d82be4510a724cdc, type: 3}
   - {fileID: 21300000, guid: fa6937e6cc034c145a95eddc4d7b3750, type: 3}
-  _offIcon: {fileID: 0}
-  _onIcon: {fileID: 0}
+  _offIcon: {fileID: 21300000, guid: 63d068b4e6d22e94499ba6bd630b722f, type: 3}
+  _onIcon: {fileID: 21300000, guid: ac7fba35da4d823479b10058806a6581, type: 3}
