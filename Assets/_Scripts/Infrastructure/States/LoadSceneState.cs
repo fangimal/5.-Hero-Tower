@@ -18,15 +18,17 @@ namespace _Scripts.Infrastructure.States
         private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
         private readonly IAudioService _audioService;
-        
+
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
-        
+
         private ThirdPersonController player;
-        
+
         private int currentSceneIndex;
-        public LoadSceneState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, 
-            IUIFactory uiFactory, IStaticDataService staticData, IGameFactory gameFactory, IPersistentProgressService progressService, IAudioService audioService)
+
+        public LoadSceneState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
+            IUIFactory uiFactory, IStaticDataService staticData, IGameFactory gameFactory,
+            IPersistentProgressService progressService, IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -41,9 +43,9 @@ namespace _Scripts.Infrastructure.States
         public void Enter(int sceneIndex)
         {
             currentSceneIndex = sceneIndex;
-            
+
             _curtain.Show();
-            
+
             _gameFactory.Cleanup();
             _uiFactory.Cleanup();
             _audioService.Cleanup();
@@ -59,7 +61,7 @@ namespace _Scripts.Infrastructure.States
         private void OnLoaded()
         {
             InitPlayer();
-            
+
             InitUI();
 
             InformProgressReaders();
@@ -70,8 +72,9 @@ namespace _Scripts.Infrastructure.States
         private void InformProgressReaders()
         {
             foreach (ISavedProgressReader progressReader in _uiFactory.ProgressReaders)
-                progressReader.LoadProgress(_progressService.PlayerData);
+                progressReader.LoadProgress(_progressService.playerData);
         }
+
         private void InitPlayer()
         {
             var levelData = GetLevelStaticData();
@@ -79,10 +82,10 @@ namespace _Scripts.Infrastructure.States
             player = _gameFactory.CreatePlayer(levelData);
         }
 
-        private LevelStaticData GetLevelStaticData() => 
+        private LevelStaticData GetLevelStaticData() =>
             _staticData.ForLevel(SceneManager.GetActiveScene().buildIndex);
 
-        private void InitUI() => 
+        private void InitUI() =>
             _uiFactory.CreateUI(currentSceneIndex, player);
     }
 }

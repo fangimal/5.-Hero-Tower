@@ -79,8 +79,8 @@ namespace _Scripts.Infrastructure.Factory
         {
             player.MoveSpeed = data.playerMoveSpeed;
 
-            PlayerData playerData = _persistentProgressService.PlayerData;
-            
+            PlayerData playerData = _persistentProgressService.playerData;
+
             levelHelper.Initialize(player, _persistentProgressService);
             player.playerSpawner.Init(player, levelHelper, _persistentProgressService, data, _audioService);
             player.Init(playerData.playerSkin);

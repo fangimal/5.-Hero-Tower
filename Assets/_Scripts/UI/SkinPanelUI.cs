@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using _Scripts.StaticData;
-using StarterAssets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +17,6 @@ namespace _Scripts.UI
         public event Action OnBackStart;
         
         private List<SkinItem> _skinItems = new List<SkinItem>();
-        private PlayerStaticData _playerStaticData;
         private int selectedSkin;
 
         private void Awake()
@@ -27,7 +24,8 @@ namespace _Scripts.UI
             _backStartButton.onClick.AddListener(() =>
             {
                 OnClickedPlay(AudioClipName.Btn);
-                player.SetVisualize(PlayerData.playerSkin);
+                _player.SetVisualize(PlayerData.playerSkin);
+                Close();
                 OnBackStart?.Invoke();
             });
 
@@ -41,17 +39,25 @@ namespace _Scripts.UI
             CheckCanBuy(selectedSkin);
         }
 
+        public void Close()
+        {
+            foreach (SkinItem item in _skinItems)
+            {
+                Destroy(item.gameObject);
+            }
+            
+            _skinItems.Clear();
+        }
+
         private void CreateItems()
         {
             if (_skinItems.Count == 0)
             {
-                _playerStaticData = player.GetComponent<ThirdPersonController>().PlayerStaticData;
-
-                for (int i = 0; i < _playerStaticData.Skin.Length; i++)
+                for (int i = 0; i < _playerStaticData.GetSkins.Length; i++)
                 {
                     SkinItem item = Instantiate(_skinItemPrefab, _content);
                     bool locked = !PlayerData.openSkin.Contains(i);
-                    item.Init(_playerStaticData.Skin[i].Sprite, i, locked);
+                    item.Init(_playerStaticData.GetSkins[i].Sprite, i, locked);
                     item.SetSelected(PlayerData.playerSkin == i);
                     item.OnClicked += ClickedSkinItem;
                     _skinItems.Add(item);
@@ -59,10 +65,10 @@ namespace _Scripts.UI
             }
         }
 
-        private void ClickedSkinItem(int index)
+        public void ClickedSkinItem(int index)
         {
             OnClickedPlay(AudioClipName.Btn);
-            player.SetVisualize(index);
+            _player.SetVisualize(index);
             ChangeSelectedItem(index);
             CheckBuyingSkin(index);
             Debug.Log("ClickedSkinItem: " + index);
@@ -95,9 +101,9 @@ namespace _Scripts.UI
 
         private void BuySkin()
         {
-            if (PlayerData.Coins >= _playerStaticData.Skin[selectedSkin].Price && PlayerData.Coins !=0)
+            if (PlayerData.Coins >= _playerStaticData.GetSkins[selectedSkin].Price && PlayerData.Coins !=0)
             {
-                PlayerData.AddCoins(-_playerStaticData.Skin[selectedSkin].Price);
+                PlayerData.AddCoins(-_playerStaticData.GetSkins[selectedSkin].Price);
                 _skinItems[selectedSkin].BuySkin();
                 PlayerData.openSkin.Add(selectedSkin);
                 SaveSkin(selectedSkin);
@@ -115,7 +121,7 @@ namespace _Scripts.UI
             
             if (canBuy)
             {
-                _price.text = _playerStaticData.Skin[skinIndex].Price.ToString();
+                _price.text = _playerStaticData.GetSkins[skinIndex].Price.ToString();
             }
         }
     }

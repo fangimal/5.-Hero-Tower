@@ -14,7 +14,6 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
         private readonly IPersistentProgressService _progressService;
         private readonly IGameFactory _gameFactory;
         private readonly IUIFactory _uiFactory;
-
         public SaveLoadService(IPersistentProgressService progressService, IGameFactory gameFactory, IUIFactory uiFactory)
         {
             _progressService = progressService;
@@ -24,20 +23,24 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
         public void SaveProgress()
         {
             foreach (ISavedProgress progressWriter in _gameFactory.ProgressWriters)
-                progressWriter.UpdateProgress(_progressService.PlayerData);
+
+                progressWriter.UpdateProgress(_progressService.playerData);
             
             foreach (ISavedProgress progressWriter in _uiFactory.ProgressWriters)
-                progressWriter.UpdateProgress(_progressService.PlayerData);
+                progressWriter.UpdateProgress(_progressService.playerData);
             
             YandexGame.SaveProgress();
-            //PlayerPrefs.SetString(ProgressKey, _progressService.PlayerData.ToJson());
         }
 
         public PlayerData LoadProgress()
         {
-            //return PlayerPrefs.GetString(ProgressKey)?
-             //   .ToDeserialzed<PlayerData>();
-             return YandexGame.savesData.playerData;
+            return YandexGame.savesData.playerData;
+        }
+        public void ResetProgress()
+        {
+            YandexGame.ResetSaveProgress();
+            _progressService.playerData = YandexGame.savesData.playerData;
+            YandexGame.SaveProgress();
         }
     }
 }

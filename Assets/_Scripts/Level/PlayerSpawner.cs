@@ -34,8 +34,8 @@ namespace _Scripts.Level
         private bool canRebase = true;
         public bool playerIsFall = false;
         private int currentCheckpointIndex;
-        public event Action OnRebasePlayer;
 
+        public event Action OnRebasePlayer;
         private void OnEnable()
         {
             OnRebasePlayer += RebaseStart;
@@ -55,12 +55,13 @@ namespace _Scripts.Level
             this.data = data;
 
             _audioService = audioService;
-            
+
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
             SetTargetPosition(
-                _persistentProgress.PlayerData.checkpointIndex[
-                    _persistentProgress.PlayerData.checkpointIndex.Count - 1]);
+                _persistentProgress.playerData.checkpointIndex[
+                    _persistentProgress.playerData.checkpointIndex.Count - 1]);
+
             characterController = thirdPersonController.gameObject.GetComponent<CharacterController>();
             RebasePlayer(lastSavePosition);
         }
@@ -103,9 +104,9 @@ namespace _Scripts.Level
                 lastSavePosition = levelHelper.GetStartPosition;
             }
 
-            if (!_persistentProgress.PlayerData.checkpointIndex.Contains(index))
+            if (!_persistentProgress.playerData.checkpointIndex.Contains(index))
             {
-                _persistentProgress.PlayerData.checkpointIndex.Add(index);
+                _persistentProgress.playerData.checkpointIndex.Add(index);
             }
 
             currentCheckpointIndex = index;
@@ -122,10 +123,8 @@ namespace _Scripts.Level
 
         public void GetCoins()
         {
-            _persistentProgress.PlayerData.AddCoins(1);
-
+            _persistentProgress.playerData.AddCoins(1);
             _audioService.PlayAudio(AudioClipName.Coins);
-
         }
 
         public void OnPlayerIsDamaged()

@@ -8,7 +8,7 @@ namespace _Scripts.Infrastructure.Audio
         void CreateStartAudio();
         void CreateLevelAudio();
         void PlayAudio(AudioClipName audioType);
-
+        void OnOffBackMusic(bool isOn, bool isLevel = false);
         void Cleanup();
     }
 }

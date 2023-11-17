@@ -41,9 +41,10 @@ namespace _Scripts.Infrastructure.States
             RegisterAdsService();
             
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
-            _services.RegisterSingle<IAudioService>(new AudioService(_services.Single<IStaticDataService>()));
             _services.RegisterSingle<IAssetsProvider>(new AssetsProvider());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            _services.RegisterSingle<IAudioService>(new AudioService(_services.Single<IStaticDataService>(),
+                _services.Single<IPersistentProgressService>()));
             
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _stateMachine,_services.Single<IAssetsProvider>(), 

@@ -28,17 +28,10 @@ namespace _Scripts.Infrastructure.States
             _gameStateMachine.Enter<LoadSceneState, int>(sceneIndex);
         }
 
-        public void Exit()
-        {
-        }
-
+        public void Exit() { }
         private void LoadProgressOrInitNew()
         {
-            _progressService.PlayerData = _saveLoadService.LoadProgress();
-            
-            /*_progressService.PlayerData =
-                    _saveLoadService.LoadProgress()
-                    ?? NewProgress();*/
+            _progressService.playerData = _saveLoadService.LoadProgress();
         }
         
         private PlayerData NewProgress()
@@ -47,7 +40,7 @@ namespace _Scripts.Infrastructure.States
 
             progress.playerSkin = 0;
             progress.checkpointIndex = new List<int>(){-1};
-             
+
             return progress;
         }
     }
