@@ -15,9 +15,10 @@ namespace _Scripts.UI
         [SerializeField] private Image _musicIcon;
         [SerializeField] private Button _soundBtn;
         [SerializeField] private Image _soundIcon;
+        
         public event Action OnBackClicked;
-        public event Action OnChangeLanguage;
         public event Action OnResetGameProgress;
+        public event Action OnChangeLanguage;
         public event Action<bool> OnSoundOnOff;
         public event Action<bool> OnMusicOnOff;
 

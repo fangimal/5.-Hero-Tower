@@ -20,6 +20,7 @@ namespace _Scripts.UI
         [SerializeField] private Button _pauseButton;
         [SerializeField] private PausePanelUI _pausePanelUI;
         [SerializeField] private TextMeshProUGUI _coinsCount;
+        [SerializeField] private TextMeshProUGUI _pauseTab;
 
         private StarterAssetsInputs _starterAssetsInputs;
         private PlayerSpawner _playerSpawner;
@@ -68,6 +69,7 @@ namespace _Scripts.UI
 
             if (isMobile)
             {
+                _pauseTab.gameObject.SetActive(false);
                 _canvasController.starterAssetsInputs = _starterAssetsInputs;
                 _mobileDisableAutoSwitchControls.playerInput = _player.GetComponent<PlayerInput>();
                 _mobileDisableAutoSwitchControls.Init();

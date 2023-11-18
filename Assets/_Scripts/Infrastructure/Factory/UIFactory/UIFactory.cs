@@ -41,6 +41,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
 
         public void CreateUI(int sceneIndex, ThirdPersonController player)
         {
+            YandexGame.lang = player.PlayerStaticData.GetLocals[_progressService.playerData.langIndex].langCode;
             
             if (sceneIndex == 1)
             {

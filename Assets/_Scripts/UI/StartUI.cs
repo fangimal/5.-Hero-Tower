@@ -47,12 +47,14 @@ public class StartUI : WindowBase, ISavedProgress
 
             PlayerData.langIndex++;
             
-            if (PlayerData.langIndex >= _playerStaticData.GetLanguageSprites.Length)
+            if (PlayerData.langIndex >= _playerStaticData.GetLocals.Length)
             {
                 PlayerData.langIndex = 0;
             }
             
-            _settingsUI.SetLanguageIcon(_playerStaticData.GetLanguageSprites[PlayerData.langIndex]);
+            _settingsUI.SetLanguageIcon(_playerStaticData.GetLocals[PlayerData.langIndex].langSprite);
+            string lang = _playerStaticData.GetLocals[PlayerData.langIndex].langCode;
+            YandexGame.SwitchLanguage(lang);
             
             //_saveLoadService.SaveProgress();
         };
@@ -81,7 +83,7 @@ public class StartUI : WindowBase, ISavedProgress
         _startPanelUI.SetContinueButton(PlayerData.checkpointIndex.Count > 1);
         _audioService.CreateStartAudio();
         _settingsUI.Init(PlayerData.isMusicOn, PlayerData.isSoundOn, 
-            _playerStaticData.GetLanguageSprites[PlayerData.langIndex], _playerStaticData);
+            _playerStaticData.GetLocals[PlayerData.langIndex].langSprite, _playerStaticData);
     }
 
     private void OnDestroy()
