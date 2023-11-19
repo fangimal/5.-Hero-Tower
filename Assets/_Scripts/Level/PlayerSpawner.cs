@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using _Scripts.Data;
 using _Scripts.Infrastructure.Audio;
 using _Scripts.Infrastructure.Services;
@@ -8,6 +9,7 @@ using _Scripts.Infrastructure.Services.SaveLoad;
 using _Scripts.StaticData;
 using StarterAssets;
 using UnityEngine;
+using YG;
 
 namespace _Scripts.Level
 {
@@ -112,6 +114,8 @@ namespace _Scripts.Level
             currentCheckpointIndex = index;
 
             _saveLoadService.SaveProgress();
+
+            TrigerSend("Point: " + index);
         }
 
         public void RewardGoNextCheckPoint(int index)
@@ -196,6 +200,16 @@ namespace _Scripts.Level
         {
             yield return new WaitForSeconds(1f);
             canRebase = true;
+        }
+        
+        private void TrigerSend(string name)
+        {
+            var eventParams = new Dictionary<string, string>
+            {
+                { "Point Index", name }
+            };
+
+            YandexMetrica.Send("Point Index", eventParams);
         }
     }
 }

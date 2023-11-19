@@ -19,7 +19,7 @@ public class StartUI : WindowBase, ISavedProgress
     [SerializeField] private TextMeshProUGUI coins;
     private void Awake()
     {
-        _startPanelUI.OnNewGameClicked += LodNewLevel;
+        _startPanelUI.OnNewGameClicked += LoadNewLevel;
         _startPanelUI.OnSkinClicked += LoadSkinPanel;
         _startPanelUI.OnContinueClicked += ContinueLevel;
         _startPanelUI.OnSettingsCkicked += OpenSettings;
@@ -95,7 +95,7 @@ public class StartUI : WindowBase, ISavedProgress
 
     private void OnDestroy()
     {
-        _startPanelUI.OnNewGameClicked -= LodNewLevel;
+        _startPanelUI.OnNewGameClicked -= LoadNewLevel;
         _startPanelUI.OnSkinClicked -= LoadSkinPanel;
         _skinPanelUI.OnBackStart -= BackStartUI;
     }
@@ -124,13 +124,13 @@ public class StartUI : WindowBase, ISavedProgress
         _skinPanelUI.Open();
     }
 
-    private void LodNewLevel()
+    private void LoadNewLevel()
     {
         OnClickedPlay(AudioClipName.Btn);
 
         PlayerData.checkpointIndex = new List<int>() { -1 };
         _saveLoadService.SaveProgress();
-        TrigerSend("LodNewLevel with Skin: " + PlayerData.playerSkin);
+        TrigerSend("LoadNewLevel with Skin: " + PlayerData.playerSkin);
         _gameStateMachine.Enter<LoadSceneState, int>(2);
     }
 

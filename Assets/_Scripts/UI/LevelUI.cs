@@ -1,4 +1,5 @@
-﻿using _Scripts.Data;
+﻿using System.Collections.Generic;
+using _Scripts.Data;
 using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;
@@ -96,7 +97,7 @@ namespace _Scripts.UI
             int checkPointIndex = PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1;
             _player.playerSpawner.RewardGoNextCheckPoint(checkPointIndex);
             
-            YandexMetrica.Send("checkPointIndex: " + checkPointIndex);
+            TrigerSend("RevardPoint" + checkPointIndex);
         }
 
         private void OpenPausePanel(bool isOpen)
@@ -137,6 +138,16 @@ namespace _Scripts.UI
         public void UpdateProgress(PlayerData playerData)
         {
             _coinsCount.text = playerData.Coins.ToString();
+        }
+        
+        private void TrigerSend(string name)
+        {
+            var eventParams = new Dictionary<string, string>
+            {
+                { "RevardPoint", name }
+            };
+
+            YandexMetrica.Send("RevardPoint", eventParams);
         }
     }
 }
