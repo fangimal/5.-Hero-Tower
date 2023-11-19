@@ -1,5 +1,5 @@
 {
-    "idSave": 173,
+    "idSave": 188,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -11,12 +11,11 @@
         false
     ],
     "playerData": {
-        "isFirstLoad": true,
         "isSoundOn": true,
         "isMusicOn": true,
-        "langIndex": 1,
+        "langIndex": 0,
         "Coins": 2,
-        "playerSkin": 3,
+        "playerSkin": 0,
         "checkpointIndex": [
             -1,
             0

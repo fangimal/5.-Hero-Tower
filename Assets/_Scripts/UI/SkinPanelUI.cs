@@ -15,6 +15,7 @@ namespace _Scripts.UI
         [SerializeField] private Transform _content;
         [SerializeField] private SkinItem _skinItemPrefab;
         public event Action OnBackStart;
+        public event Action<int> OnBuyNewSkin;
         
         private List<SkinItem> _skinItems = new List<SkinItem>();
         private int selectedSkin;
@@ -107,7 +108,7 @@ namespace _Scripts.UI
                 _skinItems[selectedSkin].BuySkin();
                 PlayerData.openSkin.Add(selectedSkin);
                 SaveSkin(selectedSkin);
-
+                OnBuyNewSkin?.Invoke(selectedSkin);
                 OnClickedPlay(AudioClipName.Coins);
             }
 

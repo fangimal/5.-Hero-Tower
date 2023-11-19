@@ -18,15 +18,15 @@ MonoBehaviour:
     VisualizerPrefag: {fileID: 75872128445745159, guid: 20173959fe2138c468fc185ac496f58d,
       type: 3}
   - Sprite: {fileID: 21300000, guid: a211ac956f9b622498480f9ef69dd1db, type: 3}
-    Price: 1
+    Price: 20
     VisualizerPrefag: {fileID: 8143972150814102005, guid: 7ec748363d3a7a8489b1df6fad091ee3,
       type: 3}
   - Sprite: {fileID: 21300000, guid: 7781dc2c07142f24a984ac0e3024084c, type: 3}
-    Price: 2
+    Price: 19
     VisualizerPrefag: {fileID: 7467451891540425985, guid: d513e814b98ca7e4d95301742236d23c,
       type: 3}
   - Sprite: {fileID: 21300000, guid: 790f0227591f340498fec31c131dd14d, type: 3}
-    Price: 4
+    Price: 15
     VisualizerPrefag: {fileID: 1202902257251592249, guid: ac034355be9c40c45928cad5023ffe2e,
       type: 3}
   _offIcon: {fileID: 21300000, guid: 63d068b4e6d22e94499ba6bd630b722f, type: 3}
@@ -37,4 +37,4 @@ MonoBehaviour:
   - langCode: en
     langSprite: {fileID: 21300000, guid: fa6937e6cc034c145a95eddc4d7b3750, type: 3}
   - langCode: tr
-    langSprite: {fileID: 21300000, guid: 59132935c5e91e54f80af4c65bc15dcb, type: 3}
+    langSprite: {fileID: 21300000, guid: 9f13a871e5b2fbd448bd34b0be99b3aa, type: 3}

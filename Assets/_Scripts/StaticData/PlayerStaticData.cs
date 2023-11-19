@@ -8,8 +8,12 @@ namespace _Scripts.StaticData
     public class PlayerStaticData : ScriptableObject
     {
         [SerializeField] private PlayerSkin[] playerGetSkins;
+        
+        [Header ("Settings")]
         [SerializeField] private Sprite _offIcon;
         [SerializeField] private Sprite _onIcon;
+        
+        [Header ("Local")]
         [SerializeField] private Local[] _locals;
         public PlayerSkin[] GetSkins => playerGetSkins;
         public Local[] GetLocals => _locals;

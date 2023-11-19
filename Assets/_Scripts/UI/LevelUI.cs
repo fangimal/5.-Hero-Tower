@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using YG;
 
 namespace _Scripts.UI
 {
@@ -33,6 +34,7 @@ namespace _Scripts.UI
             {
                 OnClickedPlay(AudioClipName.Btn);
                 OpenPausePanel(false);
+                
                 _adsService.ShowReward(RewardId.Checkpoint);
             };
 
@@ -91,8 +93,10 @@ namespace _Scripts.UI
 
         private void GetRewardGoNextPoint()
         {
-            _player.playerSpawner.RewardGoNextCheckPoint(
-                PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1);
+            int checkPointIndex = PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1;
+            _player.playerSpawner.RewardGoNextCheckPoint(checkPointIndex);
+            
+            YandexMetrica.Send("checkPointIndex: " + checkPointIndex);
         }
 
         private void OpenPausePanel(bool isOpen)
