@@ -1,2 +1,2 @@
 Build path: D:/Documents/Unity Projects/Projects/Builds/5. Hero Tower/Web/Yandex
-Build number: 145
+Build number: 146

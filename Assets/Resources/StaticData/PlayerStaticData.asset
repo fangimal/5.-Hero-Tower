@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStaticData
   m_EditorClassIdentifier: 
   playerGetSkins:
-  - Sprite: {fileID: 21300000, guid: 2122ff8764600ce46892eaa903aa827f, type: 3}
+  - Sprite: {fileID: 21300000, guid: bd7d493c06029294697e1aa047c57719, type: 3}
     Price: 0
     VisualizerPrefag: {fileID: 75872128445745159, guid: 20173959fe2138c468fc185ac496f58d,
       type: 3}

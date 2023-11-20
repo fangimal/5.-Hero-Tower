@@ -96,7 +96,7 @@ namespace _Scripts.UI
         {
             int checkPointIndex = PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1;
             _player.playerSpawner.RewardGoNextCheckPoint(checkPointIndex);
-            
+            _starterAssetsInputs.SetCursour(true);
             TrigerSend("RP: " + checkPointIndex);
         }
 

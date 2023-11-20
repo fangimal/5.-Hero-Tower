@@ -1,5 +1,5 @@
 {
-    "idSave": 188,
+    "idSave": 87,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -14,14 +14,36 @@
         "isSoundOn": true,
         "isMusicOn": true,
         "langIndex": 0,
-        "Coins": 2,
-        "playerSkin": 0,
+        "Coins": 67,
+        "playerSkin": 2,
         "checkpointIndex": [
             -1,
-            0
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
         ],
         "openSkin": [
             0,
+            1,
+            2,
             3
         ]
     }

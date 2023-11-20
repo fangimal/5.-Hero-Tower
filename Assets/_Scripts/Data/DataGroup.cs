@@ -10,7 +10,7 @@ namespace _Scripts.Data
         public bool isSoundOn = true;
         public bool isMusicOn = true;
         public int langIndex = 0;
-        public int Coins = 0;
+        public int Coins = 100;
         public int playerSkin;
         private int coinsForLiderBoard;
         public List<int> checkpointIndex = new List<int>(){-1};
