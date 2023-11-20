@@ -46,10 +46,12 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
             if (sceneIndex == 1)
             {
                 _uiRoot = _assetsProvider.Instantiate(AssetPath.UIRootPath).transform;
+                _audioService.Init(sceneIndex, player.SoundAudio);
                 CreateStartUI(player);
             }
             else
             {
+                _audioService.Init(sceneIndex, player.SoundAudio);
                 CreateGameUI(player);
             }
         }

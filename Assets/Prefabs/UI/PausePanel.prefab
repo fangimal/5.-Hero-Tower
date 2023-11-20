@@ -819,7 +819,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: "Apr\xE8s. "
   kk: 
   ky: 
   lt: 
@@ -829,11 +829,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: "Despu\xE9s. "
+  pt: 'Depois. '
   ar: 
-  id: 
-  ja: 
+  id: 'Setelah. '
+  ja: "\u5F8C\u3002"
   it: 
   de: 
   hi: 
@@ -842,9 +842,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 0/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 0
+  countLang: 5
 --- !u!1 &3529542552445989983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Au principal
   kk: 
   ky: 
   lt: 
@@ -1017,11 +1017,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: A principal
+  pt: Para principal
   ar: 
-  id: 
-  ja: 
+  id: Ke utama
+  ja: "\u30E1\u30A4\u30F3\u3078"
   it: 
   de: 
   hi: 
@@ -1030,9 +1030,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &4173535504209268132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1467,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Continuer
   kk: 
   ky: 
   lt: 
@@ -1477,11 +1477,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Continuar
+  pt: Continuar
   ar: 
-  id: 
-  ja: 
+  id: Melanjutkan
+  ja: "\u7D9A\u304F"
   it: 
   de: 
   hi: 
@@ -1490,9 +1490,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &6477588497598119768
 GameObject:
   m_ObjectHideFlags: 0

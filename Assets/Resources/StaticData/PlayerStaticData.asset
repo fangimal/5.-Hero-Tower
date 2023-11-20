@@ -35,6 +35,14 @@ MonoBehaviour:
   - langCode: ru
     langSprite: {fileID: 21300000, guid: da557be03d3c8f84d82be4510a724cdc, type: 3}
   - langCode: en
-    langSprite: {fileID: 21300000, guid: fa6937e6cc034c145a95eddc4d7b3750, type: 3}
+    langSprite: {fileID: 21300000, guid: f436c7a5b33618843a7d0ff83d08519a, type: 3}
   - langCode: tr
     langSprite: {fileID: 21300000, guid: 9f13a871e5b2fbd448bd34b0be99b3aa, type: 3}
+  - langCode: fr
+    langSprite: {fileID: 21300000, guid: 003277ee99b125f48921c2134656dcf3, type: 3}
+  - langCode: id
+    langSprite: {fileID: 21300000, guid: 011cd20daa759b446b64bf3df219fb33, type: 3}
+  - langCode: pt
+    langSprite: {fileID: 21300000, guid: df47e353b9481c0428f36c755bd725fd, type: 3}
+  - langCode: es
+    langSprite: {fileID: 21300000, guid: 5994d0c7e77e0984eac88f3250aabf01, type: 3}

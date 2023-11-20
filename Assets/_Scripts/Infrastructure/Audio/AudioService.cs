@@ -9,19 +9,38 @@ namespace _Scripts.Infrastructure.Audio
     public class AudioService : IAudioService
     {
         private GameObject _audioContainer;
-
+        
         private AudioStaticData _audionConfig;
         
         private IPersistentProgressService _progressService;
         
         private Dictionary<string, AudioSource> _audios;
+        
+        private AudioClip _backMusic;
         private PlayerData _playerData => _progressService.playerData;
 
-        private AudioClip _backMusic;
+        private AudioYB _sound;
+
+        private const string StartBackMusicKey = "StartBack";
+        private const string LevelBackMusicKey_1 = "LevelBack_1";
+        private const string LevelBackMusicKey_2 = "LevelBack_2";
+        private const string BurstSoundKey = "burst";
+        private const string TeleportSoundKey = "teleport";
+        private const string CoinsSoundKey = "coins";
+        private const string UIBtnSoundKey = "btn";
+        private int levelIndex;
+
         public AudioService(IStaticDataService staticData, IPersistentProgressService progressService)
         {
             _progressService = progressService;
             _audionConfig = staticData.GetAudioConfig();
+        }
+
+        public void Init(int index, AudioYB sound)
+        {
+            levelIndex = index;
+
+            _sound = sound;
         }
 
         public void Cleanup()
@@ -33,18 +52,20 @@ namespace _Scripts.Infrastructure.Audio
 
         public void CreateStartAudio()
         {
+            _backMusic = _audionConfig.GetStartBackAudio;
+            
             if (_playerData.isMusicOn)
             {
-                _backMusic = _audionConfig.GetStartBackAudio;
                 GetAudio(_backMusic, true).Play();
             }
         }
 
         public void CreateLevelAudio()
         {
+            _backMusic = _audionConfig.GetLevelBackAudio;
+            
             if (_playerData.isMusicOn)
             {
-                _backMusic = _audionConfig.GetLevelBackAudio;
                 GetAudio(_backMusic, true).Play();
             }
         }
@@ -56,16 +77,20 @@ namespace _Scripts.Infrastructure.Audio
                 switch (audioType)
                 {
                     case AudioClipName.Btn:
-                        GetAudio(_audionConfig.GetUIButton).Play();
+                        //GetAudio(_audionConfig.GetUIButton).Play();
+                        _sound.Play(UIBtnSoundKey);
                         break;
                     case AudioClipName.Coins:
-                        GetAudio(_audionConfig.GetCoins).Play();
+                        //GetAudio(_audionConfig.GetCoins).Play();
+                        _sound.Play(CoinsSoundKey);
                         break;
                     case AudioClipName.Burst:
-                        GetAudio(_audionConfig.GetBurst).Play();
+                        //GetAudio(_audionConfig.GetBurst).Play();
+                        _sound.Play(BurstSoundKey);
                         break;               
                     case AudioClipName.Teleport:
-                        GetAudio(_audionConfig.GetTeleport).Play();
+                        //GetAudio(_audionConfig.GetTeleport).Play();
+                        _sound.Play(TeleportSoundKey);
                         break;
                     default:
                         Debug.Log("Don't find Audio Clip");
@@ -76,11 +101,6 @@ namespace _Scripts.Infrastructure.Audio
 
         public void OnOffBackMusic(bool isOn, bool isLevel = false)
         {
-            if (_backMusic == null)
-            {
-                _backMusic = isLevel? _audionConfig.GetLevelBackAudio : _audionConfig.GetStartBackAudio;
-                GetAudio(_backMusic, true);
-            }
             if (!isOn)
             {
                 GetAudio(_backMusic).Stop();
@@ -99,7 +119,7 @@ namespace _Scripts.Infrastructure.Audio
             if (_audioContainer == null || _audios == null)
             {
                 _audioContainer = new GameObject("AudioContainer");
-
+        
                 _audios = new();
             }
         }
@@ -116,12 +136,12 @@ namespace _Scripts.Infrastructure.Audio
         private AudioSource GetAudio(AudioClip audioClip, bool loop = false)
         {
             InitAudio();
-
+        
             if (!_audios.ContainsKey(audioClip.name))
             {
                 SetupClip(audioClip, loop);
             }
-
+        
             return _audios[audioClip.name];
         }
     }

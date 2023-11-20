@@ -16,7 +16,7 @@ MonoBehaviour:
   _levelBackMusic:
   - {fileID: 8300000, guid: bb716ab7f895b8643911b6b23e09dbaa, type: 3}
   - {fileID: 8300000, guid: 0f91a95ea977d1c46a4486600b7b9da0, type: 3}
-  _coins: {fileID: 8300000, guid: e04f832a53c0fa6449dacf035d4832ae, type: 3}
-  _burst: {fileID: 8300000, guid: 96b6f6b4afe6f684c88452fd9faadac8, type: 3}
-  _teleport: {fileID: 8300000, guid: 99ea4a46c16cb394ea4863f5f92dd2e7, type: 3}
-  _btn: {fileID: 8300000, guid: dc0bba0efeee22a43898a008bbc673a7, type: 3}
+  _coins: {fileID: 8300000, guid: b5848b1461dea9f4d8914c0e5d87fcc7, type: 3}
+  _burst: {fileID: 8300000, guid: 5ce16cc00b2388d4f97e18f48dcf441c, type: 3}
+  _teleport: {fileID: 8300000, guid: af341d66be2fec24d8e723a1df940d08, type: 3}
+  _btn: {fileID: 8300000, guid: 770464b120161f94591f4fcc6ba12053, type: 3}

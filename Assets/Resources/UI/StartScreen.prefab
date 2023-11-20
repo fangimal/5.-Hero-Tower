@@ -370,7 +370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &499776381785137819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: "Tour des H\xE9ros"
   kk: 
   ky: 
   lt: 
@@ -1306,11 +1306,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: "Torre de los H\xE9roes"
+  pt: "Torre dos Her\xF3is"
   ar: 
-  id: 
-  ja: 
+  id: Menara Pahlawan
+  ja: "\u82F1\u96C4\u306E\u5854"
   it: 
   de: 
   hi: 
@@ -1319,9 +1319,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &1888330994164224611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,7 +2259,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: "R\xE9initialiser la progression"
   kk: 
   ky: 
   lt: 
@@ -2269,11 +2269,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Restablecer progreso
+  pt: Redefinir o progresso
   ar: 
-  id: 
-  ja: 
+  id: Setel ulang kemajuan
+  ja: "\u9032\u884C\u72B6\u6CC1\u3092\u30EA\u30BB\u30C3\u30C8\u3059\u308B"
   it: 
   de: 
   hi: 
@@ -2282,9 +2282,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &3373068025873242284
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,7 +2857,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Son
   kk: 
   ky: 
   lt: 
@@ -2867,11 +2867,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Sonido
+  pt: Som
   ar: 
-  id: 
-  ja: 
+  id: Suara
+  ja: "\u97F3"
   it: 
   de: 
   hi: 
@@ -2880,9 +2880,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &4207639129186303371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,9 +2920,9 @@ RectTransform:
   - {fileID: 5925280046480160918}
   m_Father: {fileID: 7725667114061525876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -105}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 719.039, y: 99.888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8789868561012847515
@@ -3154,7 +3154,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Languege
   kk: 
   ky: 
   lt: 
@@ -3164,11 +3164,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Idioma
+  pt: Idioma
   ar: 
-  id: 
-  ja: 
+  id: Bahasa
+  ja: "\u30E9\u30F3\u30B0\u30FC\u30B8\u30E5"
   it: 
   de: 
   hi: 
@@ -3177,9 +3177,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 0
+  countLang: 5
 --- !u!1 &4239949014319115784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,9 +3292,9 @@ RectTransform:
   - {fileID: 2407389768825733375}
   m_Father: {fileID: 7725667114061525876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -525}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 719.039, y: 99.888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3718183610801065380
@@ -4143,7 +4143,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Peaux
   kk: 
   ky: 
   lt: 
@@ -4153,11 +4153,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Pieles
+  pt: Peles
   ar: 
-  id: 
-  ja: 
+  id: Kulit
+  ja: "\u30B9\u30AD\u30F3"
   it: 
   de: 
   hi: 
@@ -4166,9 +4166,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &6464906244015768480
 GameObject:
   m_ObjectHideFlags: 0
@@ -4500,7 +4500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7188537666154059960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4673,9 +4673,9 @@ RectTransform:
   - {fileID: 6667901352132280758}
   m_Father: {fileID: 7725667114061525876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -315}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 719.039, y: 99.888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5602922841469872772
@@ -5043,7 +5043,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: "Param\xE8tres"
   kk: 
   ky: 
   lt: 
@@ -5053,11 +5053,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Ajustes
+  pt: "Configura\xE7\xF5es"
   ar: 
-  id: 
-  ja: 
+  id: Pengaturan
+  ja: "\u8A2D\u5B9A"
   it: 
   de: 
   hi: 
@@ -5066,9 +5066,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &8754674506581771956
 GameObject:
   m_ObjectHideFlags: 0
@@ -5443,7 +5443,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Musique
   kk: 
   ky: 
   lt: 
@@ -5453,11 +5453,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: "M\xFAsica"
+  pt: "M\xFAsica"
   ar: 
-  id: 
-  ja: 
+  id: Musik
+  ja: "\u97F3\u697D"
   it: 
   de: 
   hi: 
@@ -5466,9 +5466,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!1 &8908401421762917882
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,7 +5813,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -5823,7 +5823,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -5873,12 +5873,12 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -76.25924
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -5964,7 +5964,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Un nouveau jeu
   kk: 
   ky: 
   lt: 
@@ -5974,11 +5974,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Un nuevo juego
+  pt: Um novo jogo
   ar: 
-  id: 
-  ja: 
+  id: Sebuah permainan baru
+  ja: "\u65B0\u3057\u3044\u30B2\u30FC\u30E0"
   it: 
   de: 
   hi: 
@@ -5987,9 +5987,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!114 &7444410835609743534 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6028,7 +6028,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6038,7 +6038,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6088,12 +6088,12 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -686.3331
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6203,7 +6203,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Plus de jeux
   kk: 
   ky: 
   lt: 
@@ -6213,11 +6213,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: "M\xE1s juegos"
+  pt: Mais jogos
   ar: 
-  id: 
-  ja: 
+  id: Lebih banyak permainan
+  ja: "\u4ED6\u306E\u30B2\u30FC\u30E0"
   it: 
   de: 
   hi: 
@@ -6226,9 +6226,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!114 &8502971812373775228 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6267,7 +6267,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6277,7 +6277,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6327,12 +6327,12 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -381.2962
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6425,7 +6425,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: peaux
   kk: 
   ky: 
   lt: 
@@ -6435,11 +6435,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Pieles
+  pt: Peles
   ar: 
-  id: 
-  ja: 
+  id: Kulit
+  ja: "\u30B9\u30AD\u30F3"
   it: 
   de: 
   hi: 
@@ -6448,9 +6448,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 0/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 0
+  countLang: 5
 --- !u!114 &6486979855882945480 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6501,7 +6501,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6511,7 +6511,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6561,12 +6561,12 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -228.77771
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6662,7 +6662,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: Continuer
   kk: 
   ky: 
   lt: 
@@ -6672,11 +6672,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Continuar
+  pt: Continuar
   ar: 
-  id: 
-  ja: 
+  id: Melanjutkan
+  ja: "\u7D9A\u304F"
   it: 
   de: 
   hi: 
@@ -6685,9 +6685,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!114 &8847102658690768456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6726,7 +6726,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6736,7 +6736,7 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6786,12 +6786,12 @@ PrefabInstance:
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -533.8147
       objectReference: {fileID: 0}
     - target: {fileID: 1559661407629896298, guid: 59e8d08e33bf736479df7d44125a0907,
         type: 3}
@@ -6900,7 +6900,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: 
+  fr: "Param\xE8tres"
   kk: 
   ky: 
   lt: 
@@ -6910,11 +6910,11 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: 
-  pt: 
+  es: Ajustes
+  pt: "Configura\xE7\xF5es"
   ar: 
-  id: 
-  ja: 
+  id: Pengaturan
+  ja: "\u8A2D\u5B9A"
   it: 
   de: 
   hi: 
@@ -6923,9 +6923,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 2/3 completed
+  processTranslateLabel: 5/8 completed
   componentTextField: 1
-  countLang: 2
+  countLang: 5
 --- !u!114 &3671517540847828169 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,

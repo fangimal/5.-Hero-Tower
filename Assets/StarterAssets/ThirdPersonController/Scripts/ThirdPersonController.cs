@@ -22,6 +22,7 @@ namespace StarterAssets
         public Transform VisualContainer;
         public PlayerStaticData PlayerStaticData;
         public PlayerSpawner playerSpawner;
+        public AudioYB SoundAudio;
 
         [Header("Player")] [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 5.0f;
