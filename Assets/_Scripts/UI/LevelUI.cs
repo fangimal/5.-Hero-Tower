@@ -97,7 +97,7 @@ namespace _Scripts.UI
             int checkPointIndex = PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1;
             _player.playerSpawner.RewardGoNextCheckPoint(checkPointIndex);
             
-            TrigerSend("RevardPoint" + checkPointIndex);
+            TrigerSend("RP: " + checkPointIndex);
         }
 
         private void OpenPausePanel(bool isOpen)

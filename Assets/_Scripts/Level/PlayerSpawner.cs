@@ -115,7 +115,7 @@ namespace _Scripts.Level
 
             _saveLoadService.SaveProgress();
 
-            TrigerSend("Point: " + index);
+            TrigerSend("Point Index","Point: " + index);
         }
 
         public void RewardGoNextCheckPoint(int index)
@@ -202,14 +202,14 @@ namespace _Scripts.Level
             canRebase = true;
         }
         
-        private void TrigerSend(string name)
+        public void TrigerSend(string eventName, string name)
         {
             var eventParams = new Dictionary<string, string>
             {
-                { "Point Index", name }
+                { eventName, name }
             };
 
-            YandexMetrica.Send("Point Index", eventParams);
+            YandexMetrica.Send(eventName, eventParams);
         }
     }
 }

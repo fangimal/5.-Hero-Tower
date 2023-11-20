@@ -23,6 +23,7 @@ namespace _Scripts.Level
             if (other.CompareTag("Player") && isFinish)
             {
                 isFinish = false;
+                other.GetComponent<PlayerSpawner>().TrigerSend("Finish", "Finish");
                 StartCoroutine(StartFirework());
             }
         }

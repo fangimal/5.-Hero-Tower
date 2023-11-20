@@ -40,7 +40,7 @@ public class StartUI : WindowBase, ISavedProgress
             _saveLoadService.ResetProgress();
             UpdateProgress(PlayerData);
             _skinPanelUI.ClickedSkinItem(PlayerData.playerSkin);
-            YandexMetrica.Send("Reset Clicked");
+            TrigerSend("Reset Clicked", "Reset");
         };
 
         _settingsUI.OnChangeLanguage += () =>
@@ -80,7 +80,7 @@ public class StartUI : WindowBase, ISavedProgress
 
     private void ByuSkin(int skinIndex)
     {
-        TrigerSend("ByuSkin: " + skinIndex);
+        TrigerSend("Skins","ByuSkin: " + skinIndex);
     }
 
     protected override void Initialize(bool isMobile)
@@ -130,7 +130,7 @@ public class StartUI : WindowBase, ISavedProgress
 
         PlayerData.checkpointIndex = new List<int>() { -1 };
         _saveLoadService.SaveProgress();
-        TrigerSend("LoadNewLevel with Skin: " + PlayerData.playerSkin);
+        TrigerSend("Skins","LoadNewLevel with Skin: " + PlayerData.playerSkin);
         _gameStateMachine.Enter<LoadSceneState, int>(2);
     }
 
@@ -138,7 +138,7 @@ public class StartUI : WindowBase, ISavedProgress
     {
         OnClickedPlay(AudioClipName.Btn);
         
-        TrigerSend("ContinueLevel with Skin: " + PlayerData.playerSkin);
+        TrigerSend("Skins","ContinueLevel with Skin: " + PlayerData.playerSkin);
 
         _gameStateMachine.Enter<LoadSceneState, int>(2);
     }
@@ -205,13 +205,13 @@ public class StartUI : WindowBase, ISavedProgress
     {
         coins.text = playerData.Coins.ToString();
     }
-    private void TrigerSend(string name)
+    private void TrigerSend(string eventName, string name)
     {
         var eventParams = new Dictionary<string, string>
         {
-            { "Skins", name }
+            { eventName, name }
         };
 
-        YandexMetrica.Send("Skins", eventParams);
+        YandexMetrica.Send(eventName, eventParams);
     }
 }
