@@ -54,6 +54,8 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
                 _audioService.Init(sceneIndex, player.SoundAudio);
                 CreateGameUI(player);
             }
+            
+            _adsService.Initialize(player.GetComponent<StarterAssetsInputs>());
         }
 
         public void CreateStartUI(ThirdPersonController player)

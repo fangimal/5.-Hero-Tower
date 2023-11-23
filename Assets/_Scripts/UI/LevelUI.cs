@@ -26,6 +26,7 @@ namespace _Scripts.UI
 
         private StarterAssetsInputs _starterAssetsInputs;
         private PlayerSpawner _playerSpawner;
+        private bool isFall = false;
 
         private void Awake()
         {
@@ -35,7 +36,7 @@ namespace _Scripts.UI
             {
                 OnClickedPlay(AudioClipName.Btn);
                 OpenPausePanel(false);
-                
+
                 _adsService.ShowReward(RewardId.Checkpoint);
             };
 
@@ -43,6 +44,13 @@ namespace _Scripts.UI
             {
                 OnClickedPlay(AudioClipName.Btn);
                 OpenPausePanel(false);
+                
+                if (isFall)
+                {
+                    _adsService.ShowIterstisial();
+                    isFall = false;
+                }
+                
                 RebasePlayer();
             };
 
@@ -79,7 +87,7 @@ namespace _Scripts.UI
             }
 
             ShowMobileInput(isMobile);
-            
+
             _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
 
             _playerSpawner = _player.GetComponent<PlayerSpawner>();
@@ -89,7 +97,7 @@ namespace _Scripts.UI
         private void PlayerFall()
         {
             OpenPausePanel(true);
-            _adsService.ShowIterstisial();
+            isFall = true;
         }
 
         private void GetRewardGoNextPoint()
@@ -104,7 +112,9 @@ namespace _Scripts.UI
         {
             _pausePanelUI.gameObject.SetActive(isOpen);
             _starterAssetsInputs.SetCursour(!isOpen, !isOpen);
-            _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] < _player.playerSpawner.GetCheckpointsCount - 1);
+            _pausePanelUI.SetInteractableNextPointButton(
+                PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] <
+                _player.playerSpawner.GetCheckpointsCount - 1);
         }
 
         private void RebasePlayer()
@@ -139,7 +149,7 @@ namespace _Scripts.UI
         {
             _coinsCount.text = playerData.Coins.ToString();
         }
-        
+
         private void TrigerSend(string name)
         {
             var eventParams = new Dictionary<string, string>
