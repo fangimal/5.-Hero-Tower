@@ -11,5 +11,7 @@ namespace _Scripts.Infrastructure.ADS
         void ShowReward(RewardId rewardType);
 
         event Action OnNextCheckPoint;
+
+        public event Action OnCloseADS;
     }
 }

@@ -9,8 +9,10 @@ namespace _Scripts.Infrastructure.ADS
     {
         private StarterAssetsInputs _starterAssetsInputs;
         public event Action OnNextCheckPoint;
+        public event Action OnCloseADS;
 
         private int rewardIndex;
+        private bool canGetReward;
         private void OnDisable()
         {
             YandexGame.RewardVideoEvent -= GetRewarded;
@@ -22,14 +24,14 @@ namespace _Scripts.Infrastructure.ADS
             Debug.Log("Initialize AdsService");
             YandexGame.RewardVideoEvent += GetRewarded;
             YandexGame.CloseFullAdEvent += CloseIterstisial;
-            
+
             _starterAssetsInputs = starterAssetsInputs;
         }
 
         public void ShowIterstisial()
         {
             Debug.Log("Show Interstisial");
-            
+
             if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
             {
                 YandexGame.FullscreenShow();
@@ -39,12 +41,13 @@ namespace _Scripts.Infrastructure.ADS
         private void CloseIterstisial()
         {
             _starterAssetsInputs.SetCursour(true);
+            OnCloseADS?.Invoke();
         }
 
         public void ShowReward(RewardId rewardType)
         {
             rewardIndex = (int)rewardType;
-            Debug.Log("Show Reward");
+            canGetReward = true;
             YandexGame.RewVideoShow(rewardIndex);
         }
 
@@ -57,17 +60,21 @@ namespace _Scripts.Infrastructure.ADS
         {
             RewardId rewardType = (RewardId)rewardIndex;
 
-            switch (rewardType)
+            if (canGetReward)
             {
-                case RewardId.Checkpoint:
-                    Debug.Log("Checkpoint");
-                    OnNextCheckPoint?.Invoke();
-                    break;
-                case RewardId.GetCoin:
-                    Debug.Log("GetCoin");
-                    break;
+                switch (rewardType)
+                {
+                    case RewardId.Checkpoint:
+                        Debug.Log("Checkpoint");
+                        OnNextCheckPoint?.Invoke();
+                        break;
+                    case RewardId.GetCoin:
+                        Debug.Log("GetCoin");
+                        break;
+                }
             }
-        }
 
+            canGetReward = false;
+        }
     }
 }

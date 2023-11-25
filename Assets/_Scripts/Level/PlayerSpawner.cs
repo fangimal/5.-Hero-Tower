@@ -10,15 +10,17 @@ using _Scripts.StaticData;
 using StarterAssets;
 using UnityEngine;
 using YG;
+using YG.Utils.LB;
 
 namespace _Scripts.Level
 {
     public class PlayerSpawner : MonoBehaviour
     {
-        [SerializeField] private StarterAssetsInputs starterAssetsInputs;
+        [SerializeField] private StarterAssetsInputs _starterAssetsInputs;
         [SerializeField] private GameObject rebaseParticlePrefabStart;
         [SerializeField] private LevelHelper levelHelper;
         [SerializeField] private Transform lastSavePosition;
+        [SerializeField] private PlayerData _playerData;
 
         public float distance = 10f;
         public LayerMask layerMask;
@@ -55,14 +57,14 @@ namespace _Scripts.Level
             _thirdPersonController = thirdPersonController;
             _timer = _startTimer;
             this.data = data;
-
             _audioService = audioService;
+            _starterAssetsInputs = thirdPersonController.GetStarterAssetsInputs;
 
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
+            _playerData = persistentProgressService.playerData;
             SetTargetPosition(
-                _persistentProgress.playerData.checkpointIndex[
-                    _persistentProgress.playerData.checkpointIndex.Count - 1]);
+                _persistentProgress.playerData.checkpointIndex[^1]);
 
             characterController = thirdPersonController.gameObject.GetComponent<CharacterController>();
             RebasePlayer(lastSavePosition);
@@ -112,6 +114,7 @@ namespace _Scripts.Level
             }
 
             currentCheckpointIndex = index;
+            
 
             _saveLoadService.SaveProgress();
 
@@ -120,9 +123,11 @@ namespace _Scripts.Level
 
         public void RewardGoNextCheckPoint()
         {
-            SetTargetPosition(currentCheckpointIndex + 1);
-            //RebasePlayer(lastSavePosition);
+            currentCheckpointIndex ++;
+            Debug.Log("currentCheckpointIndex: " + currentCheckpointIndex);
             RebaseEnd();
+            //_starterAssetsInputs.SetCursour(true);
+            TrigerSend("RevardPoint", "RP: " + currentCheckpointIndex);
         }
 
         public void GetCoins()
@@ -164,7 +169,7 @@ namespace _Scripts.Level
 
         public void RebaseEnd()
         {
-            StartCoroutine(Rebase(lastSavePosition));
+            StartCoroutine(Rebase(levelHelper.GetCheckPoints[currentCheckpointIndex].GetSpawnPoint));
             _thirdPersonController.GetVisualize.gameObject.SetActive(true);
 
             RebaseFX();
@@ -185,7 +190,7 @@ namespace _Scripts.Level
             gameObject.transform.position = targetTransform.position;
             gameObject.transform.rotation = targetTransform.rotation;
             gameObject.transform.localScale = Vector3.one;
-            starterAssetsInputs.MoveInput(Vector2.zero);
+            _starterAssetsInputs.MoveInput(Vector2.zero);
             yield return new WaitForFixedUpdate();
             _thirdPersonController.Grounded = true;
             characterController.enabled = true;

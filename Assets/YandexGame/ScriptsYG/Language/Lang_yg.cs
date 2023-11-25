@@ -7,6 +7,7 @@ namespace YG
     public partial class YandexGame
     {
         public static string lang = "ru";
+        public static int langIndex;
         public static Action<string> SwitchLangEvent;
 
         [StartYG]
@@ -129,14 +130,19 @@ namespace YG
                 case "ru":
                     if (infoYG.languages.ru)
                         _lang = sendLang;
+                    langIndex = 0;
                     break;
                 case "en":
                     if (infoYG.languages.en)
                         _lang = sendLang;
+                    langIndex = 1;
                     break;
                 case "tr":
                     if (infoYG.languages.tr)
+                    {
                         _lang = sendLang;
+                        langIndex = 2;
+                    }
                     else _lang = "ru";
                     break;
                 case "az":
@@ -171,7 +177,10 @@ namespace YG
                     break;
                 case "fr":
                     if (infoYG.languages.fr)
+                    {
                         _lang = sendLang;
+                        langIndex = 3;
+                    }
                     else _lang = "en";
                     break;
                 case "kk":
@@ -221,12 +230,18 @@ namespace YG
                     break;
                 case "es":
                     if (infoYG.languages.es)
+                    {
                         _lang = sendLang;
+                        langIndex = 5;
+                    }
                     else _lang = "en";
                     break;
                 case "pt":
                     if (infoYG.languages.pt)
+                    {
                         _lang = sendLang;
+                        langIndex = 6;
+                    }
                     else _lang = "en";
                     break;
                 case "ar":
@@ -236,7 +251,10 @@ namespace YG
                     break;
                 case "id":
                     if (infoYG.languages.id)
+                    {
                         _lang = sendLang;
+                        langIndex = 4;
+                    }
                     else _lang = "en";
                     break;
                 case "ja":

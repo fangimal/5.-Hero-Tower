@@ -11,6 +11,7 @@ namespace _Scripts.Data
         public bool isMusicOn = true;
         public int langIndex = 0;
         public int Coins = 0;
+        public bool isFirst = true;
         public int playerSkin;
         private int coinsForLiderBoard;
         public List<int> checkpointIndex = new List<int>(){-1};

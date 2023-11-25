@@ -24,13 +24,15 @@ namespace StarterAssets
         public PlayerSpawner playerSpawner;
         public AudioYB SoundAudio;
 
-        [Header("Player")] [Tooltip("Move speed of the character in m/s")]
+        [Header("Player")]
+        [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 5.0f;
 
         //[Tooltip("Sprint speed of the character in m/s")]
         //public float SprintSpeed = 5.335f;
 
-        [Tooltip("How fast the character turns to face movement direction")] [Range(0.0f, 0.3f)]
+        [Tooltip("How fast the character turns to face movement direction")]
+        [Range(0.0f, 0.3f)]
         public float RotationSmoothTime = 0.12f;
 
         [Tooltip("Acceleration and deceleration")]
@@ -40,7 +42,8 @@ namespace StarterAssets
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
-        [Space(10)] [Tooltip("The height the player can jump")]
+        [Space(10)]
+        [Tooltip("The height the player can jump")]
         public float JumpHeight = 1.2f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -120,6 +123,7 @@ namespace StarterAssets
         private int curentSkinIndex = -1;
         private ISaveLoadService _saveLoadService;
         public Visualize GetVisualize => _visualize;
+        public StarterAssetsInputs GetStarterAssetsInputs => _input;
 
         private bool IsCurrentDeviceMouse
         {
@@ -187,18 +191,18 @@ namespace StarterAssets
             {
                 return;
             }
-            
+
             if (_visualize != null)
             {
                 Destroy(_visualize.gameObject);
             }
 
             _visualize = Instantiate(PlayerStaticData.GetSkins[index].VisualizerPrefag, VisualContainer);
-            
+
             _visualize.Init(FootstepAudioClips, FootstepAudioVolume, _controller, LandingAudioClip);
 
             curentSkinIndex = index;
-            
+
             _saveLoadService.SaveProgress();
         }
 

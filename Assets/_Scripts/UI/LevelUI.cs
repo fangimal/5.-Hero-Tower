@@ -31,30 +31,31 @@ namespace _Scripts.UI
         private void Awake()
         {
             _pauseButton.onClick.AddListener(() => { OpenPausePanel(true); });
-
-            _pausePanelUI.OnNextPoint += () =>
-            {
-                OnClickedPlay(AudioClipName.Btn);
-                OpenPausePanel(false);
-
-                _adsService.ShowReward(RewardId.Checkpoint);
-            };
-
-            _pausePanelUI.OnContinue += () =>
-            {
-                OnClickedPlay(AudioClipName.Btn);
-                OpenPausePanel(false);
-                
-                if (isFall)
-                {
-                    _adsService.ShowIterstisial();
-                    isFall = false;
-                }
-                
-                RebasePlayer();
-            };
-
+            _pausePanelUI.OnNextPoint += NextPoint;
+            _pausePanelUI.OnContinue += ContinueBtn;
             _pausePanelUI.OnBack += LoadPauseUI;
+        }
+
+        private void ContinueBtn()
+        {
+            OnClickedPlay(AudioClipName.Btn);
+            OpenPausePanel(false);
+
+            if (isFall)
+            {
+                _adsService.ShowIterstisial();
+                isFall = false;
+            }
+
+            RebasePlayer();
+        }
+
+        private void NextPoint()
+        {
+            OnClickedPlay(AudioClipName.Btn);
+            OpenPausePanel(true);
+
+            _adsService.ShowReward(RewardId.Checkpoint);
         }
 
         private void Update()
@@ -68,6 +69,9 @@ namespace _Scripts.UI
         private void OnDestroy()
         {
             _adsService.OnNextCheckPoint -= GetRewardGoNextPoint;
+            _adsService.OnCloseADS -= CloseAds;
+            _pausePanelUI.OnNextPoint -= NextPoint;
+            _pausePanelUI.OnContinue -= ContinueBtn;
         }
 
         protected override void Initialize(bool isMobile)
@@ -75,7 +79,7 @@ namespace _Scripts.UI
             base.Initialize(isMobile);
 
             _audioService.CreateLevelAudio();
-            _starterAssetsInputs = _player.GetComponent<StarterAssetsInputs>();
+            _starterAssetsInputs = _player.GetStarterAssetsInputs;
             OpenPausePanel(false);
 
             if (isMobile)
@@ -89,6 +93,7 @@ namespace _Scripts.UI
             ShowMobileInput(isMobile);
 
             _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
+            _adsService.OnCloseADS += CloseAds;
 
             _playerSpawner = _player.GetComponent<PlayerSpawner>();
             _playerSpawner.OnRebasePlayer += PlayerFall;
@@ -103,10 +108,12 @@ namespace _Scripts.UI
         private void GetRewardGoNextPoint()
         {
             _player.playerSpawner.RewardGoNextCheckPoint();
-            int checkPointIndex = PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1;
-            _player.playerSpawner.RewardGoNextCheckPoint(checkPointIndex);
-            _starterAssetsInputs.SetCursour(true);
-            TrigerSend("RP: " + checkPointIndex);
+            OpenPausePanel(false);
+        }
+
+        private void CloseAds()
+        {
+            OpenPausePanel(true);
         }
 
         private void OpenPausePanel(bool isOpen)
@@ -149,16 +156,6 @@ namespace _Scripts.UI
         public void UpdateProgress(PlayerData playerData)
         {
             _coinsCount.text = playerData.Coins.ToString();
-        }
-
-        private void TrigerSend(string name)
-        {
-            var eventParams = new Dictionary<string, string>
-            {
-                { "RevardPoint", name }
-            };
-
-            YandexMetrica.Send("RevardPoint", eventParams);
         }
     }
 }
