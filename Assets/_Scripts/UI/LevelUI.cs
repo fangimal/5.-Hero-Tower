@@ -89,8 +89,7 @@ namespace _Scripts.UI
 
         private void GetRewardGoNextPoint()
         {
-            _player.playerSpawner.RewardGoNextCheckPoint(
-                PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1);
+            _player.playerSpawner.RewardGoNextCheckPoint();
         }
 
         private void OpenPausePanel(bool isOpen)

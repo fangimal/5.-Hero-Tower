@@ -13,7 +13,6 @@ namespace _Scripts.Level
 
         [SerializeField] private CheckPoint[] checkPoints;
         [SerializeField] private Transform startPoint;
-        [SerializeField] private Transform targetPoint;
         public Transform GetStartPosition => startPoint;
         public CheckPoint[] GetCheckPoints => checkPoints;
         private IPersistentProgressService _persistentProgress;

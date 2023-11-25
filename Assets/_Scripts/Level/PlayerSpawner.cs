@@ -112,9 +112,9 @@ namespace _Scripts.Level
             _saveLoadService.SaveProgress();
         }
 
-        public void RewardGoNextCheckPoint(int index)
+        public void RewardGoNextCheckPoint()
         {
-            SetTargetPosition(index);
+            SetTargetPosition(currentCheckpointIndex + 1);
             //RebasePlayer(lastSavePosition);
             RebaseEnd();
         }
