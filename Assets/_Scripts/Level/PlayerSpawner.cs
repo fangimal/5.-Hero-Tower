@@ -118,9 +118,9 @@ namespace _Scripts.Level
             TrigerSend("Point Index","Point: " + index);
         }
 
-        public void RewardGoNextCheckPoint(int index)
+        public void RewardGoNextCheckPoint()
         {
-            SetTargetPosition(index);
+            SetTargetPosition(currentCheckpointIndex + 1);
             //RebasePlayer(lastSavePosition);
             RebaseEnd();
         }

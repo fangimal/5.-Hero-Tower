@@ -102,6 +102,7 @@ namespace _Scripts.UI
 
         private void GetRewardGoNextPoint()
         {
+            _player.playerSpawner.RewardGoNextCheckPoint();
             int checkPointIndex = PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] + 1;
             _player.playerSpawner.RewardGoNextCheckPoint(checkPointIndex);
             _starterAssetsInputs.SetCursour(true);

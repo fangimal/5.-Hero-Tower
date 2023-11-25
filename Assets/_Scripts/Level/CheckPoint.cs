@@ -11,10 +11,8 @@ namespace _Scripts.Level
         [SerializeField] private Collider collider;
         [SerializeField] private Transform fxRebase;
         [SerializeField] private Transform fxMoney;
+        [SerializeField] private int index;
         public Transform GetSpawnPoint => spawnPoint;
-        public int GetIndex => index;
-
-        private int index;
 
         private void Awake()
         {
@@ -35,7 +33,7 @@ namespace _Scripts.Level
             {
                 PlayerSpawner playerSpawner = other.GetComponent<PlayerSpawner>();
                 playerSpawner.GetCoins();
-                playerSpawner.SetTargetPosition(GetIndex);
+                playerSpawner.SetTargetPosition(index);
                 pointVisual.gameObject.SetActive(false);
                 collider.enabled = false;
                 fxMoney.gameObject.SetActive(true);
