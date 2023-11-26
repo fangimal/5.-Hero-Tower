@@ -126,8 +126,13 @@ namespace _Scripts.Level
             currentCheckpointIndex ++;
             Debug.Log("currentCheckpointIndex: " + currentCheckpointIndex);
             RebaseEnd();
-            //_starterAssetsInputs.SetCursour(true);
             TrigerSend("RevardPoint", "RP: " + currentCheckpointIndex);
+        }
+
+        public void RewardError()
+        {
+            RebaseEnd();
+            TrigerSend("RevardPoint", "Error");
         }
 
         public void GetCoins()

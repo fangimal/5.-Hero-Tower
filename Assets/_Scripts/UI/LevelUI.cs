@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _Scripts.Data;
 using _Scripts.Infrastructure.ADS;
 using _Scripts.Infrastructure.Services.PersistentProgress;
@@ -94,10 +95,12 @@ namespace _Scripts.UI
 
             _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
             _adsService.OnCloseADS += CloseAds;
+            _adsService.OnErrorVideo += ErrorReward;
 
             _playerSpawner = _player.GetComponent<PlayerSpawner>();
             _playerSpawner.OnRebasePlayer += PlayerFall;
         }
+
 
         private void PlayerFall()
         {
@@ -109,6 +112,11 @@ namespace _Scripts.UI
         {
             _player.playerSpawner.RewardGoNextCheckPoint();
             OpenPausePanel(false);
+        }
+        private void ErrorReward()
+        {
+            _player.playerSpawner.RewardError();
+            OpenPausePanel(true);
         }
 
         private void CloseAds()

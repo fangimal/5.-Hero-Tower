@@ -12,6 +12,8 @@ namespace _Scripts.Infrastructure.ADS
 
         event Action OnNextCheckPoint;
 
-        public event Action OnCloseADS;
+        event Action OnCloseADS;
+
+        event Action OnErrorVideo;
     }
 }

@@ -10,6 +10,7 @@ namespace _Scripts.Infrastructure.ADS
         private StarterAssetsInputs _starterAssetsInputs;
         public event Action OnNextCheckPoint;
         public event Action OnCloseADS;
+        public event Action OnErrorVideo;
 
         private int rewardIndex;
         private bool canGetReward;
@@ -17,6 +18,7 @@ namespace _Scripts.Infrastructure.ADS
         {
             YandexGame.RewardVideoEvent -= GetRewarded;
             YandexGame.CloseFullAdEvent -= CloseIterstisial;
+            YandexGame.ErrorVideoEvent -= ErrorReward;
         }
 
         public void Initialize(StarterAssetsInputs starterAssetsInputs)
@@ -24,8 +26,15 @@ namespace _Scripts.Infrastructure.ADS
             Debug.Log("Initialize AdsService");
             YandexGame.RewardVideoEvent += GetRewarded;
             YandexGame.CloseFullAdEvent += CloseIterstisial;
+            YandexGame.ErrorVideoEvent += ErrorReward;
 
             _starterAssetsInputs = starterAssetsInputs;
+        }
+
+        private void ErrorReward()
+        {
+            Debug.Log("ErrorReward");
+            OnErrorVideo?.Invoke();
         }
 
         public void ShowIterstisial()
