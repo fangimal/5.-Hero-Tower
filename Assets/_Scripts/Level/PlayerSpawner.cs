@@ -124,6 +124,7 @@ namespace _Scripts.Level
         public void RewardGoNextCheckPoint()
         {
             currentCheckpointIndex ++;
+            lastSavePosition = levelHelper.GetCheckPoints[currentCheckpointIndex].GetSpawnPoint;
             Debug.Log("currentCheckpointIndex: " + currentCheckpointIndex);
             RebaseEnd();
             TrigerSend("RevardPoint", "RP: " + currentCheckpointIndex);
@@ -174,7 +175,7 @@ namespace _Scripts.Level
 
         public void RebaseEnd()
         {
-            StartCoroutine(Rebase(levelHelper.GetCheckPoints[currentCheckpointIndex].GetSpawnPoint));
+            StartCoroutine(Rebase(lastSavePosition));
             _thirdPersonController.GetVisualize.gameObject.SetActive(true);
 
             RebaseFX();

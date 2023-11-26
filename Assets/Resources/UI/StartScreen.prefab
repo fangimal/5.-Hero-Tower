@@ -2245,7 +2245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 8266904613717790881}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -2282,9 +2282,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &3373068025873242284
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 4163940597364005844}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -2880,9 +2880,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &4207639129186303371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3177,9 +3177,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &4239949014319115784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,7 +4129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 6817667009592923635}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -4166,9 +4166,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &6464906244015768480
 GameObject:
   m_ObjectHideFlags: 0
@@ -5029,7 +5029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 3788969195375839412}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -5066,9 +5066,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &8754674506581771956
 GameObject:
   m_ObjectHideFlags: 0
@@ -5429,7 +5429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 1373242417864413485}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -5466,9 +5466,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &8908401421762917882
 GameObject:
   m_ObjectHideFlags: 0
@@ -5920,6 +5920,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 92193140780778288}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5162275006864692144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
+    type: 3}
+  m_PrefabInstance: {fileID: 92193140780778288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5679856300952924834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5679856300952924834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5734610759135490450, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -5938,7 +5950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 5162275006864692144}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -5975,9 +5987,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &7444410835609743534 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6147,6 +6159,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1155396274423591138}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6263194414578442338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
+    type: 3}
+  m_PrefabInstance: {fileID: 1155396274423591138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889844218621362544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6889844218621362544 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5734610759135490450, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6165,7 +6189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 6263194414578442338}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -6202,9 +6226,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &8502971812373775228 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6387,7 +6411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 6486979855882945480}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -6401,7 +6425,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: peaux
+  fr: Peaux
   kk: 
   ky: 
   lt: 
@@ -6424,9 +6448,21 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
+--- !u!114 &6486979855882945480 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
+    type: 3}
+  m_PrefabInstance: {fileID: 2082348750583354184}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012467396224787162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8857921025755504854 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6612,7 +6648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 8847102658690768456}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -6649,9 +6685,21 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
+--- !u!114 &8847102658690768456 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
+    type: 3}
+  m_PrefabInstance: {fileID: 4333769158540267208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8336666540379307866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6123642986484502359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6808,6 +6856,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8996191679338207159}
   m_SourcePrefab: {fileID: 100100000, guid: 59e8d08e33bf736479df7d44125a0907, type: 3}
+--- !u!114 &1303809902602608599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
+    type: 3}
+  m_PrefabInstance: {fileID: 6123642986484502359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976766601459924677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1976766601459924677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5734610759135490450, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6826,7 +6886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 1303809902602608599}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -6863,9 +6923,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &3671517540847828169 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,

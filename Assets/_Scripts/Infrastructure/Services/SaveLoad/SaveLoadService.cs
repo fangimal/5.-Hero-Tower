@@ -36,12 +36,12 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
         {
             PlayerData playerData = YandexGame.savesData.playerData;
             
-            if (playerData.isFirst) 
-            {
-                YandexGame.Instance.SetLanguage(YandexGame.EnvironmentData.language);
-                playerData.isFirst = false;
-                playerData.langIndex = YandexGame.langIndex;
-            }
+            //if (playerData.isFirst) 
+            //{
+            //    YandexGame.Instance.SetLanguage(YandexGame.EnvironmentData.language);
+            //    playerData.isFirst = false;
+            //    playerData.langIndex = YandexGame.langIndex;
+            //}
 
             return playerData;
         }
