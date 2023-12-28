@@ -22,4 +22,15 @@ namespace _Scripts.Data
             CoinsChanged?.Invoke();
         }
     }
+    
+    [Serializable]
+    public class DataGroup
+    {
+        public PlayerData playerData;
+
+        public DataGroup()
+        {
+            playerData = new PlayerData();
+        }
+    }
 }

@@ -28,18 +28,24 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
             foreach (ISavedProgress progressWriter in _uiFactory.ProgressWriters)
                 progressWriter.UpdateProgress(_progressService.playerData);
             
-            PlayerPrefs.SetString(ProgressKey, _progressService.playerData.ToJson());
+            //PlayerPrefs.SetString(ProgressKey, _progressService.playerData.ToJson());
+            VKProvider.Instance.SavePlayerData(_progressService.playerData);
         }
 
-        public PlayerData LoadProgress() =>
-            PlayerPrefs.GetString(ProgressKey)?
-                .ToDeserialzed<PlayerData>();
+        public PlayerData LoadProgress()
+        {
+            // return PlayerPrefs.GetString(ProgressKey)?
+            //     .ToDeserialzed<PlayerData>();
+            return VKProvider.Instance.DG.playerData;
+        }
 
         public void ResetProgress()
         {
             _progressService.playerData = new(); 
             
-            PlayerPrefs.SetString(ProgressKey, _progressService.playerData.ToJson());
+            //PlayerPrefs.SetString(ProgressKey, _progressService.playerData.ToJson());
+            
+            VKProvider.Instance.SavePlayerData(_progressService.playerData);
         }
     }
 }

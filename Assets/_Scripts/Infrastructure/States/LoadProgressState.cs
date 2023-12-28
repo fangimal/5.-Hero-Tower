@@ -3,6 +3,7 @@ using _Scripts.Data;
 using _Scripts.Infrastructure.Services;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.Services.SaveLoad;
+using UnityEngine;
 
 namespace _Scripts.Infrastructure.States
 {
@@ -19,24 +20,36 @@ namespace _Scripts.Infrastructure.States
             _gameStateMachine = gameStateMachine;
             _progressService = progressService;
             _saveLoadService = saveLoadService;
+            
+            VKProvider.Instance.OnLoadData += () =>
+            {
+                _progressService.playerData = VKProvider.Instance.DG.playerData;
+                
+                _gameStateMachine.Enter<LoadSceneState, int>(sceneIndex);
+                Debug.Log("LoadSceneState");
+            };
         }
 
         public void Enter()
         {
-            LoadProgressOrInitNew();
-
-            _gameStateMachine.Enter<LoadSceneState, int>(sceneIndex);
+            Debug.Log("LoadProgressState");
+            VKProvider.Instance.LoadWEBData();
+            
+            //LoadProgressOrInitNew();
+            
         }
 
         public void Exit()
         {
         }
 
-        private void LoadProgressOrInitNew() =>
-            _progressService.playerData = 
-                _saveLoadService.LoadProgress() 
+        private void LoadProgressOrInitNew()
+        {
+            _progressService.playerData =
+                _saveLoadService.LoadProgress()
                 ?? NewProgress();
-        
+        }
+
         private PlayerData  NewProgress()
         {
             var progress = new PlayerData();

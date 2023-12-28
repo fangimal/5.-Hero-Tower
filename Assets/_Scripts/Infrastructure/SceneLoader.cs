@@ -12,7 +12,7 @@ namespace _Scripts.Infrastructure
 
         public void Load(int sceneIndex, Action onLoaded = null) =>
             _coroutineRunner.StartCoroutine(LoadScene(sceneIndex, onLoaded));
-        public IEnumerator LoadScene(int sceneIndex, Action onLoaded = null)
+        private IEnumerator LoadScene(int sceneIndex, Action onLoaded = null)
         {
             if (SceneManager.GetActiveScene().buildIndex == sceneIndex)
             {
