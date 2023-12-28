@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMPComponent: {fileID: 6384682095460527647}
-  uniqueFontTMP: {fileID: 11400000, guid: 24e8a5a03656b02479a3b9b2e595d6fc, type: 2}
+  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -1319,9 +1319,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 6/7 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 6
+  countLang: 0
 --- !u!1 &1888330994164224611
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,9 +2282,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &3373068025873242284
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,9 +2880,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &4207639129186303371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3154,7 +3154,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: Languege
+  fr: "Fran\xE7ais"
   kk: 
   ky: 
   lt: 
@@ -3164,10 +3164,10 @@ MonoBehaviour:
   tk: 
   uk: 
   uz: 
-  es: Idioma
-  pt: Idioma
+  es: "Espa\xF1ol"
+  pt: "Portugu\xEAs"
   ar: 
-  id: Bahasa
+  id: Indonesia
   ja: "\u30E9\u30F3\u30B0\u30FC\u30B8\u30E5"
   it: 
   de: 
@@ -3177,9 +3177,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &4239949014319115784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4166,9 +4166,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &6464906244015768480
 GameObject:
   m_ObjectHideFlags: 0
@@ -5066,9 +5066,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &8754674506581771956
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,9 +5466,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &8908401421762917882
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,9 +5987,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &7444410835609743534 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6226,9 +6226,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &8502971812373775228 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6425,7 +6425,7 @@ MonoBehaviour:
   hy: 
   ka: 
   et: 
-  fr: peaux
+  fr: Peaux
   kk: 
   ky: 
   lt: 
@@ -6448,9 +6448,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &6486979855882945480 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6685,9 +6685,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &8847102658690768456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5108098926372409472, guid: 59e8d08e33bf736479df7d44125a0907,
@@ -6923,9 +6923,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!114 &3671517540847828169 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7352219962718630814, guid: 59e8d08e33bf736479df7d44125a0907,

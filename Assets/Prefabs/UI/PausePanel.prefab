@@ -842,9 +842,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &3529542552445989983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,9 +1030,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &4173535504209268132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,9 +1490,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 5/8 completed
+  processTranslateLabel: 0/7 completed
   componentTextField: 1
-  countLang: 5
+  countLang: 0
 --- !u!1 &6477588497598119768
 GameObject:
   m_ObjectHideFlags: 0

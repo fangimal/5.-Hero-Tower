@@ -82,8 +82,8 @@ namespace _Scripts.Infrastructure.Factory
             PlayerData playerData = _persistentProgressService.playerData;
 
             levelHelper.Initialize(player, _persistentProgressService);
-            player.playerSpawner.Init(player, levelHelper, _persistentProgressService, data, _audioService);
             player.Init(playerData.playerSkin);
+            player.playerSpawner.Init(player, levelHelper, _persistentProgressService, data, _audioService);
 
             if (data.levelBuildIndex == 1)
             {

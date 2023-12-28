@@ -34,7 +34,16 @@ namespace _Scripts.Infrastructure.Services.SaveLoad
 
         public PlayerData LoadProgress()
         {
-            return YandexGame.savesData.playerData;
+            PlayerData playerData = YandexGame.savesData.playerData;
+            
+            //if (playerData.isFirst) 
+            //{
+            //    YandexGame.Instance.SetLanguage(YandexGame.EnvironmentData.language);
+            //    playerData.isFirst = false;
+            //    playerData.langIndex = YandexGame.langIndex;
+            //}
+
+            return playerData;
         }
         public void ResetProgress()
         {

@@ -70,7 +70,8 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Level);
             LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
-            bool isMobile = YandexGame.EnvironmentData.deviceType != "desktop";
+            //bool isMobile = YandexGame.EnvironmentData.deviceType != "desktop";
+            bool isMobile = Application.isMobilePlatform;
             levelUI.Construct(_stateMachine, player, _progressService, _adsService, _audioService, isMobile);
             Register(levelUI);
         }
