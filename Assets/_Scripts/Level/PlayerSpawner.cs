@@ -34,7 +34,6 @@ namespace _Scripts.Level
         private bool canRebase = true;
         public bool playerIsFall = false;
         private int currentCheckpointIndex;
-        
         public event Action OnRebasePlayer;
 
         private void OnEnable()
@@ -58,8 +57,7 @@ namespace _Scripts.Level
             _saveLoadService = AllServices.Container.Single<ISaveLoadService>();
             _persistentProgress = persistentProgressService;
             SetTargetPosition(
-                _persistentProgress.playerData.checkpointIndex[
-                    _persistentProgress.playerData.checkpointIndex.Count - 1]);
+                _persistentProgress.playerData.checkpointIndex[^1]);
             characterController = thirdPersonController.gameObject.GetComponent<CharacterController>();
             RebasePlayer(lastSavePosition);
         }
@@ -114,11 +112,17 @@ namespace _Scripts.Level
 
         public void RewardGoNextCheckPoint()
         {
-            SetTargetPosition(currentCheckpointIndex + 1);
+            currentCheckpointIndex ++;
+            lastSavePosition = levelHelper.GetCheckPoints[currentCheckpointIndex].GetSpawnPoint;
             //RebasePlayer(lastSavePosition);
             RebaseEnd();
         }
 
+        public void RewardError()
+        {
+            RebaseEnd();
+            //TrigerSend("RevardPoint", "Error");
+        }
         public void GetCoins()
         {
             _persistentProgress.playerData.AddCoins(1);

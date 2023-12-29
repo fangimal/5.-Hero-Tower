@@ -7,8 +7,8 @@ namespace _Scripts.Infrastructure
 {
     public class VKProvider : MonoBehaviour
     {
-        //VK
-
+        [SerializeField] private string _link = "https://vk.com/fangstarmedia";
+        
         [DllImport("__Internal")]
         private static extern void GetDataVK();
 
@@ -17,18 +17,29 @@ namespace _Scripts.Infrastructure
 
         [DllImport("__Internal")]
         private static extern void GoToGroupExtern();
+        
+        [DllImport("__Internal")]
+        private static extern void VKFriendExtern();
+        
+        [DllImport("__Internal")]
+        public static extern void VKShowAdvExtern();
+        
+        [DllImport("__Internal")]
+        private static extern void VKRewardAdvExtern();
 
         private const string PLAYER_DATA_KEY = "PlayerData";
 
         public DataGroup DG = new DataGroup();
 
         public static VKProvider Instance;
-
         public event Action OnLoadData;
-
-
+        public event Action OnGetReward;
+        public event Action OnErrorReward;
+        public event Action OnCloseInterstitial;
+        
         private void Awake()
         {
+            Debug.Log("VKProvider");
             if (Instance != null)
             {
                 Destroy(gameObject);
@@ -110,6 +121,50 @@ namespace _Scripts.Infrastructure
         public void GoToGroup()
         {
             GoToGroupExtern();
+        }
+        
+        public void GetSocialLink()
+        {
+            Application.OpenURL(_link);
+        }
+        
+        public void FriendLink()
+        {
+            Debug.Log("FriendLink");
+            VKFriendExtern();
+        }
+
+        public void VKRewardAdv()
+        {
+#if !UNITY_EDITOR
+            VKRewardAdvExtern();
+#elif UNITY_EDITOR
+            GetReward();
+#endif
+        }
+        
+        public void VKShowAdv()
+        {
+#if !UNITY_EDITOR
+            VKShowAdvExtern();
+#elif UNITY_EDITOR
+            CloseInterstitial();
+#endif
+        }
+
+        public void ErrorReward()
+        {
+            OnErrorReward?.Invoke();
+        }
+
+        public void GetReward()
+        {
+            OnGetReward?.Invoke();
+        }
+
+        public void CloseInterstitial()
+        {
+            OnCloseInterstitial?.Invoke();
         }
     }
 }

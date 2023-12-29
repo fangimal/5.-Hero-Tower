@@ -65,7 +65,6 @@ namespace _Scripts.Infrastructure.States
         private void RegisterAdsService()
         {
             var adsService = new AdsService();
-            adsService.Initialize();
             _services.RegisterSingle<IAdsService>(adsService);
         }
 

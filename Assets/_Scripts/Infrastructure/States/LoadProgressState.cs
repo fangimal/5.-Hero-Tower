@@ -21,6 +21,7 @@ namespace _Scripts.Infrastructure.States
             _progressService = progressService;
             _saveLoadService = saveLoadService;
             
+            Debug.Log("LoadProgressState");
             VKProvider.Instance.OnLoadData += () =>
             {
                 _progressService.playerData = VKProvider.Instance.DG.playerData;

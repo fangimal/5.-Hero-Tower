@@ -11,11 +11,13 @@ namespace _Scripts.UI
         [SerializeField] private Button skinsButton;
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button ourGamesButton;
+        [SerializeField] private Button friendButton;
         public event Action OnNewGameClicked;
         public event Action OnSkinClicked;
         public event Action OnContinueClicked;
         public event Action OnOurGamesClicked;
         public event Action OnSettingsCkicked;
+        public event Action OnFriend;
 
         private void Awake()
         {
@@ -42,6 +44,11 @@ namespace _Scripts.UI
             settingsButton.onClick.AddListener(() =>
             {
                 OnSettingsCkicked?.Invoke();
+            });
+            
+            friendButton.onClick.AddListener(() =>
+            {
+                OnFriend?.Invoke();
             });
         }
 

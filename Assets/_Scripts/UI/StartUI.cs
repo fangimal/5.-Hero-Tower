@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using _Scripts.Data;
+using _Scripts.Infrastructure;
 using _Scripts.Infrastructure.Services.PersistentProgress;
 using _Scripts.Infrastructure.States;
 using _Scripts.StaticData;
@@ -23,6 +24,7 @@ public class StartUI : WindowBase, ISavedProgress
         _startPanelUI.OnContinueClicked += ContinueLevel;
         _startPanelUI.OnSettingsCkicked += OpenSettings;
         _startPanelUI.OnOurGamesClicked += OurGamesLink;
+        _startPanelUI.OnFriend += OnFriendLink;
         _skinPanelUI.OnBackStart += BackStartUI;
         
         _settingsUI.OnBackClicked += ()=>
@@ -88,6 +90,10 @@ public class StartUI : WindowBase, ISavedProgress
         _startPanelUI.OnNewGameClicked -= LodNewLevel;
         _startPanelUI.OnSkinClicked -= LoadSkinPanel;
         _skinPanelUI.OnBackStart -= BackStartUI;
+        _startPanelUI.OnContinueClicked -= ContinueLevel;
+        _startPanelUI.OnSettingsCkicked -= OpenSettings;
+        _startPanelUI.OnOurGamesClicked -= OurGamesLink;
+        _startPanelUI.OnFriend -= OnFriendLink;
     }
 
     private void OpenSettings()
@@ -134,9 +140,15 @@ public class StartUI : WindowBase, ISavedProgress
     {
         OnClickedPlay(AudioClipName.Btn);
 
-        string domen = "ru"; //TODO get domen
+        //string domen = "ru"; //TODO get domen
 
-        Application.OpenURL(GetLink(domen));
+        //Application.OpenURL(GetLink(domen));
+        VKProvider.Instance.GoToGroup();
+    }
+
+    private void OnFriendLink()
+    {
+        VKProvider.Instance.FriendLink();
     }
 
     private string GetLink(string domen)

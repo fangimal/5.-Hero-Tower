@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 82134619}
   - component: {fileID: 82134618}
   m_Layer: 0
-  m_Name: VKPovider
+  m_Name: VKProvider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,6 +153,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11fc8d12c45a48aeaf52d5b1a92779e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _link: https://vk.com/fangstarmedia
+  DG:
+    playerData:
+      isFirstLoad: 1
+      isSoundOn: 1
+      isMusicOn: 1
+      langIndex: 0
+      Coins: 50
+      playerSkin: 0
+      checkpointIndex: ffffffff
+      openSkin: 00000000
 --- !u!4 &82134619
 Transform:
   m_ObjectHideFlags: 0

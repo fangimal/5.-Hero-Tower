@@ -76,6 +76,8 @@ namespace _Scripts.UI
             ShowMobileInput(isMobile);
             
             _adsService.OnNextCheckPoint += GetRewardGoNextPoint;
+            _adsService.OnCloseADS += CloseAds;
+            _adsService.OnErrorVideo += ErrorReward;
 
             _playerSpawner = _player.GetComponent<PlayerSpawner>();
             _playerSpawner.OnRebasePlayer += PlayerFall;
@@ -91,12 +93,23 @@ namespace _Scripts.UI
         {
             _player.playerSpawner.RewardGoNextCheckPoint();
         }
+        
+        private void ErrorReward()
+        {
+            _player.playerSpawner.RewardError();
+            OpenPausePanel(true);
+        }
+        
+        private void CloseAds()
+        {
+            OpenPausePanel(true);
+        }
 
         private void OpenPausePanel(bool isOpen)
         {
             _pausePanelUI.gameObject.SetActive(isOpen);
             _starterAssetsInputs.SetCursour(!isOpen, !isOpen);
-            _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[PlayerData.checkpointIndex.Count - 1] < _player.playerSpawner.GetCheckpointsCount - 1);
+            _pausePanelUI.SetInteractableNextPointButton(PlayerData.checkpointIndex[^1] < _player.playerSpawner.GetCheckpointsCount - 1);
         }
 
         private void RebasePlayer()
