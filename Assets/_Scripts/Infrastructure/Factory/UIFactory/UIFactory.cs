@@ -66,7 +66,7 @@ namespace _Scripts.Infrastructure.Factory.UIFactory
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Level);
             LevelUI levelUI = Object.Instantiate(config.Prefab, _uiRoot) as LevelUI;
-            bool isMobile = true;
+            bool isMobile = Application.isMobilePlatform;
             levelUI.Construct(_stateMachine, player, _progressService, _adsService, _audioService, isMobile);
             Register(levelUI);
         }
