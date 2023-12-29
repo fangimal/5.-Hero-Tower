@@ -28,21 +28,25 @@ namespace _Scripts.UI
         {
             _pauseButton.onClick.AddListener(() => { OpenPausePanel(true); });
 
-            _pausePanelUI.OnNextPoint += () =>
-            {
-                OnClickedPlay(AudioClipName.Btn);
-                OpenPausePanel(false);
-                _adsService.ShowReward(RewardId.Checkpoint);
-            };
+            _pausePanelUI.OnNextPoint += NextPoint;
 
-            _pausePanelUI.OnContinue += () =>
-            {
-                OnClickedPlay(AudioClipName.Btn);
-                OpenPausePanel(false);
-                RebasePlayer();
-            };
+            _pausePanelUI.OnContinue += Continue;
 
             _pausePanelUI.OnBack += LoadPauseUI;
+        }
+
+        private void Continue()
+        {
+            OnClickedPlay(AudioClipName.Btn);
+            OpenPausePanel(false);
+            RebasePlayer();
+        }
+
+        private void NextPoint()
+        {
+            OnClickedPlay(AudioClipName.Btn);
+            OpenPausePanel(false);
+            _adsService.ShowReward(RewardId.Checkpoint);
         }
 
         private void Update()
@@ -56,6 +60,13 @@ namespace _Scripts.UI
         private void OnDestroy()
         {
             _adsService.OnNextCheckPoint -= GetRewardGoNextPoint;
+            _adsService.OnCloseADS -= CloseAds;
+            _adsService.OnErrorVideo -= ErrorReward;
+            _playerSpawner.OnRebasePlayer -= PlayerFall;
+            _pausePanelUI.OnBack -= LoadPauseUI;
+            _pausePanelUI.OnNextPoint -= NextPoint;
+            _pausePanelUI.OnContinue -= Continue;
+            _pauseButton.onClick.RemoveAllListeners();
         }
 
         protected override void Initialize(bool isMobile)
