@@ -36,6 +36,8 @@ namespace _Scripts.Infrastructure
         public event Action OnGetReward;
         public event Action OnErrorReward;
         public event Action OnCloseInterstitial;
+        public event Action OnPause;
+        public event Action OnUnPause;
         
         private void Awake()
         {
@@ -165,6 +167,20 @@ namespace _Scripts.Infrastructure
         public void CloseInterstitial()
         {
             OnCloseInterstitial?.Invoke();
+        }
+
+        public void StartShowADV()
+        {
+            Debug.Log("Pause");
+            OnPause?.Invoke();
+            Time.timeScale = 0f;
+        }
+
+        public void HideADV()
+        {
+            Debug.Log("UnPause");
+            OnUnPause?.Invoke();
+            Time.timeScale = 1f;
         }
     }
 }

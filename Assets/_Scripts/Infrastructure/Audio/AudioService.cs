@@ -22,8 +22,10 @@ namespace _Scripts.Infrastructure.Audio
         {
             _progressService = progressService;
             _audionConfig = staticData.GetAudioConfig();
+            VKProvider.Instance.OnPause += () => OnOffBackMusic(false);
+            VKProvider.Instance.OnUnPause += () => OnOffBackMusic(true);
         }
-
+        
         public void Cleanup()
         {
             _audioContainer = null;
